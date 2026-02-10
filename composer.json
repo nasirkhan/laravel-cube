@@ -1,0 +1,62 @@
+{
+    "name": "nasirkhan/laravel-cube",
+    "description": "A unified component library for Laravel applications supporting both Tailwind CSS (with Flowbite) and Bootstrap frameworks",
+    "keywords": [
+        "laravel",
+        "components",
+        "blade-components",
+        "tailwind",
+        "bootstrap",
+        "flowbite",
+        "alpine",
+        "ui-components",
+        "forms",
+        "navigation",
+        "cube"
+    ],
+    "license": "GPL-3.0-or-later",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Nasir Khan Saikat",
+            "email": "nasir8891@gmail.com",
+            "homepage": "https://github.com/nasirkhan",
+            "role": "Developer"
+        }
+    ],
+    "homepage": "https://github.com/nasirkhan/laravel-cube",
+    "require": {
+        "php": "^8.2",
+        "illuminate/support": "^11.0|^12.0",
+        "illuminate/view": "^11.0|^12.0",
+        "livewire/livewire": "^3.0|^4.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^9.0",
+        "phpunit/phpunit": "^11.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Nasirkhan\\LaravelCube\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Nasirkhan\\LaravelCube\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Nasirkhan\\LaravelCube\\CubeServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "sort-packages": true,
+        "preferred-install": "dist",
+        "optimize-autoloader": true
+    }
+}

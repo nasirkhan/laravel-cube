@@ -1,0 +1,295 @@
+# Laravel Cube
+
+A versatile collection of reusable UI components for Laravel applications with **dual framework support** - use Tailwind CSS or Bootstrap 5 seamlessly.
+
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/nasirkhan/laravel-cube.svg?style=flat-square)](https://packagist.org/packages/nasirkhan/laravel-cube)
+[![Total Downloads](https://img.shields.io/packagist/dt/nasirkhan/laravel-cube.svg?style=flat-square)](https://packagist.org/packages/nasirkhan/laravel-cube)
+
+## Features
+
+- **🎨 Dual Framework Support** - Use Tailwind CSS (Flowbite) or Bootstrap 5
+- **🔄 Framework Switching** - Change frameworks per component or globally
+- **15+ Reusable Components** - UI, forms, and navigation components
+- **🌙 Dark Mode** - Built-in dark mode support (Tailwind)
+- **⚡ Alpine.js Integration** - Enhanced interactivity (Tailwind components)
+- **📱 Livewire Compatible** - Works seamlessly with Livewire 3/4
+- **♿ Accessible** - ARIA attributes, keyboard navigation, focus management
+- **🎛️ Customizable** - Override styles, extend functionality, publish views
+- **✅ Type Safe** - Proper validation of component properties
+- **📚 Well Documented** - Comprehensive documentation with examples
+
+## Why "Cube"?
+
+The cube represents versatility and multidimensionality - just like this package that adapts to your framework choice (Tailwind or Bootstrap) while maintaining a unified component API.
+
+## Components Included
+
+### UI Components (2)
+- **Button** - `<x-cube::button>` - Versatile button with variants, sizes, loading states
+- **Modal** - `<x-cube::modal>` - Modal dialog with focus management
+
+### Form Components (8)
+- `<x-cube::input>` - Text input with validation support
+- `<x-cube::label>` - Label with required indicator
+- `<x-cube::error>` - Error display component
+- `<x-cube::group>` - Complete form field wrapper
+- `<x-cube::checkbox>` - Styled checkbox
+- `<x-cube::select>` - Select dropdown
+- `<x-cube::textarea>` - Textarea field
+- `<x-cube::toggle>` - iOS/Bootstrap toggle switch
+
+### Navigation Components (2)
+- `<x-cube::nav-link>` - Navigation link with active state
+- `<x-cube::responsive-nav-link>` - Mobile navigation link
+
+## Requirements
+
+- PHP ^8.2
+- Laravel ^11.0 || ^12.0
+- Livewire ^3.0 || ^4.0
+- Tailwind CSS **OR** Bootstrap 5
+- Alpine.js (included with Livewire, for Tailwind components)
+
+## Installation
+
+Install the package via composer:
+
+```bash
+composer require nasirkhan/laravel-cube
+```
+
+The package will automatically register its service provider.
+
+### Configuration
+
+Set your default framework in `.env`:
+
+```env
+CUBE_FRAMEWORK=tailwind  # or 'bootstrap'
+```
+
+### Publish Assets (Optional)
+
+Publish the configuration file:
+
+```bash
+php artisan vendor:publish --tag=cube-config
+```
+
+Publish the views (for customization):
+
+```bash
+php artisan vendor:publish --tag=cube-views
+```
+
+## Usage
+
+### Framework Selection
+
+**Global (via config):**
+```env
+# .env
+CUBE_FRAMEWORK=tailwind
+```
+
+**Per Component:**
+```blade
+<x-cube::button framework="bootstrap" variant="primary">
+    Bootstrap Button
+</x-cube::button>
+
+<x-cube::button framework="tailwind" variant="primary">
+    Tailwind Button
+</x-cube::button>
+```
+
+### Basic Examples
+
+#### Buttons
+
+**Tailwind (Default):**
+```blade
+<x-cube::button variant="primary">Save</x-cube::button>
+<x-cube::button variant="danger" type="submit">Delete</x-cube::button>
+<x-cube::button variant="secondary" size="sm">Cancel</x-cube::button>
+<x-cube::button variant="primary" :loading="true">Processing...</x-cube::button>
+```
+
+**Bootstrap:**
+```blade
+<x-cube::button framework="bootstrap" variant="primary">Save</x-cube::button>
+<x-cube::button framework="bootstrap" variant="danger" type="submit">Delete</x-cube::button>
+<x-cube::button framework="bootstrap" variant="success" size="lg">Submit</x-cube::button>
+```
+
+#### Form Components
+
+**Tailwind Form:**
+```blade
+<x-cube::group name="email" label="Email Address" required help="We'll never share your email">
+    <x-cube::input type="email" name="email" :value="old('email')" required />
+</x-cube::group>
+
+<x-cube::error :messages="$errors->get('email')" />
+```
+
+**Bootstrap Form:**
+```blade
+<x-cube::group framework="bootstrap" name="email" label="Email Address" required>
+    <x-cube::input framework="bootstrap" type="email" name="email" :value="old('email')" required />
+</x-cube::group>
+
+<x-cube::error framework="bootstrap" :messages="$errors->get('email')" />
+```
+
+#### Checkbox & Toggle
+
+**Tailwind:**
+```blade
+<x-cube::checkbox name="remember">Remember me</x-cube::checkbox>
+<x-cube::toggle name="notifications">Enable notifications</x-cube::toggle>
+```
+
+**Bootstrap:**
+```blade
+<x-cube::checkbox framework="bootstrap" name="remember">Remember me</x-cube::checkbox>
+<x-cube::toggle framework="bootstrap" name="notifications">Enable notifications</x-cube::toggle>
+```
+
+#### Navigation
+
+**Tailwind:**
+```blade
+<x-cube::nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+    Dashboard
+</x-cube::nav-link>
+```
+
+**Bootstrap:**
+```blade
+<x-cube::nav-link framework="bootstrap" href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+    Dashboard
+</x-cube::nav-link>
+```
+
+#### Modal
+
+**Tailwind (Alpine.js):**
+```blade
+<x-cube::modal name="confirm-delete" maxWidth="md">
+    <div class="p-6">
+        <h2 class="text-lg font-medium">Delete Account</h2>
+        <p class="mt-1 text-sm text-gray-600">Are you sure?</p>
+        <div class="mt-6 flex justify-end space-x-3">
+            <x-cube::button variant="secondary" x-on:click="$dispatch('close-modal')">
+                Cancel
+            </x-cube::button>
+            <x-cube::button variant="danger">Delete</x-cube::button>
+        </div>
+    </div>
+</x-cube::modal>
+
+{{-- Trigger modal --}}
+<x-cube::button x-on:click="$dispatch('open-modal', 'confirm-delete')">
+    Open Modal
+</x-cube::button>
+```
+
+**Bootstrap:**
+```blade
+<x-cube::modal framework="bootstrap" name="confirmDelete" maxWidth="lg">
+    <div class="modal-header">
+        <h5 class="modal-title">Delete Account</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+    </div>
+    <div class="modal-body">
+        <p>Are you sure you want to delete your account?</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger">Delete</button>
+    </div>
+</x-cube::modal>
+
+{{-- Trigger modal --}}
+<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmDelete">
+    Open Modal
+</button>
+```
+
+## Component Variants
+
+### Button Variants
+
+**Available for both frameworks:**
+- `primary` - Primary action
+- `secondary` - Secondary action
+- `danger` - Destructive action
+- `success` - Success action
+- `warning` - Warning action
+- `info` - Informational action
+- `light` - Light variant
+- `dark` - Dark variant
+- `link` - Link style
+
+### Button Sizes
+- `sm` - Small
+- `md` - Medium (default)
+- `lg` - Large
+
+## Customization
+
+### Override Styles
+
+Publish the configuration and modify CSS classes:
+
+```bash
+php artisan vendor:publish --tag=cube-config
+```
+
+Edit `config/cube.php`:
+
+```php
+'tailwind' => [
+    'buttons' => [
+        'primary' => 'bg-purple-600 hover:bg-purple-700...',
+    ],
+],
+```
+
+### Extend Components
+
+Publish views and customize:
+
+```bash
+php artisan vendor:publish --tag=cube-views
+```
+
+Views will be in `resources/views/vendor/cube/components/`
+
+## Testing
+
+```bash
+composer test
+```
+
+## Changelog
+
+Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
+
+## Contributing
+
+Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
+
+## Security
+
+If you discover any security related issues, please email nasir8891@gmail.com instead of using the issue tracker.
+
+## Credits
+
+- [Nasir Khan](https://github.com/nasirkhan)
+- [All Contributors](../../contributors)
+
+## License
+
+The GNU General Public License v3.0 or later. Please see [License File](LICENSE) for more information.
