@@ -21,26 +21,23 @@ class CubeServiceProvider extends ServiceProvider
             __DIR__ . '/../config/cube.php' => config_path('cube.php'),
         ], 'cube-config');
 
-        // Register Blade component namespace
-        $this->loadViewComponentsAs('cube', [
-            // UI Components
-            \Nasirkhan\LaravelCube\View\Components\Ui\Modal::class,
-            \Nasirkhan\LaravelCube\View\Components\Ui\Button::class,
-
-            // Form Components
-            \Nasirkhan\LaravelCube\View\Components\Forms\Input::class,
-            \Nasirkhan\LaravelCube\View\Components\Forms\Label::class,
-            \Nasirkhan\LaravelCube\View\Components\Forms\Error::class,
-            \Nasirkhan\LaravelCube\View\Components\Forms\Group::class,
-            \Nasirkhan\LaravelCube\View\Components\Forms\Checkbox::class,
-            \Nasirkhan\LaravelCube\View\Components\Forms\Select::class,
-            \Nasirkhan\LaravelCube\View\Components\Forms\Textarea::class,
-            \Nasirkhan\LaravelCube\View\Components\Forms\Toggle::class,
-
-            // Navigation Components
-            \Nasirkhan\LaravelCube\View\Components\Navigation\NavLink::class,
-            \Nasirkhan\LaravelCube\View\Components\Navigation\ResponsiveNavLink::class,
-        ]);
+        // Register Blade components with flat namespace
+        \Illuminate\Support\Facades\Blade::component('cube::button', \Nasirkhan\LaravelCube\View\Components\Ui\Button::class);
+        \Illuminate\Support\Facades\Blade::component('cube::modal', \Nasirkhan\LaravelCube\View\Components\Ui\Modal::class);
+        
+        \Illuminate\Support\Facades\Blade::component('cube::input', \Nasirkhan\LaravelCube\View\Components\Forms\Input::class);
+        \Illuminate\Support\Facades\Blade::component('cube::label', \Nasirkhan\LaravelCube\View\Components\Forms\Label::class);
+        \Illuminate\Support\Facades\Blade::component('cube::error', \Nasirkhan\LaravelCube\View\Components\Forms\Error::class);
+        \Illuminate\Support\Facades\Blade::component('cube::group', \Nasirkhan\LaravelCube\View\Components\Forms\Group::class);
+        \Illuminate\Support\Facades\Blade::component('cube::checkbox', \Nasirkhan\LaravelCube\View\Components\Forms\Checkbox::class);
+        \Illuminate\Support\Facades\Blade::component('cube::select', \Nasirkhan\LaravelCube\View\Components\Forms\Select::class);
+        \Illuminate\Support\Facades\Blade::component('cube::textarea', \Nasirkhan\LaravelCube\View\Components\Forms\Textarea::class);
+        \Illuminate\Support\Facades\Blade::component('cube::toggle', \Nasirkhan\LaravelCube\View\Components\Forms\Toggle::class);
+        
+        \Illuminate\Support\Facades\Blade::component('cube::nav-link', \Nasirkhan\LaravelCube\View\Components\Navigation\NavLink::class);
+        \Illuminate\Support\Facades\Blade::component('cube::responsive-nav-link', \Nasirkhan\LaravelCube\View\Components\Navigation\ResponsiveNavLink::class);
+        \Illuminate\Support\Facades\Blade::component('cube::dropdown', \Nasirkhan\LaravelCube\View\Components\Navigation\Dropdown::class);
+        \Illuminate\Support\Facades\Blade::component('cube::dropdown-link', \Nasirkhan\LaravelCube\View\Components\Navigation\DropdownLink::class);
     }
 
     /**
