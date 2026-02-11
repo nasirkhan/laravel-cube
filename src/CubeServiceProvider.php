@@ -2,6 +2,7 @@
 
 namespace Nasirkhan\LaravelCube;
 
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
 class CubeServiceProvider extends ServiceProvider
@@ -22,22 +23,59 @@ class CubeServiceProvider extends ServiceProvider
         ], 'cube-config');
 
         // Register Blade components with flat namespace
-        \Illuminate\Support\Facades\Blade::component('cube::button', \Nasirkhan\LaravelCube\View\Components\Ui\Button::class);
-        \Illuminate\Support\Facades\Blade::component('cube::modal', \Nasirkhan\LaravelCube\View\Components\Ui\Modal::class);
+        Blade::component('cube::button', \Nasirkhan\LaravelCube\View\Components\Ui\Button::class);
+        Blade::component('cube::modal', \Nasirkhan\LaravelCube\View\Components\Ui\Modal::class);
         
-        \Illuminate\Support\Facades\Blade::component('cube::input', \Nasirkhan\LaravelCube\View\Components\Forms\Input::class);
-        \Illuminate\Support\Facades\Blade::component('cube::label', \Nasirkhan\LaravelCube\View\Components\Forms\Label::class);
-        \Illuminate\Support\Facades\Blade::component('cube::error', \Nasirkhan\LaravelCube\View\Components\Forms\Error::class);
-        \Illuminate\Support\Facades\Blade::component('cube::group', \Nasirkhan\LaravelCube\View\Components\Forms\Group::class);
-        \Illuminate\Support\Facades\Blade::component('cube::checkbox', \Nasirkhan\LaravelCube\View\Components\Forms\Checkbox::class);
-        \Illuminate\Support\Facades\Blade::component('cube::select', \Nasirkhan\LaravelCube\View\Components\Forms\Select::class);
-        \Illuminate\Support\Facades\Blade::component('cube::textarea', \Nasirkhan\LaravelCube\View\Components\Forms\Textarea::class);
-        \Illuminate\Support\Facades\Blade::component('cube::toggle', \Nasirkhan\LaravelCube\View\Components\Forms\Toggle::class);
+        Blade::component('cube::input', \Nasirkhan\LaravelCube\View\Components\Forms\Input::class);
+        Blade::component('cube::label', \Nasirkhan\LaravelCube\View\Components\Forms\Label::class);
+        Blade::component('cube::error', \Nasirkhan\LaravelCube\View\Components\Forms\Error::class);
+        Blade::component('cube::group', \Nasirkhan\LaravelCube\View\Components\Forms\Group::class);
+        Blade::component('cube::checkbox', \Nasirkhan\LaravelCube\View\Components\Forms\Checkbox::class);
+        Blade::component('cube::select', \Nasirkhan\LaravelCube\View\Components\Forms\Select::class);
+        Blade::component('cube::textarea', \Nasirkhan\LaravelCube\View\Components\Forms\Textarea::class);
+        Blade::component('cube::toggle', \Nasirkhan\LaravelCube\View\Components\Forms\Toggle::class);
         
-        \Illuminate\Support\Facades\Blade::component('cube::nav-link', \Nasirkhan\LaravelCube\View\Components\Navigation\NavLink::class);
-        \Illuminate\Support\Facades\Blade::component('cube::responsive-nav-link', \Nasirkhan\LaravelCube\View\Components\Navigation\ResponsiveNavLink::class);
-        \Illuminate\Support\Facades\Blade::component('cube::dropdown', \Nasirkhan\LaravelCube\View\Components\Navigation\Dropdown::class);
-        \Illuminate\Support\Facades\Blade::component('cube::dropdown-link', \Nasirkhan\LaravelCube\View\Components\Navigation\DropdownLink::class);
+        Blade::component('cube::nav-link', \Nasirkhan\LaravelCube\View\Components\Navigation\NavLink::class);
+        Blade::component('cube::responsive-nav-link', \Nasirkhan\LaravelCube\View\Components\Navigation\ResponsiveNavLink::class);
+        Blade::component('cube::dropdown', \Nasirkhan\LaravelCube\View\Components\Navigation\Dropdown::class);
+        Blade::component('cube::dropdown-link', \Nasirkhan\LaravelCube\View\Components\Navigation\DropdownLink::class);
+        
+        // Register Backend components (Bootstrap-based) - Anonymous components
+        Blade::component('cube::components.backend.breadcrumbs', 'backend-breadcrumbs');
+        Blade::component('cube::components.backend.breadcrumb-item', 'backend-breadcrumb-item');
+        Blade::component('cube::components.backend.section-header', 'backend-section-header');
+        Blade::component('cube::components.backend.section-footer', 'backend-section-footer');
+        Blade::component('cube::components.backend.section-show-table', 'backend-section-show-table');
+        Blade::component('cube::components.backend.page-wrapper', 'backend-page-wrapper');
+        Blade::component('cube::components.backend.sidebar-nav-item', 'backend-sidebar-nav-item');
+        Blade::component('cube::components.backend.dynamic-menu', 'backend-dynamic-menu');
+        Blade::component('cube::components.backend.dynamic-menu-item', 'backend-dynamic-menu-item');
+        Blade::component('cube::components.backend.fallback-sidebar-menu', 'backend-fallback-sidebar-menu');
+        
+        // Backend Buttons
+        Blade::component('cube::components.backend.buttons.create', 'backend-button-create');
+        Blade::component('cube::components.backend.buttons.return-back', 'backend-button-return-back');
+        Blade::component('cube::components.backend.buttons.cancel', 'backend-button-cancel');
+        Blade::component('cube::components.backend.buttons.save', 'backend-button-save');
+        Blade::component('cube::components.backend.buttons.edit', 'backend-button-edit');
+        Blade::component('cube::components.backend.buttons.show', 'backend-button-show');
+        Blade::component('cube::components.backend.buttons.list', 'backend-button-list');
+        Blade::component('cube::components.backend.buttons.public', 'backend-button-public');
+        Blade::component('cube::components.backend.buttons.public-view', 'backend-button-public-view');
+        
+        // Backend Includes
+        Blade::component('cube::components.backend.includes.header', 'backend-include-header');
+        Blade::component('cube::components.backend.includes.footer', 'backend-include-footer');
+        Blade::component('cube::components.backend.includes.sidebar', 'backend-include-sidebar');
+        Blade::component('cube::components.backend.includes.menu-user', 'backend-include-menu-user');
+        Blade::component('cube::components.backend.includes.menu-language', 'backend-include-menu-language');
+        Blade::component('cube::components.backend.includes.dashboard-demo', 'backend-include-dashboard-demo');
+        
+        // Backend Layouts
+        Blade::component('cube::components.backend.layouts.create', 'backend-layout-create');
+        Blade::component('cube::components.backend.layouts.edit', 'backend-layout-edit');
+        Blade::component('cube::components.backend.layouts.show', 'backend-layout-show');
+        Blade::component('cube::components.backend.layouts.trash', 'backend-layout-trash');
     }
 
     /**
