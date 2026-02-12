@@ -23,9 +23,15 @@ class CubeServiceProvider extends ServiceProvider
         ], 'cube-config');
 
         // Register Blade components with flat namespace
+        // UI Components
         Blade::component('cube::button', \Nasirkhan\LaravelCube\View\Components\Ui\Button::class);
+        Blade::component('cube::button-link', \Nasirkhan\LaravelCube\View\Components\Ui\ButtonLink::class);
+        Blade::component('cube::link', \Nasirkhan\LaravelCube\View\Components\Ui\Link::class);
+        Blade::component('cube::card', \Nasirkhan\LaravelCube\View\Components\Ui\Card::class);
+        Blade::component('cube::badge', \Nasirkhan\LaravelCube\View\Components\Ui\Badge::class);
         Blade::component('cube::modal', \Nasirkhan\LaravelCube\View\Components\Ui\Modal::class);
         
+        // Form Components
         Blade::component('cube::input', \Nasirkhan\LaravelCube\View\Components\Forms\Input::class);
         Blade::component('cube::label', \Nasirkhan\LaravelCube\View\Components\Forms\Label::class);
         Blade::component('cube::error', \Nasirkhan\LaravelCube\View\Components\Forms\Error::class);
