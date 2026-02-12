@@ -9,7 +9,7 @@ A versatile collection of reusable UI components for Laravel applications with *
 
 - **🎨 Dual Framework Support** - Use Tailwind CSS (Flowbite) or Bootstrap 5
 - **🔄 Framework Switching** - Change frameworks per component or globally
-- **15+ Reusable Components** - UI, forms, and navigation components
+- **17+ Reusable Components** - UI, forms, and navigation components
 - **🌙 Dark Mode** - Built-in dark mode support (Tailwind)
 - **⚡ Alpine.js Integration** - Enhanced interactivity (Tailwind components)
 - **📱 Livewire Compatible** - Works seamlessly with Livewire 3/4
@@ -24,9 +24,13 @@ The cube represents versatility and multidimensionality - just like this package
 
 ## Components Included
 
-### UI Components (2)
+### UI Components (6)
 - **Button** - `<x-cube::button>` - Versatile button with variants, sizes, loading states
 - **Modal** - `<x-cube::modal>` - Modal dialog with focus management
+- **Card** - `<x-cube::card>` - Card component with image, title, and content
+- **Badge** - `<x-cube::badge>` - Badge for labels and tags
+- **Footer Credit** - `<x-cube::footer-credit>` - Display copyright text
+- **Footer License** - `<x-cube::footer-license>` - Display licensing information (supports Creative Commons)
 
 ### Form Components (8)
 - `<x-cube::input>` - Text input with validation support
@@ -215,6 +219,45 @@ CUBE_FRAMEWORK=tailwind
 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmDelete">
     Open Modal
 </button>
+```
+
+#### Footer Components
+
+**Footer Credit (Tailwind):**
+```blade
+<x-cube::footer-credit text="&copy; 2024 My Company. All rights reserved." />
+```
+
+**Footer Credit (Bootstrap):**
+```blade
+<x-cube::footer-credit framework="bootstrap" text="&copy; 2024 My Company. All rights reserved." />
+```
+
+**Footer License - Default (Tailwind):**
+```blade
+<x-cube::footer-license 
+    author="My Company" 
+    author-url="https://example.com" 
+/>
+```
+
+**Footer License - Creative Commons (Tailwind):**
+```blade
+<x-cube::footer-license 
+    license="cc-by-sa"
+    author="My Company" 
+    author-url="https://example.com" 
+/>
+```
+
+**Footer License (Bootstrap):**
+```blade
+<x-cube::footer-license 
+    framework="bootstrap"
+    license="cc-by-sa"
+    author="My Company" 
+    author-url="https://example.com" 
+/>
 ```
 
 ## Component Variants

@@ -5,9 +5,10 @@ All notable changes to `laravel-cube` will be documented in this file.
 ## [Unreleased]
 
 ### Added
+- Footer components: `footer-credit` and `footer-license` for displaying copyright and licensing information
 - Initial release of Laravel Cube package
 - Dual framework support (Tailwind CSS and Bootstrap 5)
-- 12 reusable components (UI, forms, navigation)
+- 14 reusable components (UI, forms, navigation)
 - HasFramework trait for framework detection
 - Configuration system for customizing CSS classes
 - Support for both Tailwind (Flowbite) and Bootstrap styling

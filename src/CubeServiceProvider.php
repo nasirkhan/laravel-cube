@@ -30,6 +30,8 @@ class CubeServiceProvider extends ServiceProvider
         Blade::component('cube::card', \Nasirkhan\LaravelCube\View\Components\Ui\Card::class);
         Blade::component('cube::badge', \Nasirkhan\LaravelCube\View\Components\Ui\Badge::class);
         Blade::component('cube::modal', \Nasirkhan\LaravelCube\View\Components\Ui\Modal::class);
+        Blade::component('cube::footer-credit', \Nasirkhan\LaravelCube\View\Components\Ui\FooterCredit::class);
+        Blade::component('cube::footer-license', \Nasirkhan\LaravelCube\View\Components\Ui\FooterLicense::class);
         
         // Form Components
         Blade::component('cube::input', \Nasirkhan\LaravelCube\View\Components\Forms\Input::class);
