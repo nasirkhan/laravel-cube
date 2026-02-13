@@ -77,7 +77,7 @@
                     List
                 </a>
             @elseif (Str::endsWith(Route::currentRouteName(), "edit"))
-                <x-buttons.show
+                <x-backend-button-show
                     class="ms-1"
                     title="{{ __('Show') }} {{ ucwords(Str::singular($module_name)) }}"
                     route='{!! route("backend.$module_name.show", $data) !!}'
@@ -94,7 +94,7 @@
                 @endif
 
                 @if (auth()->user()->can("edit_" . $module_name) && Route::has("backend." . $module_name . ".edit"))
-                    <x-buttons.edit
+                    <x-backend-button-edit
                         class="m-1"
                         title="{{ __('Edit') }} {{ ucwords(Str::singular($module_name)) }}"
                         route='{!! route("backend.$module_name.edit", $data) !!}'
