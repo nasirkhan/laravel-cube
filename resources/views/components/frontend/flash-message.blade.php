@@ -40,3 +40,8 @@
 @endforeach
 
 {{ session()->forget("flash_notification") }}
+
+@if (session("status"))
+    <p class="alert alert-success">{{ session("status") }}</p>
+@endif
+

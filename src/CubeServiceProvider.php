@@ -42,6 +42,7 @@ class CubeServiceProvider extends ServiceProvider
         Blade::component('cube::auth-header', \Nasirkhan\LaravelCube\View\Components\Frontend\AuthHeader::class);
         Blade::component('cube::auth-session-status', \Nasirkhan\LaravelCube\View\Components\Frontend\AuthSessionStatus::class);
         Blade::component('cube::flash-message', \Nasirkhan\LaravelCube\View\Components\Frontend\FlashMessage::class);
+        Blade::component('cube::validation-errors', \Nasirkhan\LaravelCube\View\Components\Frontend\ValidationErrors::class);
         
         // Form Components
         Blade::component('cube::input', \Nasirkhan\LaravelCube\View\Components\Forms\Input::class);
