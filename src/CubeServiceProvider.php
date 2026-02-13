@@ -36,6 +36,9 @@ class CubeServiceProvider extends ServiceProvider
         // Utility Components
         Blade::component('cube::google-analytics', \Nasirkhan\LaravelCube\View\Components\GoogleAnalytics::class);
         
+        // Frontend Components
+        Blade::component('cube::header-block', \Nasirkhan\LaravelCube\View\Components\Frontend\HeaderBlock::class);
+        
         // Form Components
         Blade::component('cube::input', \Nasirkhan\LaravelCube\View\Components\Forms\Input::class);
         Blade::component('cube::label', \Nasirkhan\LaravelCube\View\Components\Forms\Label::class);
