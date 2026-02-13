@@ -2,18 +2,23 @@
 
 namespace Nasirkhan\LaravelCube\View\Components\Ui;
 
+use Illuminate\View\Component;
 use Illuminate\View\View;
 use Nasirkhan\LaravelCube\View\Components\HasFramework;
 
-class FooterCredit extends HasFramework
+class FooterCredit extends Component
 {
+    use HasFramework;
+
     public string $text;
 
     /**
      * Create a new component instance.
      */
-    public function __construct(string $text)
+    public function __construct(string $text, ?string $framework = null)
     {
+        $this->initializeFramework($framework);
+        
         $this->text = $text;
     }
 

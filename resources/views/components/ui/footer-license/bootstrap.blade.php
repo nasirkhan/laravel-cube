@@ -1,4 +1,4 @@
-@props(['license' => '', 'author', 'authorUrl'])
+@props(['license' => '', 'author' => null, 'authorUrl' => null])
 
 <div class="pt-3">
     @switch($license)
@@ -72,11 +72,19 @@
                     </div>
                 </div>
                 <div class="mt-1 small text-muted">
-                    Except where otherwise noted, content on this site is created by
-                    <a class="text-decoration-underline" href="{{ $authorUrl }}" rel="cc:attributionURL dct:creator">
-                        {{ $author }}
-                    </a>
-                    and licensed under
+                    Except where otherwise noted, content on this site
+                    @if($author)
+                        is created by
+                        @if($authorUrl)
+                            <a class="text-decoration-underline" href="{{ $authorUrl }}" rel="cc:attributionURL dct:creator">
+                                {{ $author }}
+                            </a>
+                        @else
+                            <span rel="dct:creator">{{ $author }}</span>
+                        @endif
+                        and
+                    @endif
+                    is licensed under
                     <a
                         class="text-decoration-underline"
                         href="https://creativecommons.org/licenses/by-sa/4.0"
@@ -92,8 +100,18 @@
             <div class="d-flex align-items-center justify-content-center text-center">
                 <div class="text-muted small">
                     &copy; {{ date('Y') }}
-                    <a href="{{ $authorUrl }}" rel="cc:attributionURL dct:creator">{{ $author }}</a>
-                    All Right Reserved.
+                    @if($author)
+                        @if($authorUrl)
+                            <a href="{{ $authorUrl }}" rel="cc:attributionURL dct:creator">{{ $author }}</a>
+                        @else
+                            <span rel="dct:creator">{{ $author }}</span>
+                        @endif
+                    @endif
+                    @if($author)
+                        All Right Reserved.
+                    @else
+                        All Rights Reserved.
+                    @endif
                 </div>
             </div>
     @endswitch

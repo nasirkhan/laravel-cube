@@ -5,10 +5,11 @@ All notable changes to `laravel-cube` will be documented in this file.
 ## [Unreleased]
 
 ### Added
+- Google Analytics component: `google-analytics` for easy Google Analytics integration
 - Footer components: `footer-credit` and `footer-license` for displaying copyright and licensing information
 - Initial release of Laravel Cube package
 - Dual framework support (Tailwind CSS and Bootstrap 5)
-- 14 reusable components (UI, forms, navigation)
+- 15 reusable components (UI, forms, navigation, utilities)
 - HasFramework trait for framework detection
 - Configuration system for customizing CSS classes
 - Support for both Tailwind (Flowbite) and Bootstrap styling
@@ -28,6 +29,8 @@ All notable changes to `laravel-cube` will be documented in this file.
 - PSR-4 autoloading
 
 ### Changed
+- Made `footer-license` component more flexible with optional `author` and `authorUrl` parameters
+- Fixed `FooterCredit` and `FooterLicense` components to properly extend `Component` and use `HasFramework` trait
 - Renamed from `laravel-components` to `laravel-cube` for better branding
 - Updated namespace from `Nasirkhan\LaravelComponents` to `Nasirkhan\LaravelCube`
 - Changed component prefix from `x-frontend::` to `x-cube::`

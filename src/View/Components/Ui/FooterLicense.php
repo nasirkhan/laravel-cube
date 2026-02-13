@@ -2,23 +2,29 @@
 
 namespace Nasirkhan\LaravelCube\View\Components\Ui;
 
+use Illuminate\View\Component;
 use Illuminate\View\View;
 use Nasirkhan\LaravelCube\View\Components\HasFramework;
 
-class FooterLicense extends HasFramework
+class FooterLicense extends Component
 {
+    use HasFramework;
+
     public string $license;
-    public string $author;
-    public string $authorUrl;
+    public ?string $author;
+    public ?string $authorUrl;
 
     /**
      * Create a new component instance.
      */
     public function __construct(
-        string $author,
-        string $authorUrl,
-        string $license = ''
+        ?string $author = null,
+        ?string $authorUrl = null,
+        string $license = '',
+        ?string $framework = null
     ) {
+        $this->initializeFramework($framework);
+        
         $this->license = $license;
         $this->author = $author;
         $this->authorUrl = $authorUrl;

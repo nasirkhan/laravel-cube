@@ -1,4 +1,4 @@
-@props(['license' => '', 'author', 'authorUrl'])
+@props(['license' => '', 'author' => null, 'authorUrl' => null])
 
 <div class="pt-6">
     @switch($license)
@@ -72,11 +72,19 @@
                     </div>
                 </div>
                 <div class="mt-1 text-sm text-gray-500 sm:max-w-2xl">
-                    Except where otherwise noted, content on this site is created by
-                    <a class="hover:underline" href="{{ $authorUrl }}" rel="cc:attributionURL dct:creator">
-                        {{ $author }}
-                    </a>
-                    and licensed under
+                    Except where otherwise noted, content on this site
+                    @if($author)
+                        is created by
+                        @if($authorUrl)
+                            <a class="hover:underline" href="{{ $authorUrl }}" rel="cc:attributionURL dct:creator">
+                                {{ $author }}
+                            </a>
+                        @else
+                            <span rel="dct:creator">{{ $author }}</span>
+                        @endif
+                        and
+                    @endif
+                    is licensed under
                     <a class="hover:underline" href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank">
                         Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
                     </a>
@@ -88,8 +96,18 @@
             <div class="flex items-center justify-center text-center">
                 <div class="w-1/2 text-sm text-gray-500">
                     &copy; {{ date('Y') }}
-                    <a href="{{ $authorUrl }}" rel="cc:attributionURL dct:creator">{{ $author }}</a>
-                    All Right Reserved.
+                    @if($author)
+                        @if($authorUrl)
+                            <a href="{{ $authorUrl }}" rel="cc:attributionURL dct:creator">{{ $author }}</a>
+                        @else
+                            <span rel="dct:creator">{{ $author }}</span>
+                        @endif
+                    @endif
+                    @if($author)
+                        All Right Reserved.
+                    @else
+                        All Rights Reserved.
+                    @endif
                 </div>
             </div>
     @endswitch

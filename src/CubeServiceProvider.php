@@ -33,6 +33,9 @@ class CubeServiceProvider extends ServiceProvider
         Blade::component('cube::footer-credit', \Nasirkhan\LaravelCube\View\Components\Ui\FooterCredit::class);
         Blade::component('cube::footer-license', \Nasirkhan\LaravelCube\View\Components\Ui\FooterLicense::class);
         
+        // Utility Components
+        Blade::component('cube::google-analytics', \Nasirkhan\LaravelCube\View\Components\GoogleAnalytics::class);
+        
         // Form Components
         Blade::component('cube::input', \Nasirkhan\LaravelCube\View\Components\Forms\Input::class);
         Blade::component('cube::label', \Nasirkhan\LaravelCube\View\Components\Forms\Label::class);
