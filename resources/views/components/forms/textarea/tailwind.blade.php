@@ -10,6 +10,7 @@
     rows="{{ $rows }}"
     {{ $disabled ? 'disabled' : '' }}
     {{ $required ? 'required' : '' }}
+    {{ $autofocus ? 'autofocus' : '' }}
     @if($placeholder)
         placeholder="{{ $placeholder }}"
     @endif

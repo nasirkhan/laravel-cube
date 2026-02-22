@@ -14,6 +14,7 @@ class Input extends Component
     public bool $disabled;
     public bool $required;
     public string $placeholder;
+    public bool $autofocus;
 
     /**
      * Create a new component instance.
@@ -23,6 +24,7 @@ class Input extends Component
         bool|string $disabled = false,
         bool|string $required = false,
         string $placeholder = '',
+        bool|string $autofocus = false,
         ?string $framework = null
     ) {
         $this->initializeFramework($framework);
@@ -32,6 +34,7 @@ class Input extends Component
         $this->disabled = filter_var($disabled, FILTER_VALIDATE_BOOLEAN);
         $this->required = filter_var($required, FILTER_VALIDATE_BOOLEAN);
         $this->placeholder = $placeholder;
+        $this->autofocus = filter_var($autofocus, FILTER_VALIDATE_BOOLEAN);
     }
 
     /**

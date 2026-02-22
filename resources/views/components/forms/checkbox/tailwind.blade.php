@@ -6,6 +6,7 @@
         {{ $disabled ? 'disabled' : '' }}
         {{ $required ? 'required' : '' }}
         {{ $checked ? 'checked' : '' }}
+        {{ $autofocus ? 'autofocus' : '' }}
         {{ $attributes->merge(['class' => 'rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:border-gray-700 dark:bg-gray-900 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800']) }}
         @if($attributes->has('name'))
             id="{{ $attributes->get('name') }}"

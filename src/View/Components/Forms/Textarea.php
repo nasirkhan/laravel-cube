@@ -14,6 +14,7 @@ class Textarea extends Component
     public bool $required;
     public string $placeholder;
     public int $rows;
+    public bool $autofocus;
 
     /**
      * Create a new component instance.
@@ -22,6 +23,7 @@ class Textarea extends Component
      * @param bool|string $required Whether the textarea is required
      * @param string $placeholder The placeholder text
      * @param int $rows The number of visible text lines
+     * @param bool|string $autofocus Whether the textarea should be focused on page load
      * @param string|null $framework The CSS framework to use (tailwind|bootstrap)
      */
     public function __construct(
@@ -29,6 +31,7 @@ class Textarea extends Component
         bool|string $required = false,
         string $placeholder = '',
         int $rows = 3,
+        bool|string $autofocus = false,
         ?string $framework = null
     ) {
         $this->initializeFramework($framework);
@@ -36,6 +39,7 @@ class Textarea extends Component
         $this->required = filter_var($required, FILTER_VALIDATE_BOOLEAN);
         $this->placeholder = $placeholder;
         $this->rows = $rows;
+        $this->autofocus = filter_var($autofocus, FILTER_VALIDATE_BOOLEAN);
     }
 
     /**

@@ -8,6 +8,7 @@
     type="{{ $type }}"
     {{ $disabled ? 'disabled' : '' }}
     {{ $required ? 'required' : '' }}
+    {{ $autofocus ? 'autofocus' : '' }}
     @if($placeholder)
         placeholder="{{ $placeholder }}"
     @endif

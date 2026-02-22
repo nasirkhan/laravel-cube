@@ -6,6 +6,7 @@
         {{ $disabled ? 'disabled' : '' }}
         {{ $required ? 'required' : '' }}
         {{ $checked ? 'checked' : '' }}
+        {{ $autofocus ? 'autofocus' : '' }}
         {{ $attributes->merge(['class' => 'form-check-input']) }}
         @if($attributes->has('name'))
             id="{{ $attributes->get('name') }}"

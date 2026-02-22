@@ -6,6 +6,7 @@
         type="button"
         x-on:click="checked = !checked"
         {{ $disabled ? 'disabled' : '' }}
+        {{ $autofocus ? 'autofocus' : '' }}
         x-bind:aria-checked="checked.toString()"
         @if($attributes->has('name'))
             @if($slot->isEmpty())

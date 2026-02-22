@@ -13,6 +13,7 @@ class Checkbox extends Component
     public bool $disabled;
     public bool $required;
     public bool $checked;
+    public bool $autofocus;
 
     /**
      * Create a new component instance.
@@ -20,18 +21,21 @@ class Checkbox extends Component
      * @param bool|string $disabled Whether the checkbox is disabled
      * @param bool|string $required Whether the checkbox is required
      * @param bool|string $checked Whether the checkbox is checked by default
+     * @param bool|string $autofocus Whether the checkbox should be focused on page load
      * @param string|null $framework The CSS framework to use (tailwind|bootstrap)
      */
     public function __construct(
         bool|string $disabled = false,
         bool|string $required = false,
         bool|string $checked = false,
+        bool|string $autofocus = false,
         ?string $framework = null
     ) {
         $this->initializeFramework($framework);
         $this->disabled = filter_var($disabled, FILTER_VALIDATE_BOOLEAN);
         $this->required = filter_var($required, FILTER_VALIDATE_BOOLEAN);
         $this->checked = filter_var($checked, FILTER_VALIDATE_BOOLEAN);
+        $this->autofocus = filter_var($autofocus, FILTER_VALIDATE_BOOLEAN);
     }
 
     /**

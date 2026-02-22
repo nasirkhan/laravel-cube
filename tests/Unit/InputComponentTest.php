@@ -111,4 +111,30 @@ class InputComponentTest extends TestCase
         $this->assertTrue($component->isBootstrap());
         $this->assertFalse($component->isTailwind());
     }
+
+    /**
+     * Test that input handles autofocus state.
+     *
+     * @test
+     */
+    public function it_handles_autofocus_state(): void
+    {
+        $component = new Input(autofocus: true);
+        $this->assertTrue($component->autofocus);
+
+        $component = new Input(autofocus: false);
+        $this->assertFalse($component->autofocus);
+    }
+
+    /**
+     * Test that input defaults to false for autofocus.
+     *
+     * @test
+     */
+    public function it_defaults_to_false_for_autofocus(): void
+    {
+        $component = new Input();
+        
+        $this->assertFalse($component->autofocus);
+    }
 }

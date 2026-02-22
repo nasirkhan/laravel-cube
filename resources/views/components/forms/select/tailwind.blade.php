@@ -9,6 +9,7 @@
 <select
     {{ $disabled ? 'disabled' : '' }}
     {{ $required ? 'required' : '' }}
+    {{ $autofocus ? 'autofocus' : '' }}
     {{ $attributes->merge(['class' => $classes]) }}
     @if($attributes->has('name') && !$attributes->has('aria-label') && !$attributes->has('aria-labelledby'))
         aria-labelledby="{{ $attributes->get('name') }}-label"
