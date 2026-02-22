@@ -11,9 +11,12 @@ trait HasFramework
      */
     protected function initializeFramework(?string $framework = null): void
     {
+        // Use provided framework or fall back to config default (tailwind)
+        // This allows components to be framework-agnostic
         $this->framework = $framework ?? config('cube.default_framework', 'tailwind');
         
-        // Validate framework
+        // Validate framework - only allow 'tailwind' or 'bootstrap'
+        // If invalid framework is provided, default to 'tailwind' for safety
         if (!in_array($this->framework, ['tailwind', 'bootstrap'])) {
             $this->framework = 'tailwind';
         }
@@ -24,6 +27,9 @@ trait HasFramework
      */
     protected function getFrameworkView(string $baseView): string
     {
+        // Construct view path: cube::components.{category}.{component}.{framework}
+        // Example: cube::components.forms.input.tailwind
+        // This allows the same component to have different views for different CSS frameworks
         return "cube::components.{$baseView}.{$this->framework}";
     }
 

@@ -29,8 +29,16 @@ class Input extends Component
     ) {
         $this->initializeFramework($framework);
 
+        // Define valid HTML5 input types for security and consistency
+        // Only allow these types to prevent XSS and ensure proper browser behavior
         $validTypes = ['text', 'email', 'password', 'number', 'tel', 'url', 'search', 'date', 'time', 'datetime-local'];
+        
+        // Validate input type - default to 'text' if invalid type provided
+        // This prevents invalid HTML attributes and ensures fallback to safe default
         $this->type = in_array($type, $validTypes) ? $type : 'text';
+        
+        // Convert string/bool to strict boolean using filter_var
+        // Handles 'true'/'false' strings, '1'/'0', and actual boolean values
         $this->disabled = filter_var($disabled, FILTER_VALIDATE_BOOLEAN);
         $this->required = filter_var($required, FILTER_VALIDATE_BOOLEAN);
         $this->placeholder = $placeholder;
@@ -42,10 +50,14 @@ class Input extends Component
      */
     public function getClasses(): string
     {
+        // Bootstrap and Tailwind have different class structures
+        // Bootstrap uses the 'form-control' class for styled inputs
+        // Tailwind uses utility classes defined in config
         if ($this->isBootstrap()) {
             return config('cube.bootstrap.forms.input', 'form-control');
         }
 
+        // Return Tailwind classes from config with fallback
         return config('cube.tailwind.forms.input');
     }
 

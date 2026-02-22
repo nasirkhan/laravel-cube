@@ -26,13 +26,21 @@ class NavLink extends Component
         ?string $framework = null
     ) {
         $this->initializeFramework($framework);
+        
+        // Convert string/bool to strict boolean using filter_var
+        // This handles 'true'/'false' strings, '1'/'0', and actual boolean values
         $this->active = filter_var($active, FILTER_VALIDATE_BOOLEAN);
+        
+        // Build CSS classes based on active state and framework
+        // This is done in constructor to avoid recalculating on each render
         $this->classes = $this->getClasses();
     }
 
     protected function getClasses(): string
     {
         if ($this->isBootstrap()) {
+            // Bootstrap uses 'nav-link' class with optional 'active' modifier
+            // Classes are configurable via config for customization
             $classes = config('cube.bootstrap.navigation.link', 'nav-link');
             if ($this->active) {
                 $classes .= ' ' . config('cube.bootstrap.navigation.link_active', 'active');
@@ -40,7 +48,10 @@ class NavLink extends Component
             return $classes;
         }
 
-        // Tailwind
+        // Tailwind classes are split into base and state-specific classes
+        // This allows for more granular control over styling
+        // Base classes: Common styles for all states
+        // State classes: Specific styles for active/inactive states
         $baseClasses = config('cube.tailwind.navigation.link');
         $stateClasses = $this->active
             ? config('cube.tailwind.navigation.link_active')

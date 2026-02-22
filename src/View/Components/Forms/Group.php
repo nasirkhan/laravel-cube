@@ -31,6 +31,10 @@ class Group extends Component
         ?string $framework = null
     ) {
         $this->initializeFramework($framework);
+        
+        // Convert string/bool to strict boolean using filter_var
+        // This handles cases where 'true'/'false' strings or boolean values are passed
+        // FILTER_VALIDATE_BOOLEAN returns true for '1', 'true', 'on', 'yes' and false otherwise
         $this->required = filter_var($required, FILTER_VALIDATE_BOOLEAN);
     }
 

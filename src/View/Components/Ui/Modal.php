@@ -33,9 +33,17 @@ class Modal extends Component
     ) {
         $this->initializeFramework($framework);
 
+        // Define valid modal width options (Tailwind max-width scale)
+        // These correspond to Tailwind's max-w-* utility classes
         $validWidths = ['sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl', '5xl'];
+        
+        // Validate width parameter - default to '2xl' if invalid
+        // This prevents invalid CSS classes and ensures consistent behavior
         $this->maxWidth = in_array($maxWidth, $validWidths) ? $maxWidth : '2xl';
 
+        // Map width keys to Tailwind max-width classes
+        // sm:max-w-* ensures modal is responsive (full width on mobile, max width on larger screens)
+        // Each size corresponds to a specific max-width in rem units
         $this->maxWidthClass = [
             'sm' => 'sm:max-w-sm',
             'md' => 'sm:max-w-md',
@@ -47,6 +55,8 @@ class Modal extends Component
             '5xl' => 'sm:max-w-5xl',
         ][$this->maxWidth];
 
+        // Convert string/bool to strict boolean using filter_var
+        // Handles 'true'/'false' strings, '1'/'0', and actual boolean values
         $this->show = filter_var($show, FILTER_VALIDATE_BOOLEAN);
         $this->focusable = filter_var($focusable, FILTER_VALIDATE_BOOLEAN);
     }

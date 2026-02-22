@@ -29,6 +29,9 @@ class Select extends Component
         ?string $framework = null
     ) {
         $this->initializeFramework($framework);
+        
+        // Convert string/bool to strict boolean using filter_var
+        // Handles 'true'/'false' strings, '1'/'0', and actual boolean values
         $this->disabled = filter_var($disabled, FILTER_VALIDATE_BOOLEAN);
         $this->required = filter_var($required, FILTER_VALIDATE_BOOLEAN);
         $this->autofocus = filter_var($autofocus, FILTER_VALIDATE_BOOLEAN);

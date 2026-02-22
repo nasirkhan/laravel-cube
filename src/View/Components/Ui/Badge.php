@@ -36,6 +36,12 @@ class Badge extends Component
             return false;
         }
 
+        // Check if URL starts with external protocols or anchors
+        // - https?: External HTTP/HTTPS links
+        // - mailto: Email links
+        // - tel: Phone number links
+        // - #: Anchor links to same page
+        // If none of these patterns match, the URL is considered internal
         return !preg_match('/^(https?:|mailto:|tel:|#)/', $this->url);
     }
 
