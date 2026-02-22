@@ -27,7 +27,7 @@ class Modal extends Component
      */
     public function __construct(
         string $name,
-        bool|string$show = false,
+        bool|string $show = false,
         string $maxWidth = '2xl',
         bool|string $focusable = false,
         ?string $framework = null
