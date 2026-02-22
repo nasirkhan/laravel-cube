@@ -11,7 +11,7 @@
     </div>
 
     @if($help)
-        <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">{{ $help }}</p>
+        <p id="{{ $name }}-help" class="mt-1 text-sm text-gray-500 dark:text-gray-400">{{ $help }}</p>
     @endif
 
     @if($name && $errors->has($name))

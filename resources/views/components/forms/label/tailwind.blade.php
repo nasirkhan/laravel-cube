@@ -1,12 +1,12 @@
 {{-- Cube Component: Form Label (Tailwind) --}}
 
 @php
-    $classes = config('cube.tailwind.forms.label', 
+    $classes = config('cube.tailwind.forms.label',
         'block font-medium text-sm text-gray-700 dark:text-gray-300'
     );
 @endphp
 
-<label {{ $attributes->merge(['class' => $classes]) }} @if($for) for="{{ $for }}" @endif>
+<label {{ $attributes->merge(['class' => $classes]) }} @if($for) for="{{ $for }}" id="{{ $for }}-label" @endif>
     {{ $value ?? $slot }}
     @if($required)
         <span class="text-red-500">*</span>

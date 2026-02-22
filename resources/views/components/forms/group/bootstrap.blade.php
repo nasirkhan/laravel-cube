@@ -9,7 +9,7 @@
     {{ $slot }}
 
     @if($help)
-        <div class="form-text">{{ $help }}</div>
+        <div id="{{ $name }}-help" class="form-text">{{ $help }}</div>
     @endif
 
     @if($name && $errors->has($name))

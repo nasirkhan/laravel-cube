@@ -1,7 +1,7 @@
 {{-- Cube Component: Form Textarea (Tailwind) --}}
 
 @php
-    $classes = config('cube.tailwind.forms.textarea', 
+    $classes = config('cube.tailwind.forms.textarea',
         'border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm'
     );
 @endphp
@@ -14,6 +14,9 @@
         placeholder="{{ $placeholder }}"
     @endif
     {{ $attributes->merge(['class' => $classes]) }}
+    @if($attributes->has('name') && !$attributes->has('aria-label') && !$attributes->has('aria-labelledby'))
+        aria-labelledby="{{ $attributes->get('name') }}-label"
+    @endif
 >{{ $slot }}</textarea>
 
 {{-- Usage:

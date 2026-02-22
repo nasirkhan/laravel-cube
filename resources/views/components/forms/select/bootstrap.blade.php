@@ -8,6 +8,9 @@
     {{ $disabled ? 'disabled' : '' }}
     {{ $required ? 'required' : '' }}
     {{ $attributes->merge(['class' => $classes]) }}
+    @if($attributes->has('name') && !$attributes->has('aria-label') && !$attributes->has('aria-labelledby'))
+        aria-labelledby="{{ $attributes->get('name') }}-label"
+    @endif
 >
     {{ $slot }}
 </select>
