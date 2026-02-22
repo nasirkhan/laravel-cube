@@ -17,9 +17,10 @@ trait HasFramework
         
         // Validate framework - only allow 'tailwind' or 'bootstrap'
         // If invalid framework is provided, default to 'tailwind' for safety
-        if (!in_array($this->framework, ['tailwind', 'bootstrap'])) {
-            $this->framework = 'tailwind';
-        }
+        $this->framework = match (true) {
+            in_array($this->framework, ['tailwind', 'bootstrap']) => $this->framework,
+            default => 'tailwind',
+        };
     }
 
     /**

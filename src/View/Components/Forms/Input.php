@@ -53,12 +53,10 @@ class Input extends Component
         // Bootstrap and Tailwind have different class structures
         // Bootstrap uses the 'form-control' class for styled inputs
         // Tailwind uses utility classes defined in config
-        if ($this->isBootstrap()) {
-            return config('cube.bootstrap.forms.input', 'form-control');
-        }
-
-        // Return Tailwind classes from config with fallback
-        return config('cube.tailwind.forms.input');
+        return match (true) {
+            $this->isBootstrap() => config('cube.bootstrap.forms.input', 'form-control'),
+            default => config('cube.tailwind.forms.input'),
+        };
     }
 
     /**

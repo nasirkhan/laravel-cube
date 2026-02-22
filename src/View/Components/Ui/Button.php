@@ -52,22 +52,37 @@ class Button extends Component
      */
     public function getClasses(): string
     {
-        if ($this->isBootstrap()) {
-            // Bootstrap uses 'btn' base class with variant modifiers
-            // Classes are configurable via config for customization
-            $classes = config("cube.bootstrap.buttons.{$this->variant}", 'btn btn-primary');
-            
-            // Add size modifier classes for Bootstrap
-            // 'md' is the default size and doesn't need a class
-            if ($this->size === 'sm') {
-                $classes .= ' btn-sm';
-            } elseif ($this->size === 'lg') {
-                $classes .= ' btn-lg';
-            }
-            
-            return $classes;
-        }
+        return match (true) {
+            $this->isBootstrap() => $this->getBootstrapClasses(),
+            default => $this->getTailwindClasses(),
+        };
+    }
 
+    /**
+     * Get Bootstrap button classes.
+     */
+    protected function getBootstrapClasses(): string
+    {
+        // Bootstrap uses 'btn' base class with variant modifiers
+        // Classes are configurable via config for customization
+        $classes = config("cube.bootstrap.buttons.{$this->variant}", 'btn btn-primary');
+        
+        // Add size modifier classes for Bootstrap using match expression
+        // 'md' is the default size and doesn't need a class
+        $sizeClass = match ($this->size) {
+            'sm' => ' btn-sm',
+            'lg' => ' btn-lg',
+            default => '',
+        };
+        
+        return $classes . $sizeClass;
+    }
+
+    /**
+     * Get Tailwind button classes.
+     */
+    protected function getTailwindClasses(): string
+    {
         // Tailwind classes are fully defined in config
         // Size and variant are combined into a single class string
         return config("cube.tailwind.buttons.{$this->variant}", config('cube.tailwind.buttons.primary'));

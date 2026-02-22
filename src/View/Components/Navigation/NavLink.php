@@ -38,24 +38,40 @@ class NavLink extends Component
 
     protected function getClasses(): string
     {
-        if ($this->isBootstrap()) {
-            // Bootstrap uses 'nav-link' class with optional 'active' modifier
-            // Classes are configurable via config for customization
-            $classes = config('cube.bootstrap.navigation.link', 'nav-link');
-            if ($this->active) {
-                $classes .= ' ' . config('cube.bootstrap.navigation.link_active', 'active');
-            }
-            return $classes;
-        }
+        return match (true) {
+            $this->isBootstrap() => $this->getBootstrapClasses(),
+            default => $this->getTailwindClasses(),
+        };
+    }
 
+    /**
+     * Get Bootstrap navigation link classes.
+     */
+    protected function getBootstrapClasses(): string
+    {
+        // Bootstrap uses 'nav-link' class with optional 'active' modifier
+        // Classes are configurable via config for customization
+        $classes = config('cube.bootstrap.navigation.link', 'nav-link');
+        if ($this->active) {
+            $classes .= ' ' . config('cube.bootstrap.navigation.link_active', 'active');
+        }
+        return $classes;
+    }
+
+    /**
+     * Get Tailwind navigation link classes.
+     */
+    protected function getTailwindClasses(): string
+    {
         // Tailwind classes are split into base and state-specific classes
         // This allows for more granular control over styling
         // Base classes: Common styles for all states
         // State classes: Specific styles for active/inactive states
         $baseClasses = config('cube.tailwind.navigation.link');
-        $stateClasses = $this->active
-            ? config('cube.tailwind.navigation.link_active')
-            : config('cube.tailwind.navigation.link_inactive');
+        $stateClasses = match ($this->active) {
+            true => config('cube.tailwind.navigation.link_active'),
+            false => config('cube.tailwind.navigation.link_inactive'),
+        };
         
         return $baseClasses . ' ' . $stateClasses;
     }

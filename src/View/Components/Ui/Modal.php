@@ -41,10 +41,10 @@ class Modal extends Component
         // This prevents invalid CSS classes and ensures consistent behavior
         $this->maxWidth = in_array($maxWidth, $validWidths) ? $maxWidth : '2xl';
 
-        // Map width keys to Tailwind max-width classes
+        // Map width keys to Tailwind max-width classes using match expression
         // sm:max-w-* ensures modal is responsive (full width on mobile, max width on larger screens)
         // Each size corresponds to a specific max-width in rem units
-        $this->maxWidthClass = [
+        $this->maxWidthClass = match ($this->maxWidth) {
             'sm' => 'sm:max-w-sm',
             'md' => 'sm:max-w-md',
             'lg' => 'sm:max-w-lg',
@@ -53,7 +53,7 @@ class Modal extends Component
             '3xl' => 'sm:max-w-3xl',
             '4xl' => 'sm:max-w-4xl',
             '5xl' => 'sm:max-w-5xl',
-        ][$this->maxWidth];
+        };
 
         // Convert string/bool to strict boolean using filter_var
         // Handles 'true'/'false' strings, '1'/'0', and actual boolean values
