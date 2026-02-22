@@ -6,14 +6,22 @@ use Nasirkhan\LaravelCube\Tests\TestCase;
 
 class ComponentRegistrationTest extends TestCase
 {
-    /** @test */
+    /**
+     * Test that UI components are registered.
+     *
+     * @test
+     */
     public function it_registers_ui_components(): void
     {
         $this->assertTrue(class_exists(\Nasirkhan\LaravelCube\View\Components\Ui\Button::class));
         $this->assertTrue(class_exists(\Nasirkhan\LaravelCube\View\Components\Ui\Modal::class));
     }
 
-    /** @test */
+    /**
+     * Test that form components are registered.
+     *
+     * @test
+     */
     public function it_registers_form_components(): void
     {
         $this->assertTrue(class_exists(\Nasirkhan\LaravelCube\View\Components\Forms\Input::class));
@@ -26,14 +34,22 @@ class ComponentRegistrationTest extends TestCase
         $this->assertTrue(class_exists(\Nasirkhan\LaravelCube\View\Components\Forms\Toggle::class));
     }
 
-    /** @test */
+    /**
+     * Test that navigation components are registered.
+     *
+     * @test
+     */
     public function it_registers_navigation_components(): void
     {
         $this->assertTrue(class_exists(\Nasirkhan\LaravelCube\View\Components\Navigation\NavLink::class));
         $this->assertTrue(class_exists(\Nasirkhan\LaravelCube\View\Components\Navigation\ResponsiveNavLink::class));
     }
 
-    /** @test */
+    /**
+     * Test that the HasFramework trait exists.
+     *
+     * @test
+     */
     public function it_has_has_framework_trait(): void
     {
         $this->assertTrue(trait_exists(\Nasirkhan\LaravelCube\View\Components\HasFramework::class));

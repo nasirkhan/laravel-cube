@@ -16,6 +16,16 @@ class Group extends Component
     public string $help;
     public mixed $error;
 
+    /**
+     * Create a new component instance.
+     *
+     * @param string $label The label text for the form group
+     * @param string $name The name attribute for the form field
+     * @param bool|string $required Whether the field is required
+     * @param string $help Help text to display below the field
+     * @param mixed $error Error message or validation error object
+     * @param string|null $framework The CSS framework to use (tailwind|bootstrap)
+     */
     public function __construct(
         string $label = '',
         string $name = '',
@@ -32,6 +42,11 @@ class Group extends Component
         $this->error = $error;
     }
 
+    /**
+     * Get the view / contents that represent the component.
+     *
+     * @return \Illuminate\View\View
+     */
     public function render(): View
     {
         return view($this->getFrameworkView('forms.group'));

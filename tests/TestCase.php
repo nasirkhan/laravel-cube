@@ -6,11 +6,20 @@ use Orchestra\Testbench\TestCase as Orchestra;
 
 abstract class TestCase extends Orchestra
 {
+    /**
+     * Setup the test environment.
+     */
     protected function setUp(): void
     {
         parent::setUp();
     }
 
+    /**
+     * Get package providers.
+     *
+     * @param \Illuminate\Foundation\Application $app
+     * @return array
+     */
     protected function getPackageProviders($app): array
     {
         return [
@@ -18,6 +27,12 @@ abstract class TestCase extends Orchestra
         ];
     }
 
+    /**
+     * Define environment setup.
+     *
+     * @param \Illuminate\Foundation\Application $app
+     * @return void
+     */
     protected function getEnvironmentSetUp($app): void
     {
         // Setup default database to use sqlite :memory:

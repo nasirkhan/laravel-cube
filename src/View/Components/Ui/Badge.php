@@ -13,6 +13,13 @@ class Badge extends Component
     public string $url;
     public string $text;
 
+    /**
+     * Create a new component instance.
+     *
+     * @param string $url The URL the badge links to (optional)
+     * @param string $text The text content of the badge
+     * @param string|null $framework The CSS framework to use (tailwind|bootstrap)
+     */
     public function __construct(
         string $url = '',
         string $text = '',
@@ -23,6 +30,11 @@ class Badge extends Component
         $this->text = $text;
     }
 
+    /**
+     * Determine if the URL is internal to the application.
+     *
+     * @return bool True if the URL is internal, false otherwise
+     */
     public function isInternalUrl(): bool
     {
         if (!$this->url) {
@@ -32,6 +44,11 @@ class Badge extends Component
         return !preg_match('/^(https?:|mailto:|tel:|#)/', $this->url);
     }
 
+    /**
+     * Get the view / contents that represent the component.
+     *
+     * @return \Illuminate\View\View
+     */
     public function render(): View
     {
         return view($this->getFrameworkView('ui.badge'));

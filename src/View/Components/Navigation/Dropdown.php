@@ -14,6 +14,14 @@ class Dropdown extends Component
     public string $width;
     public string $contentClasses;
 
+    /**
+     * Create a new component instance.
+     *
+     * @param string $align The alignment of the dropdown (left|right|top)
+     * @param string $width The width of the dropdown (48|56|64)
+     * @param string $contentClasses Additional CSS classes for the dropdown content
+     * @param string|null $framework The CSS framework to use (tailwind|bootstrap)
+     */
     public function __construct(
         string $align = 'right',
         string $width = '48',
@@ -36,6 +44,8 @@ class Dropdown extends Component
 
     /**
      * Get the alignment classes based on framework.
+     *
+     * @return string The CSS classes for dropdown alignment
      */
     public function getAlignmentClasses(): string
     {
@@ -58,6 +68,8 @@ class Dropdown extends Component
 
     /**
      * Get the width classes based on framework.
+     *
+     * @return string The CSS classes for dropdown width
      */
     public function getWidthClasses(): string
     {
@@ -74,6 +86,11 @@ class Dropdown extends Component
         };
     }
 
+    /**
+     * Get the view / contents that represent the component.
+     *
+     * @return \Illuminate\View\View
+     */
     public function render(): View
     {
         return view($this->getFrameworkView('navigation.dropdown'));

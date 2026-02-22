@@ -14,6 +14,14 @@ class Checkbox extends Component
     public bool $required;
     public bool $checked;
 
+    /**
+     * Create a new component instance.
+     *
+     * @param bool|string $disabled Whether the checkbox is disabled
+     * @param bool|string $required Whether the checkbox is required
+     * @param bool|string $checked Whether the checkbox is checked by default
+     * @param string|null $framework The CSS framework to use (tailwind|bootstrap)
+     */
     public function __construct(
         bool|string $disabled = false,
         bool|string $required = false,
@@ -26,6 +34,11 @@ class Checkbox extends Component
         $this->checked = filter_var($checked, FILTER_VALIDATE_BOOLEAN);
     }
 
+    /**
+     * Get the view / contents that represent the component.
+     *
+     * @return \Illuminate\View\View
+     */
     public function render(): View
     {
         return view($this->getFrameworkView('forms.checkbox'));

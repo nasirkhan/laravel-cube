@@ -15,6 +15,15 @@ class Textarea extends Component
     public string $placeholder;
     public int $rows;
 
+    /**
+     * Create a new component instance.
+     *
+     * @param bool|string $disabled Whether the textarea is disabled
+     * @param bool|string $required Whether the textarea is required
+     * @param string $placeholder The placeholder text
+     * @param int $rows The number of visible text lines
+     * @param string|null $framework The CSS framework to use (tailwind|bootstrap)
+     */
     public function __construct(
         bool|string $disabled = false,
         bool|string $required = false,
@@ -29,6 +38,11 @@ class Textarea extends Component
         $this->rows = $rows;
     }
 
+    /**
+     * Get the view / contents that represent the component.
+     *
+     * @return \Illuminate\View\View
+     */
     public function render(): View
     {
         return view($this->getFrameworkView('forms.textarea'));

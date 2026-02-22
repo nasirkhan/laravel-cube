@@ -7,7 +7,11 @@ use Nasirkhan\LaravelCube\View\Components\Forms\Input;
 
 class InputComponentTest extends TestCase
 {
-    /** @test */
+    /**
+     * Test that input has default type of 'text'.
+     *
+     * @test
+     */
     public function it_has_default_type_text(): void
     {
         $component = new Input();
@@ -15,7 +19,11 @@ class InputComponentTest extends TestCase
         $this->assertEquals('text', $component->type);
     }
 
-    /** @test */
+    /**
+     * Test that input accepts valid input types.
+     *
+     * @test
+     */
     public function it_accepts_valid_input_types(): void
     {
         $validTypes = ['text', 'email', 'password', 'number', 'url', 'tel', 'date', 'time', 'datetime-local', 'color'];
@@ -26,7 +34,11 @@ class InputComponentTest extends TestCase
         }
     }
 
-    /** @test */
+    /**
+     * Test that input defaults to 'text' type for invalid types.
+     *
+     * @test
+     */
     public function it_defaults_to_text_for_invalid_types(): void
     {
         $component = new Input(type: 'invalid');
@@ -34,7 +46,11 @@ class InputComponentTest extends TestCase
         $this->assertEquals('text', $component->type);
     }
 
-    /** @test */
+    /**
+     * Test that input handles disabled state.
+     *
+     * @test
+     */
     public function it_handles_disabled_state(): void
     {
         $component = new Input(disabled: true);
@@ -44,7 +60,11 @@ class InputComponentTest extends TestCase
         $this->assertFalse($component->disabled);
     }
 
-    /** @test */
+    /**
+     * Test that input handles required state.
+     *
+     * @test
+     */
     public function it_handles_required_state(): void
     {
         $component = new Input(required: true);
@@ -54,7 +74,11 @@ class InputComponentTest extends TestCase
         $this->assertFalse($component->required);
     }
 
-    /** @test */
+    /**
+     * Test that input accepts placeholder.
+     *
+     * @test
+     */
     public function it_accepts_placeholder(): void
     {
         $component = new Input(placeholder: 'Enter your email');
@@ -62,7 +86,11 @@ class InputComponentTest extends TestCase
         $this->assertEquals('Enter your email', $component->placeholder);
     }
 
-    /** @test */
+    /**
+     * Test that input defaults to Tailwind framework.
+     *
+     * @test
+     */
     public function it_defaults_to_tailwind_framework(): void
     {
         $component = new Input();
@@ -71,7 +99,11 @@ class InputComponentTest extends TestCase
         $this->assertFalse($component->isBootstrap());
     }
 
-    /** @test */
+    /**
+     * Test that input accepts Bootstrap framework.
+     *
+     * @test
+     */
     public function it_accepts_bootstrap_framework(): void
     {
         $component = new Input(framework: 'bootstrap');

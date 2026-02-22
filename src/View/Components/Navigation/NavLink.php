@@ -14,6 +14,13 @@ class NavLink extends Component
     public bool $active;
     public string $classes;
 
+    /**
+     * Create a new component instance.
+     *
+     * @param string $href The URL the link points to
+     * @param bool|string $active Whether the link is currently active
+     * @param string|null $framework The CSS framework to use (tailwind|bootstrap)
+     */
     public function __construct(
         string $href = '#',
         bool|string $active = false,
@@ -44,6 +51,11 @@ class NavLink extends Component
         return $baseClasses . ' ' . $stateClasses;
     }
 
+    /**
+     * Get the view / contents that represent the component.
+     *
+     * @return \Illuminate\View\View
+     */
     public function render(): View
     {
         return view($this->getFrameworkView('navigation.nav-link'));

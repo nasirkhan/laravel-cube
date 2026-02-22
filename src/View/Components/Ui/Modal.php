@@ -16,6 +16,15 @@ class Modal extends Component
     public bool $focusable;
     public string $maxWidthClass;
 
+    /**
+     * Create a new component instance.
+     *
+     * @param string $name The unique identifier for the modal
+     * @param bool|string $show Whether the modal is visible by default
+     * @param string $maxWidth The maximum width of the modal (sm|md|lg|xl|2xl|3xl|4xl|5xl)
+     * @param bool|string $focusable Whether the modal can receive focus
+     * @param string|null $framework The CSS framework to use (tailwind|bootstrap)
+     */
     public function __construct(
         string $name,
         bool|string$show = false,
@@ -44,6 +53,11 @@ class Modal extends Component
         $this->focusable = filter_var($focusable, FILTER_VALIDATE_BOOLEAN);
     }
 
+    /**
+     * Get the view / contents that represent the component.
+     *
+     * @return \Illuminate\View\View
+     */
     public function render(): View
     {
         return view($this->getFrameworkView('ui.modal'));

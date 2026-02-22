@@ -14,6 +14,13 @@ class ResponsiveNavLink extends Component
     public bool $active;
     public string $classes;
 
+    /**
+     * Create a new component instance.
+     *
+     * @param string $href The URL the link points to
+     * @param bool|string $active Whether the link is currently active
+     * @param string|null $framework The CSS framework to use (tailwind|bootstrap)
+     */
     public function __construct(
         string $href = '#',
         bool|string $active = false,
@@ -41,6 +48,11 @@ class ResponsiveNavLink extends Component
             : 'block w-full pl-3 pr-4 py-2 border-l-4 border-transparent text-left text-base font-medium text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-300 dark:hover:border-gray-600 focus:outline-hidden focus:text-gray-800 dark:focus:text-gray-200 focus:bg-gray-50 dark:focus:bg-gray-700 focus:border-gray-300 dark:focus:border-gray-600 transition duration-150 ease-in-out';
     }
 
+    /**
+     * Get the view / contents that represent the component.
+     *
+     * @return \Illuminate\View\View
+     */
     public function render(): View
     {
         return view($this->getFrameworkView('navigation.responsive-nav-link'));

@@ -12,6 +12,12 @@ class Link extends Component
 
     public string $href;
 
+    /**
+     * Create a new component instance.
+     *
+     * @param string $href The URL the link points to
+     * @param string|null $framework The CSS framework to use (tailwind|bootstrap)
+     */
     public function __construct(
         string $href = '',
         ?string $framework = null
@@ -20,6 +26,11 @@ class Link extends Component
         $this->href = $href;
     }
 
+    /**
+     * Get the view / contents that represent the component.
+     *
+     * @return \Illuminate\View\View
+     */
     public function render(): View
     {
         return view($this->getFrameworkView('ui.link'));
