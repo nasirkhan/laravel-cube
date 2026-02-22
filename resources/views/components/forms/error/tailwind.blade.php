@@ -1,7 +1,13 @@
 {{-- Cube Component: Form Error (Tailwind) --}}
 
 @if ($messages)
-    <ul {{ $attributes->merge(['class' => 'text-sm text-red-600 dark:text-red-400 space-y-1']) }}>
+    @php
+        $errorAttributes = ['class' => 'text-sm text-red-600 dark:text-red-400 space-y-1', 'role' => 'alert', 'aria-live' => 'polite'];
+        if (isset($id)) {
+            $errorAttributes['id'] = $id;
+        }
+    @endphp
+    <ul {{ $attributes->merge($errorAttributes) }}>
         @foreach ((array) $messages as $message)
             <li>{{ $message }}</li>
         @endforeach
