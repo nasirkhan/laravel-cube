@@ -10,24 +10,16 @@ class FooterLicense extends Component
 {
     use HasFramework;
 
-    public string $license;
-    public ?string $author;
-    public ?string $authorUrl;
-
     /**
      * Create a new component instance.
      */
     public function __construct(
-        ?string $author = null,
-        ?string $authorUrl = null,
-        string $license = '',
+        public ?string $author = null,
+        public ?string $authorUrl = null,
+        public string $license = '',
         ?string $framework = null
     ) {
         $this->initializeFramework($framework);
-        
-        $this->license = $license;
-        $this->author = $author;
-        $this->authorUrl = $authorUrl;
     }
 
     /**

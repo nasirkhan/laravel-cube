@@ -12,8 +12,6 @@ class Textarea extends Component
 
     public bool $disabled;
     public bool $required;
-    public string $placeholder;
-    public int $rows;
     public bool $autofocus;
 
     /**
@@ -29,16 +27,14 @@ class Textarea extends Component
     public function __construct(
         bool|string $disabled = false,
         bool|string $required = false,
-        string $placeholder = '',
-        int $rows = 3,
+        public string $placeholder = '',
+        public int $rows = 3,
         bool|string $autofocus = false,
         ?string $framework = null
     ) {
         $this->initializeFramework($framework);
         $this->disabled = filter_var($disabled, FILTER_VALIDATE_BOOLEAN);
         $this->required = filter_var($required, FILTER_VALIDATE_BOOLEAN);
-        $this->placeholder = $placeholder;
-        $this->rows = $rows;
         $this->autofocus = filter_var($autofocus, FILTER_VALIDATE_BOOLEAN);
     }
 

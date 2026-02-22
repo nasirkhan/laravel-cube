@@ -8,20 +8,16 @@ use Illuminate\View\View;
 class HeaderBlock extends Component
 {
     public string $title;
-    public string $subTitle;
-    public string $preTitle;
 
     /**
      * Create a new component instance.
      */
     public function __construct(
         string $title = '',
-        string $subTitle = '',
-        string $preTitle = ''
+        public string $subTitle = '',
+        public string $preTitle = ''
     ) {
         $this->title = $title ?: app_name();
-        $this->subTitle = $subTitle;
-        $this->preTitle = $preTitle;
     }
 
     /**

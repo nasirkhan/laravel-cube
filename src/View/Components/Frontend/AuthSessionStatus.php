@@ -7,14 +7,11 @@ use Illuminate\View\View;
 
 class AuthSessionStatus extends Component
 {
-    public ?string $status;
-
     /**
      * Create a new component instance.
      */
-    public function __construct(?string $status = null)
+    public function __construct(public ?string $status = null)
     {
-        $this->status = $status;
     }
 
     /**

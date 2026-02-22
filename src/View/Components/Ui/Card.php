@@ -10,10 +10,6 @@ class Card extends Component
 {
     use HasFramework;
 
-    public ?string $url;
-    public string $name;
-    public string $image;
-
     /**
      * Create a new component instance.
      *
@@ -23,15 +19,12 @@ class Card extends Component
      * @param string|null $framework The CSS framework to use (tailwind|bootstrap)
      */
     public function __construct(
-        ?string $url = null,
-        string $name = '',
-        string $image = '',
+        public ?string $url = null,
+        public string $name = '',
+        public string $image = '',
         ?string $framework = null
     ) {
         $this->initializeFramework($framework);
-        $this->url = $url;
-        $this->name = $name;
-        $this->image = $image;
     }
 
     /**

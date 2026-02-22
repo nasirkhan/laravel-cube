@@ -10,7 +10,6 @@ class NavLink extends Component
 {
     use HasFramework;
 
-    public string $href;
     public bool $active;
     public string $classes;
 
@@ -22,12 +21,11 @@ class NavLink extends Component
      * @param string|null $framework The CSS framework to use (tailwind|bootstrap)
      */
     public function __construct(
-        string $href = '#',
+        public string $href = '#',
         bool|string $active = false,
         ?string $framework = null
     ) {
         $this->initializeFramework($framework);
-        $this->href = $href;
         $this->active = filter_var($active, FILTER_VALIDATE_BOOLEAN);
         $this->classes = $this->getClasses();
     }

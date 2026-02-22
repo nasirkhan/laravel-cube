@@ -10,8 +10,6 @@ class Dropdown extends Component
 {
     use HasFramework;
 
-    public string $align;
-    public string $width;
     public string $contentClasses;
 
     /**
@@ -23,19 +21,17 @@ class Dropdown extends Component
      * @param string|null $framework The CSS framework to use (tailwind|bootstrap)
      */
     public function __construct(
-        string $align = 'right',
-        string $width = '48',
+        public string $align = 'right',
+        public string $width = '48',
         string $contentClasses = '',
         ?string $framework = null
     ) {
         $this->initializeFramework($framework);
-        $this->align = $align;
-        $this->width = $width;
         
         // Set default content classes based on framework if not provided
         if (empty($contentClasses)) {
-            $this->contentClasses = $this->isBootstrap() 
-                ? 'bg-white py-1' 
+            $this->contentClasses = $this->isBootstrap()
+                ? 'bg-white py-1'
                 : 'bg-white py-1 dark:bg-gray-700';
         } else {
             $this->contentClasses = $contentClasses;

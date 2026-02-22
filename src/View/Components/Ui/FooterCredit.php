@@ -10,16 +10,12 @@ class FooterCredit extends Component
 {
     use HasFramework;
 
-    public string $text;
-
     /**
      * Create a new component instance.
      */
-    public function __construct(string $text, ?string $framework = null)
+    public function __construct(public string $text, ?string $framework = null)
     {
         $this->initializeFramework($framework);
-        
-        $this->text = $text;
     }
 
     /**

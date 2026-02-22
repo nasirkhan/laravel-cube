@@ -10,9 +10,6 @@ class ButtonLink extends Component
 {
     use HasFramework;
 
-    public string $href;
-    public string $variant;
-
     /**
      * Create a new component instance.
      *
@@ -21,13 +18,11 @@ class ButtonLink extends Component
      * @param string|null $framework The CSS framework to use (tailwind|bootstrap)
      */
     public function __construct(
-        string $href = '#',
-        string $variant = 'primary',
+        public string $href = '#',
+        public string $variant = 'primary',
         ?string $framework = null
     ) {
         $this->initializeFramework($framework);
-        $this->href = $href;
-        $this->variant = $variant;
     }
 
     /**

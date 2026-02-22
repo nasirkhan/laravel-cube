@@ -10,8 +10,6 @@ class Link extends Component
 {
     use HasFramework;
 
-    public string $href;
-
     /**
      * Create a new component instance.
      *
@@ -19,11 +17,10 @@ class Link extends Component
      * @param string|null $framework The CSS framework to use (tailwind|bootstrap)
      */
     public function __construct(
-        string $href = '',
+        public string $href = '',
         ?string $framework = null
     ) {
         $this->initializeFramework($framework);
-        $this->href = $href;
     }
 
     /**

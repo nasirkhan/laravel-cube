@@ -10,9 +10,6 @@ class Badge extends Component
 {
     use HasFramework;
 
-    public string $url;
-    public string $text;
-
     /**
      * Create a new component instance.
      *
@@ -21,13 +18,11 @@ class Badge extends Component
      * @param string|null $framework The CSS framework to use (tailwind|bootstrap)
      */
     public function __construct(
-        string $url = '',
-        string $text = '',
+        public string $url = '',
+        public string $text = '',
         ?string $framework = null
     ) {
         $this->initializeFramework($framework);
-        $this->url = $url;
-        $this->text = $text;
     }
 
     /**

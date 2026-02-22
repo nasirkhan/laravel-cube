@@ -7,18 +7,13 @@ use Illuminate\View\View;
 
 class AuthHeader extends Component
 {
-    public string $title;
-    public string $description;
-
     /**
      * Create a new component instance.
      */
     public function __construct(
-        string $title = '',
-        string $description = ''
+        public string $title = '',
+        public string $description = ''
     ) {
-        $this->title = $title;
-        $this->description = $description;
     }
 
     /**

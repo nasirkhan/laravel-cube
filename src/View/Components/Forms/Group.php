@@ -10,11 +10,7 @@ class Group extends Component
 {
     use HasFramework;
 
-    public string $label;
-    public string $name;
     public bool $required;
-    public string $help;
-    public mixed $error;
 
     /**
      * Create a new component instance.
@@ -27,19 +23,15 @@ class Group extends Component
      * @param string|null $framework The CSS framework to use (tailwind|bootstrap)
      */
     public function __construct(
-        string $label = '',
-        string $name = '',
+        public string $label = '',
+        public string $name = '',
         bool|string $required = false,
-        string $help = '',
-        mixed $error = null,
+        public string $help = '',
+        public mixed $error = null,
         ?string $framework = null
     ) {
         $this->initializeFramework($framework);
-        $this->label = $label;
-        $this->name = $name;
         $this->required = filter_var($required, FILTER_VALIDATE_BOOLEAN);
-        $this->help = $help;
-        $this->error = $error;
     }
 
     /**

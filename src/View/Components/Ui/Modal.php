@@ -10,7 +10,6 @@ class Modal extends Component
 {
     use HasFramework;
 
-    public string $name;
     public bool $show;
     public string $maxWidth;
     public bool $focusable;
@@ -26,14 +25,13 @@ class Modal extends Component
      * @param string|null $framework The CSS framework to use (tailwind|bootstrap)
      */
     public function __construct(
-        string $name,
+        public string $name,
         bool|string $show = false,
         string $maxWidth = '2xl',
         bool|string $focusable = false,
         ?string $framework = null
     ) {
         $this->initializeFramework($framework);
-        $this->name = $name;
 
         $validWidths = ['sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl', '5xl'];
         $this->maxWidth = in_array($maxWidth, $validWidths) ? $maxWidth : '2xl';
