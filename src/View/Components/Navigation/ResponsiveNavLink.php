@@ -50,11 +50,13 @@ class ResponsiveNavLink extends Component
     protected function getBootstrapClasses(): string
     {
         // Bootstrap uses simple 'nav-link' class with optional 'active' modifier
-        $classes = 'nav-link';
-        if ($this->active) {
-            $classes .= ' active';
-        }
-        return $classes;
+        $baseClasses = 'nav-link';
+        $activeClass = match ($this->active) {
+            true => ' active',
+            false => '',
+        };
+        
+        return $baseClasses . $activeClass;
     }
 
     /**

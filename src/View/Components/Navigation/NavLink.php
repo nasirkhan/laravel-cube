@@ -51,11 +51,13 @@ class NavLink extends Component
     {
         // Bootstrap uses 'nav-link' class with optional 'active' modifier
         // Classes are configurable via config for customization
-        $classes = config('cube.bootstrap.navigation.link', 'nav-link');
-        if ($this->active) {
-            $classes .= ' ' . config('cube.bootstrap.navigation.link_active', 'active');
-        }
-        return $classes;
+        $baseClasses = config('cube.bootstrap.navigation.link', 'nav-link');
+        $activeClass = match ($this->active) {
+            true => ' ' . config('cube.bootstrap.navigation.link_active', 'active'),
+            false => '',
+        };
+        
+        return $baseClasses . $activeClass;
     }
 
     /**
