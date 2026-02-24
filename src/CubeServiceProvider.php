@@ -60,41 +60,58 @@ class CubeServiceProvider extends ServiceProvider
         Blade::component('cube::dropdown-link', \Nasirkhan\LaravelCube\View\Components\Navigation\DropdownLink::class);
         
         // Register Backend components (Bootstrap-based) - Anonymous components
-        Blade::component('cube::components.backend.breadcrumbs', 'backend-breadcrumbs');
-        Blade::component('cube::components.backend.breadcrumb-item', 'backend-breadcrumb-item');
-        Blade::component('cube::components.backend.section-header', 'backend-section-header');
-        Blade::component('cube::components.backend.section-footer', 'backend-section-footer');
-        Blade::component('cube::components.backend.section-show-table', 'backend-section-show-table');
-        Blade::component('cube::components.backend.page-wrapper', 'backend-page-wrapper');
-        Blade::component('cube::components.backend.sidebar-nav-item', 'backend-sidebar-nav-item');
-        Blade::component('cube::components.backend.dynamic-menu', 'backend-dynamic-menu');
-        Blade::component('cube::components.backend.dynamic-menu-item', 'backend-dynamic-menu-item');
-        Blade::component('cube::components.backend.fallback-sidebar-menu', 'backend-fallback-sidebar-menu');
-        
-        // Backend Buttons
-        Blade::component('cube::components.backend.buttons.create', 'backend-button-create');
-        Blade::component('cube::components.backend.buttons.return-back', 'backend-button-return-back');
-        Blade::component('cube::components.backend.buttons.cancel', 'backend-button-cancel');
-        Blade::component('cube::components.backend.buttons.save', 'backend-button-save');
-        Blade::component('cube::components.backend.buttons.edit', 'backend-button-edit');
-        Blade::component('cube::components.backend.buttons.show', 'backend-button-show');
-        Blade::component('cube::components.backend.buttons.list', 'backend-button-list');
-        Blade::component('cube::components.backend.buttons.public', 'backend-button-public');
-        Blade::component('cube::components.backend.buttons.public-view', 'backend-button-public-view');
-        
-        // Backend Includes
-        Blade::component('cube::components.backend.includes.header', 'backend-include-header');
-        Blade::component('cube::components.backend.includes.footer', 'backend-include-footer');
-        Blade::component('cube::components.backend.includes.sidebar', 'backend-include-sidebar');
-        Blade::component('cube::components.backend.includes.menu-user', 'backend-include-menu-user');
-        Blade::component('cube::components.backend.includes.menu-language', 'backend-include-menu-language');
-        Blade::component('cube::components.backend.includes.dashboard-demo', 'backend-include-dashboard-demo');
-        
-        // Backend Layouts
-        Blade::component('cube::components.backend.layouts.create', 'backend-layout-create');
-        Blade::component('cube::components.backend.layouts.edit', 'backend-layout-edit');
-        Blade::component('cube::components.backend.layouts.show', 'backend-layout-show');
-        Blade::component('cube::components.backend.layouts.trash', 'backend-layout-trash');
+        // Each component is registered with multiple aliases:
+        //   hyphen:    <x-backend-breadcrumbs />
+        //   cube::     <x-cube::backend-breadcrumbs />
+        //   dot:       <x-backend.breadcrumbs /> (used in module views)
+        //   dot nested: <x-backend.buttons.save />, <x-backend.layouts.edit />
+        $backendComponents = [
+            // view path => [hyphen-alias, ...additional dot aliases]
+            'cube::components.backend.breadcrumbs'           => ['backend-breadcrumbs',          'backend.breadcrumbs'],
+            'cube::components.backend.breadcrumb-item'       => ['backend-breadcrumb-item',      'backend.breadcrumb-item'],
+            'cube::components.backend.section-header'        => ['backend-section-header',       'backend.section-header'],
+            'cube::components.backend.section-footer'        => ['backend-section-footer',       'backend.section-footer'],
+            'cube::components.backend.section-show-table'    => ['backend-section-show-table',   'backend.section-show-table'],
+            'cube::components.backend.page-wrapper'          => ['backend-page-wrapper',         'backend.page-wrapper'],
+            'cube::components.backend.sidebar-nav-item'      => ['backend-sidebar-nav-item',     'backend.sidebar-nav-item'],
+            'cube::components.backend.dynamic-menu'          => ['backend-dynamic-menu',         'backend.dynamic-menu'],
+            'cube::components.backend.dynamic-menu-item'     => ['backend-dynamic-menu-item',    'backend.dynamic-menu-item'],
+            'cube::components.backend.fallback-sidebar-menu' => ['backend-fallback-sidebar-menu','backend.fallback-sidebar-menu'],
+            // Backend Buttons
+            'cube::components.backend.buttons.create'      => ['backend-button-create',      'backend.buttons.create'],
+            'cube::components.backend.buttons.return-back' => ['backend-button-return-back',  'backend.buttons.return-back'],
+            'cube::components.backend.buttons.cancel'      => ['backend-button-cancel',       'backend.buttons.cancel'],
+            'cube::components.backend.buttons.save'        => ['backend-button-save',         'backend.buttons.save'],
+            'cube::components.backend.buttons.edit'        => ['backend-button-edit',         'backend.buttons.edit'],
+            'cube::components.backend.buttons.show'        => ['backend-button-show',         'backend.buttons.show'],
+            'cube::components.backend.buttons.list'        => ['backend-button-list',         'backend.buttons.list'],
+            'cube::components.backend.buttons.public'      => ['backend-button-public',       'backend.buttons.public'],
+            'cube::components.backend.buttons.public-view' => ['backend-button-public-view',  'backend.buttons.public-view'],
+            // Backend Includes
+            'cube::components.backend.includes.header'         => ['backend-include-header',        'backend.includes.header'],
+            'cube::components.backend.includes.footer'         => ['backend-include-footer',        'backend.includes.footer'],
+            'cube::components.backend.includes.sidebar'        => ['backend-include-sidebar',       'backend.includes.sidebar'],
+            'cube::components.backend.includes.menu-user'      => ['backend-include-menu-user',     'backend.includes.menu-user'],
+            'cube::components.backend.includes.menu-language'  => ['backend-include-menu-language', 'backend.includes.menu-language'],
+            'cube::components.backend.includes.dashboard-demo' => ['backend-include-dashboard-demo','backend.includes.dashboard-demo'],
+            // Backend Layouts
+            'cube::components.backend.layouts.create' => ['backend-layout-create', 'backend.layouts.create'],
+            'cube::components.backend.layouts.edit'   => ['backend-layout-edit',   'backend.layouts.edit'],
+            'cube::components.backend.layouts.show'   => ['backend-layout-show',   'backend.layouts.show'],
+            'cube::components.backend.layouts.trash'  => ['backend-layout-trash',  'backend.layouts.trash'],
+        ];
+
+        foreach ($backendComponents as $view => $aliases) {
+            $hyphenAlias = $aliases[0];
+            // Register with hyphen notation: <x-backend-breadcrumbs />
+            Blade::component($view, $hyphenAlias);
+            // Register with cube:: prefix (hyphen): <x-cube::backend-breadcrumbs />
+            Blade::component($view, 'cube::' . $hyphenAlias);
+            // Register all additional dot-notation aliases
+            foreach (array_slice($aliases, 1) as $dotAlias) {
+                Blade::component($view, $dotAlias);
+            }
+        }
     }
 
     /**
