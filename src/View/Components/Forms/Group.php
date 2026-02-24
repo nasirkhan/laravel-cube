@@ -4,11 +4,12 @@ namespace Nasirkhan\LaravelCube\View\Components\Forms;
 
 use Illuminate\View\Component;
 use Illuminate\View\View;
+use Nasirkhan\LaravelCube\View\Components\CastsBooleans;
 use Nasirkhan\LaravelCube\View\Components\HasFramework;
 
 class Group extends Component
 {
-    use HasFramework;
+    use CastsBooleans, HasFramework;
 
     public bool $required;
 
@@ -35,7 +36,7 @@ class Group extends Component
         // Convert string/bool to strict boolean using filter_var
         // This handles cases where 'true'/'false' strings or boolean values are passed
         // FILTER_VALIDATE_BOOLEAN returns true for '1', 'true', 'on', 'yes' and false otherwise
-        $this->required = filter_var($required, FILTER_VALIDATE_BOOLEAN);
+        $this->required = $this->castBool($required);
     }
 
     /**

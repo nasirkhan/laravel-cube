@@ -4,11 +4,12 @@ namespace Nasirkhan\LaravelCube\View\Components\Navigation;
 
 use Illuminate\View\Component;
 use Illuminate\View\View;
+use Nasirkhan\LaravelCube\View\Components\CastsBooleans;
 use Nasirkhan\LaravelCube\View\Components\HasFramework;
 
 class ResponsiveNavLink extends Component
 {
-    use HasFramework;
+    use CastsBooleans, HasFramework;
 
     public bool $active;
     public string $classes;
@@ -29,7 +30,7 @@ class ResponsiveNavLink extends Component
         
         // Convert string/bool to strict boolean using filter_var
         // This handles 'true'/'false' strings, '1'/'0', and actual boolean values
-        $this->active = filter_var($active, FILTER_VALIDATE_BOOLEAN);
+        $this->active = $this->castBool($active);
         
         // Build CSS classes based on active state and framework
         // This is done in constructor to avoid recalculating on each render

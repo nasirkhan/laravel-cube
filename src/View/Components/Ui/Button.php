@@ -4,11 +4,12 @@ namespace Nasirkhan\LaravelCube\View\Components\Ui;
 
 use Illuminate\View\Component;
 use Illuminate\View\View;
+use Nasirkhan\LaravelCube\View\Components\CastsBooleans;
 use Nasirkhan\LaravelCube\View\Components\HasFramework;
 
 class Button extends Component
 {
-    use HasFramework;
+    use CastsBooleans, HasFramework;
 
     public string $type;
     public string $variant;
@@ -43,8 +44,8 @@ class Button extends Component
 
         // Convert string/bool to strict boolean using filter_var
         // Handles 'true'/'false' strings, '1'/'0', and actual boolean values
-        $this->disabled = filter_var($disabled, FILTER_VALIDATE_BOOLEAN);
-        $this->loading = filter_var($loading, FILTER_VALIDATE_BOOLEAN);
+        $this->disabled = $this->castBool($disabled);
+        $this->loading = $this->castBool($loading);
     }
 
     /**

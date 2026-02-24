@@ -4,11 +4,12 @@ namespace Nasirkhan\LaravelCube\View\Components\Forms;
 
 use Illuminate\View\Component;
 use Illuminate\View\View;
+use Nasirkhan\LaravelCube\View\Components\CastsBooleans;
 use Nasirkhan\LaravelCube\View\Components\HasFramework;
 
 class Select extends Component
 {
-    use HasFramework;
+    use CastsBooleans, HasFramework;
 
     public bool $disabled;
     public bool $required;
@@ -32,9 +33,9 @@ class Select extends Component
         
         // Convert string/bool to strict boolean using filter_var
         // Handles 'true'/'false' strings, '1'/'0', and actual boolean values
-        $this->disabled = filter_var($disabled, FILTER_VALIDATE_BOOLEAN);
-        $this->required = filter_var($required, FILTER_VALIDATE_BOOLEAN);
-        $this->autofocus = filter_var($autofocus, FILTER_VALIDATE_BOOLEAN);
+        $this->disabled = $this->castBool($disabled);
+        $this->required = $this->castBool($required);
+        $this->autofocus = $this->castBool($autofocus);
     }
 
     /**
