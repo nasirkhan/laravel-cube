@@ -4,14 +4,11 @@ namespace Nasirkhan\LaravelCube\Tests\Unit;
 
 use Nasirkhan\LaravelCube\Tests\TestCase;
 use Nasirkhan\LaravelCube\View\Components\Forms\Input;
+use PHPUnit\Framework\Attributes\Test;
 
 class InputComponentTest extends TestCase
 {
-    /**
-     * Test that input has default type of 'text'.
-     *
-     * @test
-     */
+    #[Test]
     public function it_has_default_type_text(): void
     {
         $component = new Input();
@@ -19,11 +16,7 @@ class InputComponentTest extends TestCase
         $this->assertEquals('text', $component->type);
     }
 
-    /**
-     * Test that input accepts valid input types.
-     *
-     * @test
-     */
+    #[Test]
     public function it_accepts_valid_input_types(): void
     {
         $validTypes = ['text', 'email', 'password', 'number', 'url', 'tel', 'date', 'time', 'datetime-local', 'color'];
@@ -34,11 +27,7 @@ class InputComponentTest extends TestCase
         }
     }
 
-    /**
-     * Test that input defaults to 'text' type for invalid types.
-     *
-     * @test
-     */
+    #[Test]
     public function it_defaults_to_text_for_invalid_types(): void
     {
         $component = new Input(type: 'invalid');
@@ -46,11 +35,7 @@ class InputComponentTest extends TestCase
         $this->assertEquals('text', $component->type);
     }
 
-    /**
-     * Test that input handles disabled state.
-     *
-     * @test
-     */
+    #[Test]
     public function it_handles_disabled_state(): void
     {
         $component = new Input(disabled: true);
@@ -60,11 +45,7 @@ class InputComponentTest extends TestCase
         $this->assertFalse($component->disabled);
     }
 
-    /**
-     * Test that input handles required state.
-     *
-     * @test
-     */
+    #[Test]
     public function it_handles_required_state(): void
     {
         $component = new Input(required: true);
@@ -74,11 +55,7 @@ class InputComponentTest extends TestCase
         $this->assertFalse($component->required);
     }
 
-    /**
-     * Test that input accepts placeholder.
-     *
-     * @test
-     */
+    #[Test]
     public function it_accepts_placeholder(): void
     {
         $component = new Input(placeholder: 'Enter your email');
@@ -86,11 +63,7 @@ class InputComponentTest extends TestCase
         $this->assertEquals('Enter your email', $component->placeholder);
     }
 
-    /**
-     * Test that input defaults to Tailwind framework.
-     *
-     * @test
-     */
+    #[Test]
     public function it_defaults_to_tailwind_framework(): void
     {
         $component = new Input();
@@ -99,11 +72,7 @@ class InputComponentTest extends TestCase
         $this->assertFalse($component->isBootstrap());
     }
 
-    /**
-     * Test that input accepts Bootstrap framework.
-     *
-     * @test
-     */
+    #[Test]
     public function it_accepts_bootstrap_framework(): void
     {
         $component = new Input(framework: 'bootstrap');
@@ -112,11 +81,7 @@ class InputComponentTest extends TestCase
         $this->assertFalse($component->isTailwind());
     }
 
-    /**
-     * Test that input handles autofocus state.
-     *
-     * @test
-     */
+    #[Test]
     public function it_handles_autofocus_state(): void
     {
         $component = new Input(autofocus: true);
@@ -126,11 +91,7 @@ class InputComponentTest extends TestCase
         $this->assertFalse($component->autofocus);
     }
 
-    /**
-     * Test that input defaults to false for autofocus.
-     *
-     * @test
-     */
+    #[Test]
     public function it_defaults_to_false_for_autofocus(): void
     {
         $component = new Input();

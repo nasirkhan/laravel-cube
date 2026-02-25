@@ -4,6 +4,7 @@ namespace Nasirkhan\LaravelCube\Tests\Unit;
 
 use Nasirkhan\LaravelCube\Tests\TestCase;
 use Nasirkhan\LaravelCube\View\Components\CastsBooleans;
+use PHPUnit\Framework\Attributes\Test;
 
 class CastsBooleansTraitTest extends TestCase
 {
@@ -24,97 +25,73 @@ class CastsBooleansTraitTest extends TestCase
         };
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_casts_true_boolean_to_true(): void
     {
         $this->assertTrue($this->subject->cast(true));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_casts_false_boolean_to_false(): void
     {
         $this->assertFalse($this->subject->cast(false));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_casts_string_true_to_true(): void
     {
         $this->assertTrue($this->subject->cast('true'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_casts_string_false_to_false(): void
     {
         $this->assertFalse($this->subject->cast('false'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_casts_string_one_to_true(): void
     {
         $this->assertTrue($this->subject->cast('1'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_casts_string_zero_to_false(): void
     {
         $this->assertFalse($this->subject->cast('0'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_casts_string_on_to_true(): void
     {
         $this->assertTrue($this->subject->cast('on'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_casts_string_yes_to_true(): void
     {
         $this->assertTrue($this->subject->cast('yes'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_casts_empty_string_to_false(): void
     {
         $this->assertFalse($this->subject->cast(''));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_casts_string_off_to_false(): void
     {
         $this->assertFalse($this->subject->cast('off'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_casts_string_no_to_false(): void
     {
         $this->assertFalse($this->subject->cast('no'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_returns_strict_bool_type(): void
     {
         $result = $this->subject->cast('true');
