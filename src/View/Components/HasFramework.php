@@ -26,7 +26,7 @@ trait HasFramework
     /**
      * Get the view path based on the framework.
      */
-    protected function getFrameworkView(string $baseView): string
+    public function getFrameworkView(string $baseView): string
     {
         // Construct view path: cube::components.{category}.{component}.{framework}
         // Example: cube::components.forms.input.tailwind
@@ -37,7 +37,7 @@ trait HasFramework
     /**
      * Check if using Tailwind framework.
      */
-    protected function isTailwind(): bool
+    public function isTailwind(): bool
     {
         return $this->framework === 'tailwind';
     }
@@ -45,7 +45,7 @@ trait HasFramework
     /**
      * Check if using Bootstrap framework.
      */
-    protected function isBootstrap(): bool
+    public function isBootstrap(): bool
     {
         return $this->framework === 'bootstrap';
     }

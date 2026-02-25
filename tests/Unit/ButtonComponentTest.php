@@ -152,10 +152,10 @@ class ButtonComponentTest extends TestCase
     public function it_returns_correct_framework_view_path(): void
     {
         $tailwindComponent = new Button();
-        $this->assertEquals('components.ui.button.tailwind', $tailwindComponent->getFrameworkView('ui.button'));
+        $this->assertEquals('cube::components.ui.button.tailwind', $tailwindComponent->getFrameworkView('ui.button'));
 
         $bootstrapComponent = new Button(framework: 'bootstrap');
-        $this->assertEquals('components.ui.button.bootstrap', $bootstrapComponent->getFrameworkView('ui.button'));
+        $this->assertEquals('cube::components.ui.button.bootstrap', $bootstrapComponent->getFrameworkView('ui.button'));
     }
 
     /**

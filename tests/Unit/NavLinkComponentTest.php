@@ -67,9 +67,9 @@ class NavLinkComponentTest extends TestCase
     public function it_returns_correct_framework_view_path(): void
     {
         $tailwindComponent = new NavLink();
-        $this->assertEquals('components.navigation.nav-link.tailwind', $tailwindComponent->getFrameworkView('navigation.nav-link'));
+        $this->assertEquals('cube::components.navigation.nav-link.tailwind', $tailwindComponent->getFrameworkView('navigation.nav-link'));
 
         $bootstrapComponent = new NavLink(framework: 'bootstrap');
-        $this->assertEquals('components.navigation.nav-link.bootstrap', $bootstrapComponent->getFrameworkView('navigation.nav-link'));
+        $this->assertEquals('cube::components.navigation.nav-link.bootstrap', $bootstrapComponent->getFrameworkView('navigation.nav-link'));
     }
 }

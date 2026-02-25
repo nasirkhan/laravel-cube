@@ -32,7 +32,7 @@ class Input extends Component
 
         // Define valid HTML5 input types for security and consistency
         // Only allow these types to prevent XSS and ensure proper browser behavior
-        $validTypes = ['text', 'email', 'password', 'number', 'tel', 'url', 'search', 'date', 'time', 'datetime-local'];
+        $validTypes = ['text', 'email', 'password', 'number', 'tel', 'url', 'search', 'date', 'time', 'datetime-local', 'color'];
         
         // Validate input type - default to 'text' if invalid type provided
         // This prevents invalid HTML attributes and ensures fallback to safe default
