@@ -7,6 +7,7 @@
         role="switch"
         {{ $disabled ? 'disabled' : '' }}
         {{ $checked ? 'checked' : '' }}
+        {{ $autofocus ? 'autofocus' : '' }}
         {{ $attributes->merge(['class' => 'form-check-input']) }}
     >
     @if($slot->isNotEmpty())

@@ -4,10 +4,11 @@ namespace Nasirkhan\LaravelCube\Tests\Unit;
 
 use Nasirkhan\LaravelCube\Tests\TestCase;
 use Nasirkhan\LaravelCube\View\Components\Ui\Button;
+use PHPUnit\Framework\Attributes\Test;
 
 class ButtonComponentTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_has_default_type_button(): void
     {
         $component = new Button();
@@ -15,7 +16,7 @@ class ButtonComponentTest extends TestCase
         $this->assertEquals('button', $component->type);
     }
 
-    /** @test */
+    #[Test]
     public function it_accepts_valid_button_types(): void
     {
         $component = new Button(type: 'button');
@@ -28,7 +29,7 @@ class ButtonComponentTest extends TestCase
         $this->assertEquals('reset', $component->type);
     }
 
-    /** @test */
+    #[Test]
     public function it_defaults_to_button_for_invalid_types(): void
     {
         $component = new Button(type: 'invalid');
@@ -36,7 +37,7 @@ class ButtonComponentTest extends TestCase
         $this->assertEquals('button', $component->type);
     }
 
-    /** @test */
+    #[Test]
     public function it_accepts_valid_variants(): void
     {
         $variants = ['primary', 'secondary', 'danger', 'success', 'warning', 'info', 'light', 'dark', 'link'];
@@ -47,7 +48,7 @@ class ButtonComponentTest extends TestCase
         }
     }
 
-    /** @test */
+    #[Test]
     public function it_defaults_to_primary_for_invalid_variants(): void
     {
         $component = new Button(variant: 'invalid');
@@ -55,7 +56,7 @@ class ButtonComponentTest extends TestCase
         $this->assertEquals('primary', $component->variant);
     }
 
-    /** @test */
+    #[Test]
     public function it_accepts_valid_sizes(): void
     {
         $component = new Button(size: 'sm');
@@ -68,7 +69,7 @@ class ButtonComponentTest extends TestCase
         $this->assertEquals('lg', $component->size);
     }
 
-    /** @test */
+    #[Test]
     public function it_defaults_to_md_for_invalid_sizes(): void
     {
         $component = new Button(size: 'invalid');
@@ -76,7 +77,7 @@ class ButtonComponentTest extends TestCase
         $this->assertEquals('md', $component->size);
     }
 
-    /** @test */
+    #[Test]
     public function it_handles_loading_state(): void
     {
         $component = new Button(loading: true);
@@ -86,7 +87,7 @@ class ButtonComponentTest extends TestCase
         $this->assertFalse($component->loading);
     }
 
-    /** @test */
+    #[Test]
     public function it_defaults_to_tailwind_framework(): void
     {
         $component = new Button();
@@ -95,7 +96,7 @@ class ButtonComponentTest extends TestCase
         $this->assertFalse($component->isBootstrap());
     }
 
-    /** @test */
+    #[Test]
     public function it_accepts_bootstrap_framework(): void
     {
         $component = new Button(framework: 'bootstrap');
@@ -104,17 +105,17 @@ class ButtonComponentTest extends TestCase
         $this->assertFalse($component->isTailwind());
     }
 
-    /** @test */
+    #[Test]
     public function it_returns_correct_framework_view_path(): void
     {
         $tailwindComponent = new Button();
-        $this->assertEquals('components.ui.button.tailwind', $tailwindComponent->getFrameworkView('ui.button'));
+        $this->assertEquals('cube::components.ui.button.tailwind', $tailwindComponent->getFrameworkView('ui.button'));
 
         $bootstrapComponent = new Button(framework: 'bootstrap');
-        $this->assertEquals('components.ui.button.bootstrap', $bootstrapComponent->getFrameworkView('ui.button'));
+        $this->assertEquals('cube::components.ui.button.bootstrap', $bootstrapComponent->getFrameworkView('ui.button'));
     }
 
-    /** @test */
+    #[Test]
     public function it_gets_classes_from_config(): void
     {
         $component = new Button(variant: 'primary');

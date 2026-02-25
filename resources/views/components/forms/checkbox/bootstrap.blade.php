@@ -6,10 +6,19 @@
         {{ $disabled ? 'disabled' : '' }}
         {{ $required ? 'required' : '' }}
         {{ $checked ? 'checked' : '' }}
+        {{ $autofocus ? 'autofocus' : '' }}
         {{ $attributes->merge(['class' => 'form-check-input']) }}
+        @if($attributes->has('name'))
+            id="{{ $attributes->get('name') }}"
+            @if($slot->isEmpty())
+                aria-label="{{ $attributes->get('name') }}"
+            @else
+                aria-labelledby="{{ $attributes->get('name') }}-label"
+            @endif
+        @endif
     >
     @if($slot->isNotEmpty())
-        <label {{ $attributes->only(['id', 'for'])->class(['form-check-label']) }}>
+        <label id="{{ $attributes->get('name') }}-label" {{ $attributes->only(['for'])->class(['form-check-label']) }}>
             {{ $slot }}
         </label>
     @endif

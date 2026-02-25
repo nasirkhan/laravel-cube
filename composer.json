@@ -28,8 +28,10 @@
     "require": {
         "php": "^8.2",
         "illuminate/support": "^11.0|^12.0",
-        "illuminate/view": "^11.0|^12.0",
-        "livewire/livewire": "^3.0|^4.0"
+        "illuminate/view": "^11.0|^12.0"
+    },
+    "suggest": {
+        "livewire/livewire": "Required if you use Livewire-powered examples or extend cube components with Livewire functionality (^3.0|^4.0)"
     },
     "require-dev": {
         "orchestra/testbench": "^9.0",

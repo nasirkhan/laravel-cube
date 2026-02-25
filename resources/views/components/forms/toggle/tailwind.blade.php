@@ -6,8 +6,15 @@
         type="button"
         x-on:click="checked = !checked"
         {{ $disabled ? 'disabled' : '' }}
+        {{ $autofocus ? 'autofocus' : '' }}
         x-bind:aria-checked="checked.toString()"
-        aria-labelledby="toggle-label"
+        @if($attributes->has('name'))
+            @if($slot->isEmpty())
+                aria-label="{{ $attributes->get('name') }}"
+            @else
+                aria-labelledby="{{ $attributes->get('name') }}-toggle-label"
+            @endif
+        @endif
         role="switch"
         {{ $attributes->merge(['class' => 'relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2']) }}
         x-bind:class="checked ? 'bg-indigo-600' : 'bg-gray-200 dark:bg-gray-700'"
@@ -18,11 +25,11 @@
             class="pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"
         ></span>
     </button>
-    
+
     <input type="hidden" x-bind:value="checked ? '1' : '0'" {{ $attributes->only('name') }}>
-    
+
     @if($slot->isNotEmpty())
-        <span id="toggle-label" class="ml-3 text-sm text-gray-900 dark:text-gray-100">{{ $slot }}</span>
+        <span id="{{ $attributes->get('name') }}-toggle-label" class="ml-3 text-sm text-gray-900 dark:text-gray-100">{{ $slot }}</span>
     @endif
 </div>
 

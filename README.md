@@ -9,7 +9,7 @@ A versatile collection of reusable UI components for Laravel applications with *
 
 - **🎨 Dual Framework Support** - Use Tailwind CSS (Flowbite) or Bootstrap 5
 - **🔄 Framework Switching** - Change frameworks per component or globally
-- **15+ Reusable Components** - UI, forms, and navigation components
+- **18+ Reusable Components** - UI, forms, navigation, and utility components
 - **🌙 Dark Mode** - Built-in dark mode support (Tailwind)
 - **⚡ Alpine.js Integration** - Enhanced interactivity (Tailwind components)
 - **📱 Livewire Compatible** - Works seamlessly with Livewire 3/4
@@ -24,9 +24,16 @@ The cube represents versatility and multidimensionality - just like this package
 
 ## Components Included
 
-### UI Components (2)
+### UI Components (6)
 - **Button** - `<x-cube::button>` - Versatile button with variants, sizes, loading states
 - **Modal** - `<x-cube::modal>` - Modal dialog with focus management
+- **Card** - `<x-cube::card>` - Card component with image, title, and content
+- **Badge** - `<x-cube::badge>` - Badge for labels and tags
+- **Footer Credit** - `<x-cube::footer-credit>` - Display copyright text
+- **Footer License** - `<x-cube::footer-license>` - Display licensing information (supports Creative Commons)
+
+### Utility Components (1)
+- **Google Analytics** - `<x-cube::google-analytics>` - Google Analytics tracking integration
 
 ### Form Components (8)
 - `<x-cube::input>` - Text input with validation support
@@ -216,6 +223,62 @@ CUBE_FRAMEWORK=tailwind
     Open Modal
 </button>
 ```
+
+#### Footer Components
+
+**Footer Credit (Tailwind):**
+```blade
+<x-cube::footer-credit text="&copy; 2024 My Company. All rights reserved." />
+```
+
+**Footer Credit (Bootstrap):**
+```blade
+<x-cube::footer-credit framework="bootstrap" text="&copy; 2024 My Company. All rights reserved." />
+```
+
+**Footer License - Default (Tailwind):**
+```blade
+<x-cube::footer-license 
+    author="My Company" 
+    author-url="https://example.com" 
+/>
+```
+
+**Footer License - Creative Commons (Tailwind):**
+```blade
+<x-cube::footer-license 
+    license="cc-by-sa"
+    author="My Company" 
+    author-url="https://example.com" 
+/>
+```
+
+**Footer License (Bootstrap):**
+```blade
+<x-cube::footer-license 
+    framework="bootstrap"
+    license="cc-by-sa"
+    author="My Company" 
+    author-url="https://example.com" 
+/>
+```
+
+#### Google Analytics
+
+Add Google Analytics tracking to your application. The component automatically retrieves the tracking ID from your settings if available.
+
+**Basic Usage:**
+```blade
+{{-- Uses setting('google_analytics') by default --}}
+<x-cube::google-analytics />
+```
+
+**With Custom Tracking ID:**
+```blade
+<x-cube::google-analytics tracking-id="G-XXXXXXXXXX" />
+```
+
+Add this component in your layout's `<head>` section or before the closing `</body>` tag.
 
 ## Component Variants
 

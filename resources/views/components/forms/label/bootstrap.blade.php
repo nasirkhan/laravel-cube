@@ -4,7 +4,7 @@
     $classes = config('cube.bootstrap.forms.label', 'form-label');
 @endphp
 
-<label {{ $attributes->merge(['class' => $classes]) }} @if($for) for="{{ $for }}" @endif>
+<label {{ $attributes->merge(['class' => $classes]) }} @if($for) for="{{ $for }}" id="{{ $for }}-label" @endif>
     {{ $value ?? $slot }}
     @if($required)
         <span class="text-danger">*</span>

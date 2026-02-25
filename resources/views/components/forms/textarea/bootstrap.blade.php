@@ -8,10 +8,14 @@
     rows="{{ $rows }}"
     {{ $disabled ? 'disabled' : '' }}
     {{ $required ? 'required' : '' }}
+    {{ $autofocus ? 'autofocus' : '' }}
     @if($placeholder)
         placeholder="{{ $placeholder }}"
     @endif
     {{ $attributes->merge(['class' => $classes]) }}
+    @if($attributes->has('name') && !$attributes->has('aria-label') && !$attributes->has('aria-labelledby'))
+        aria-labelledby="{{ $attributes->get('name') }}-label"
+    @endif
 >{{ $slot }}</textarea>
 
 {{-- Usage:

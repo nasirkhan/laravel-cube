@@ -4,29 +4,26 @@ namespace Nasirkhan\LaravelCube\View\Components\Forms;
 
 use Illuminate\View\Component;
 use Illuminate\View\View;
+use Nasirkhan\LaravelCube\View\Components\CastsBooleans;
 use Nasirkhan\LaravelCube\View\Components\HasFramework;
 
 class Label extends Component
 {
-    use HasFramework;
+    use CastsBooleans, HasFramework;
 
-    public string $for;
-    public string $value;
     public bool $required;
 
     /**
      * Create a new component instance.
      */
     public function __construct(
-        string $for = '',
-        string $value = '',
+        public string $for = '',
+        public string $value = '',
         bool|string $required = false,
         ?string $framework = null
     ) {
         $this->initializeFramework($framework);
-        $this->for = $for;
-        $this->value = $value;
-        $this->required = filter_var($required, FILTER_VALIDATE_BOOLEAN);
+        $this->required = $this->castBool($required);
     }
 
     /**

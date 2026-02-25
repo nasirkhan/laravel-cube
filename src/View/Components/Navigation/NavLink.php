@@ -4,46 +4,86 @@ namespace Nasirkhan\LaravelCube\View\Components\Navigation;
 
 use Illuminate\View\Component;
 use Illuminate\View\View;
+use Nasirkhan\LaravelCube\View\Components\CastsBooleans;
 use Nasirkhan\LaravelCube\View\Components\HasFramework;
 
 class NavLink extends Component
 {
-    use HasFramework;
+    use CastsBooleans, HasFramework;
 
-    public string $href;
     public bool $active;
     public string $classes;
 
+    /**
+     * Create a new component instance.
+     *
+     * @param string $href The URL the link points to
+     * @param bool|string $active Whether the link is currently active
+     * @param string|null $framework The CSS framework to use (tailwind|bootstrap)
+     */
     public function __construct(
-        string $href = '#',
+        public string $href = '#',
         bool|string $active = false,
         ?string $framework = null
     ) {
         $this->initializeFramework($framework);
-        $this->href = $href;
-        $this->active = filter_var($active, FILTER_VALIDATE_BOOLEAN);
+        
+        // Convert string/bool to strict boolean using filter_var
+        // This handles 'true'/'false' strings, '1'/'0', and actual boolean values
+        $this->active = $this->castBool($active);
+        
+        // Build CSS classes based on active state and framework
+        // This is done in constructor to avoid recalculating on each render
         $this->classes = $this->getClasses();
     }
 
     protected function getClasses(): string
     {
-        if ($this->isBootstrap()) {
-            $classes = config('cube.bootstrap.navigation.link', 'nav-link');
-            if ($this->active) {
-                $classes .= ' ' . config('cube.bootstrap.navigation.link_active', 'active');
-            }
-            return $classes;
-        }
+        return match (true) {
+            $this->isBootstrap() => $this->getBootstrapClasses(),
+            default => $this->getTailwindClasses(),
+        };
+    }
 
-        // Tailwind
+    /**
+     * Get Bootstrap navigation link classes.
+     */
+    protected function getBootstrapClasses(): string
+    {
+        // Bootstrap uses 'nav-link' class with optional 'active' modifier
+        // Classes are configurable via config for customization
+        $baseClasses = config('cube.bootstrap.navigation.link', 'nav-link');
+        $activeClass = match ($this->active) {
+            true => ' ' . config('cube.bootstrap.navigation.link_active', 'active'),
+            false => '',
+        };
+        
+        return $baseClasses . $activeClass;
+    }
+
+    /**
+     * Get Tailwind navigation link classes.
+     */
+    protected function getTailwindClasses(): string
+    {
+        // Tailwind classes are split into base and state-specific classes
+        // This allows for more granular control over styling
+        // Base classes: Common styles for all states
+        // State classes: Specific styles for active/inactive states
         $baseClasses = config('cube.tailwind.navigation.link');
-        $stateClasses = $this->active
-            ? config('cube.tailwind.navigation.link_active')
-            : config('cube.tailwind.navigation.link_inactive');
+        $stateClasses = match ($this->active) {
+            true => config('cube.tailwind.navigation.link_active'),
+            false => config('cube.tailwind.navigation.link_inactive'),
+        };
         
         return $baseClasses . ' ' . $stateClasses;
     }
 
+    /**
+     * Get the view / contents that represent the component.
+     *
+     * @return \Illuminate\View\View
+     */
     public function render(): View
     {
         return view($this->getFrameworkView('navigation.nav-link'));

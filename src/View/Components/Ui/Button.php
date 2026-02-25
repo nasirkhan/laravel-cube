@@ -4,11 +4,12 @@ namespace Nasirkhan\LaravelCube\View\Components\Ui;
 
 use Illuminate\View\Component;
 use Illuminate\View\View;
+use Nasirkhan\LaravelCube\View\Components\CastsBooleans;
 use Nasirkhan\LaravelCube\View\Components\HasFramework;
 
 class Button extends Component
 {
-    use HasFramework;
+    use CastsBooleans, HasFramework;
 
     public string $type;
     public string $variant;
@@ -29,17 +30,22 @@ class Button extends Component
     ) {
         $this->initializeFramework($framework);
 
+        // Define valid HTML button types for security and proper behavior
         $validTypes = ['submit', 'button', 'reset'];
         $this->type = in_array($type, $validTypes) ? $type : 'button';
 
+        // Define valid button style variants for visual consistency
         $validVariants = ['primary', 'secondary', 'danger', 'success', 'warning', 'info', 'light', 'dark', 'link'];
         $this->variant = in_array($variant, $validVariants) ? $variant : 'primary';
 
+        // Define valid button sizes for consistent sizing
         $validSizes = ['sm', 'md', 'lg'];
         $this->size = in_array($size, $validSizes) ? $size : 'md';
 
-        $this->disabled = filter_var($disabled, FILTER_VALIDATE_BOOLEAN);
-        $this->loading = filter_var($loading, FILTER_VALIDATE_BOOLEAN);
+        // Convert string/bool to strict boolean using filter_var
+        // Handles 'true'/'false' strings, '1'/'0', and actual boolean values
+        $this->disabled = $this->castBool($disabled);
+        $this->loading = $this->castBool($loading);
     }
 
     /**
@@ -47,19 +53,39 @@ class Button extends Component
      */
     public function getClasses(): string
     {
-        if ($this->isBootstrap()) {
-            $classes = config("cube.bootstrap.buttons.{$this->variant}", 'btn btn-primary');
-            
-            if ($this->size === 'sm') {
-                $classes .= ' btn-sm';
-            } elseif ($this->size === 'lg') {
-                $classes .= ' btn-lg';
-            }
-            
-            return $classes;
-        }
+        return match (true) {
+            $this->isBootstrap() => $this->getBootstrapClasses(),
+            default => $this->getTailwindClasses(),
+        };
+    }
 
-        // Tailwind classes
+    /**
+     * Get Bootstrap button classes.
+     */
+    protected function getBootstrapClasses(): string
+    {
+        // Bootstrap uses 'btn' base class with variant modifiers
+        // Classes are configurable via config for customization
+        $classes = config("cube.bootstrap.buttons.{$this->variant}", 'btn btn-primary');
+        
+        // Add size modifier classes for Bootstrap using match expression
+        // 'md' is the default size and doesn't need a class
+        $sizeClass = match ($this->size) {
+            'sm' => ' btn-sm',
+            'lg' => ' btn-lg',
+            default => '',
+        };
+        
+        return $classes . $sizeClass;
+    }
+
+    /**
+     * Get Tailwind button classes.
+     */
+    protected function getTailwindClasses(): string
+    {
+        // Tailwind classes are fully defined in config
+        // Size and variant are combined into a single class string
         return config("cube.tailwind.buttons.{$this->variant}", config('cube.tailwind.buttons.primary'));
     }
 
