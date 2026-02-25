@@ -13,8 +13,8 @@ class ButtonLink extends Component
     /**
      * Create a new component instance.
      *
-     * @param string $href The URL the button link points to
-     * @param string $variant The visual variant of the button (primary|secondary|danger|success|warning|info|light|dark|link)
+     * @param string      $href      The URL the button link points to
+     * @param string      $variant   The visual variant of the button (primary|secondary|danger|success|warning|info|light|dark|link)
      * @param string|null $framework The CSS framework to use (tailwind|bootstrap)
      */
     public function __construct(

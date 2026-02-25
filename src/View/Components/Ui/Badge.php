@@ -13,8 +13,8 @@ class Badge extends Component
     /**
      * Create a new component instance.
      *
-     * @param string $url The URL the badge links to (optional)
-     * @param string $text The text content of the badge
+     * @param string      $url       The URL the badge links to (optional)
+     * @param string      $text      The text content of the badge
      * @param string|null $framework The CSS framework to use (tailwind|bootstrap)
      */
     public function __construct(

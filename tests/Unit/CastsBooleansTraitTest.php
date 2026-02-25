@@ -15,7 +15,7 @@ class CastsBooleansTraitTest extends TestCase
         parent::setUp();
 
         // Create an anonymous class that uses the trait so we can test it directly
-        $this->subject = new class {
+        $this->subject = new class() {
             use CastsBooleans;
 
             public function cast(bool|string $value): bool

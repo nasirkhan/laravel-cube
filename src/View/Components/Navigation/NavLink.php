@@ -9,7 +9,8 @@ use Nasirkhan\LaravelCube\View\Components\HasFramework;
 
 class NavLink extends Component
 {
-    use CastsBooleans, HasFramework;
+    use CastsBooleans;
+    use HasFramework;
 
     public bool $active;
     public string $classes;
@@ -17,8 +18,8 @@ class NavLink extends Component
     /**
      * Create a new component instance.
      *
-     * @param string $href The URL the link points to
-     * @param bool|string $active Whether the link is currently active
+     * @param string      $href      The URL the link points to
+     * @param bool|string $active    Whether the link is currently active
      * @param string|null $framework The CSS framework to use (tailwind|bootstrap)
      */
     public function __construct(
@@ -27,11 +28,11 @@ class NavLink extends Component
         ?string $framework = null
     ) {
         $this->initializeFramework($framework);
-        
+
         // Convert string/bool to strict boolean using filter_var
         // This handles 'true'/'false' strings, '1'/'0', and actual boolean values
         $this->active = $this->castBool($active);
-        
+
         // Build CSS classes based on active state and framework
         // This is done in constructor to avoid recalculating on each render
         $this->classes = $this->getClasses();
@@ -41,7 +42,7 @@ class NavLink extends Component
     {
         return match (true) {
             $this->isBootstrap() => $this->getBootstrapClasses(),
-            default => $this->getTailwindClasses(),
+            default              => $this->getTailwindClasses(),
         };
     }
 
@@ -54,11 +55,11 @@ class NavLink extends Component
         // Classes are configurable via config for customization
         $baseClasses = config('cube.bootstrap.navigation.link', 'nav-link');
         $activeClass = match ($this->active) {
-            true => ' ' . config('cube.bootstrap.navigation.link_active', 'active'),
+            true  => ' '.config('cube.bootstrap.navigation.link_active', 'active'),
             false => '',
         };
-        
-        return $baseClasses . $activeClass;
+
+        return $baseClasses.$activeClass;
     }
 
     /**
@@ -72,11 +73,11 @@ class NavLink extends Component
         // State classes: Specific styles for active/inactive states
         $baseClasses = config('cube.tailwind.navigation.link');
         $stateClasses = match ($this->active) {
-            true => config('cube.tailwind.navigation.link_active'),
+            true  => config('cube.tailwind.navigation.link_active'),
             false => config('cube.tailwind.navigation.link_inactive'),
         };
-        
-        return $baseClasses . ' ' . $stateClasses;
+
+        return $baseClasses.' '.$stateClasses;
     }
 
     /**

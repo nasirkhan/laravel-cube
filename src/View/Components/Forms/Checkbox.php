@@ -9,7 +9,8 @@ use Nasirkhan\LaravelCube\View\Components\HasFramework;
 
 class Checkbox extends Component
 {
-    use CastsBooleans, HasFramework;
+    use CastsBooleans;
+    use HasFramework;
 
     public bool $disabled;
     public bool $required;
@@ -19,9 +20,9 @@ class Checkbox extends Component
     /**
      * Create a new component instance.
      *
-     * @param bool|string $disabled Whether the checkbox is disabled
-     * @param bool|string $required Whether the checkbox is required
-     * @param bool|string $checked Whether the checkbox is checked by default
+     * @param bool|string $disabled  Whether the checkbox is disabled
+     * @param bool|string $required  Whether the checkbox is required
+     * @param bool|string $checked   Whether the checkbox is checked by default
      * @param bool|string $autofocus Whether the checkbox should be focused on page load
      * @param string|null $framework The CSS framework to use (tailwind|bootstrap)
      */
@@ -33,7 +34,7 @@ class Checkbox extends Component
         ?string $framework = null
     ) {
         $this->initializeFramework($framework);
-        
+
         // Convert string/bool to strict boolean using filter_var
         // Handles 'true'/'false' strings, '1'/'0', and actual boolean values
         $this->disabled = $this->castBool($disabled);

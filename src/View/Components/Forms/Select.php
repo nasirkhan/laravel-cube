@@ -9,7 +9,8 @@ use Nasirkhan\LaravelCube\View\Components\HasFramework;
 
 class Select extends Component
 {
-    use CastsBooleans, HasFramework;
+    use CastsBooleans;
+    use HasFramework;
 
     public bool $disabled;
     public bool $required;
@@ -18,8 +19,8 @@ class Select extends Component
     /**
      * Create a new component instance.
      *
-     * @param bool|string $disabled Whether the select is disabled
-     * @param bool|string $required Whether the select is required
+     * @param bool|string $disabled  Whether the select is disabled
+     * @param bool|string $required  Whether the select is required
      * @param bool|string $autofocus Whether the select should be focused on page load
      * @param string|null $framework The CSS framework to use (tailwind|bootstrap)
      */
@@ -30,7 +31,7 @@ class Select extends Component
         ?string $framework = null
     ) {
         $this->initializeFramework($framework);
-        
+
         // Convert string/bool to strict boolean using filter_var
         // Handles 'true'/'false' strings, '1'/'0', and actual boolean values
         $this->disabled = $this->castBool($disabled);
