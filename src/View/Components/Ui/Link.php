@@ -13,7 +13,7 @@ class Link extends Component
     /**
      * Create a new component instance.
      *
-     * @param string $href The URL the link points to
+     * @param string      $href      The URL the link points to
      * @param string|null $framework The CSS framework to use (tailwind|bootstrap)
      */
     public function __construct(

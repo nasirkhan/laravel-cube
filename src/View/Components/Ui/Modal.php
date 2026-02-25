@@ -18,9 +18,9 @@ class Modal extends Component
     /**
      * Create a new component instance.
      *
-     * @param string $name The unique identifier for the modal
-     * @param bool|string $show Whether the modal is visible by default
-     * @param string $maxWidth The maximum width of the modal (sm|md|lg|xl|2xl|3xl|4xl|5xl)
+     * @param string      $name      The unique identifier for the modal
+     * @param bool|string $show      Whether the modal is visible by default
+     * @param string      $maxWidth  The maximum width of the modal (sm|md|lg|xl|2xl|3xl|4xl|5xl)
      * @param bool|string $focusable Whether the modal can receive focus
      * @param string|null $framework The CSS framework to use (tailwind|bootstrap)
      */
@@ -36,7 +36,7 @@ class Modal extends Component
         // Define valid modal width options (Tailwind max-width scale)
         // These correspond to Tailwind's max-w-* utility classes
         $validWidths = ['sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl', '5xl'];
-        
+
         // Validate width parameter - default to '2xl' if invalid
         // This prevents invalid CSS classes and ensures consistent behavior
         $this->maxWidth = in_array($maxWidth, $validWidths) ? $maxWidth : '2xl';
@@ -45,10 +45,10 @@ class Modal extends Component
         // sm:max-w-* ensures modal is responsive (full width on mobile, max width on larger screens)
         // Each size corresponds to a specific max-width in rem units
         $this->maxWidthClass = match ($this->maxWidth) {
-            'sm' => 'sm:max-w-sm',
-            'md' => 'sm:max-w-md',
-            'lg' => 'sm:max-w-lg',
-            'xl' => 'sm:max-w-xl',
+            'sm'  => 'sm:max-w-sm',
+            'md'  => 'sm:max-w-md',
+            'lg'  => 'sm:max-w-lg',
+            'xl'  => 'sm:max-w-xl',
             '2xl' => 'sm:max-w-2xl',
             '3xl' => 'sm:max-w-3xl',
             '4xl' => 'sm:max-w-4xl',

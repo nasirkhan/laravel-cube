@@ -13,9 +13,9 @@ class Card extends Component
     /**
      * Create a new component instance.
      *
-     * @param string|null $url The URL the card links to (optional)
-     * @param string $name The name/title of the card
-     * @param string $image The image path for the card
+     * @param string|null $url       The URL the card links to (optional)
+     * @param string      $name      The name/title of the card
+     * @param string      $image     The image path for the card
      * @param string|null $framework The CSS framework to use (tailwind|bootstrap)
      */
     public function __construct(

@@ -9,7 +9,8 @@ use Nasirkhan\LaravelCube\View\Components\HasFramework;
 
 class Input extends Component
 {
-    use CastsBooleans, HasFramework;
+    use CastsBooleans;
+    use HasFramework;
 
     public string $type;
     public bool $disabled;
@@ -33,11 +34,11 @@ class Input extends Component
         // Define valid HTML5 input types for security and consistency
         // Only allow these types to prevent XSS and ensure proper browser behavior
         $validTypes = ['text', 'email', 'password', 'number', 'tel', 'url', 'search', 'date', 'time', 'datetime-local', 'color'];
-        
+
         // Validate input type - default to 'text' if invalid type provided
         // This prevents invalid HTML attributes and ensures fallback to safe default
         $this->type = in_array($type, $validTypes) ? $type : 'text';
-        
+
         // Convert string/bool to strict boolean using filter_var
         // Handles 'true'/'false' strings, '1'/'0', and actual boolean values
         $this->disabled = $this->castBool($disabled);
@@ -56,7 +57,7 @@ class Input extends Component
         // Tailwind uses utility classes defined in config
         return match (true) {
             $this->isBootstrap() => config('cube.bootstrap.forms.input', 'form-control'),
-            default => config('cube.tailwind.forms.input'),
+            default              => config('cube.tailwind.forms.input'),
         };
     }
 

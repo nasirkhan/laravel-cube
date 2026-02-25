@@ -14,12 +14,12 @@ trait HasFramework
         // Use provided framework or fall back to config default (tailwind)
         // This allows components to be framework-agnostic
         $this->framework = $framework ?? config('cube.default_framework', 'tailwind');
-        
+
         // Validate framework - only allow 'tailwind' or 'bootstrap'
         // If invalid framework is provided, default to 'tailwind' for safety
         $this->framework = match (true) {
             in_array($this->framework, ['tailwind', 'bootstrap']) => $this->framework,
-            default => 'tailwind',
+            default                                               => 'tailwind',
         };
     }
 

@@ -9,7 +9,8 @@ use Nasirkhan\LaravelCube\View\Components\HasFramework;
 
 class Label extends Component
 {
-    use CastsBooleans, HasFramework;
+    use CastsBooleans;
+    use HasFramework;
 
     public bool $required;
 

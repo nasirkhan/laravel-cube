@@ -9,7 +9,8 @@ use Nasirkhan\LaravelCube\View\Components\HasFramework;
 
 class Button extends Component
 {
-    use CastsBooleans, HasFramework;
+    use CastsBooleans;
+    use HasFramework;
 
     public string $type;
     public string $variant;
@@ -55,7 +56,7 @@ class Button extends Component
     {
         return match (true) {
             $this->isBootstrap() => $this->getBootstrapClasses(),
-            default => $this->getTailwindClasses(),
+            default              => $this->getTailwindClasses(),
         };
     }
 
@@ -67,16 +68,16 @@ class Button extends Component
         // Bootstrap uses 'btn' base class with variant modifiers
         // Classes are configurable via config for customization
         $classes = config("cube.bootstrap.buttons.{$this->variant}", 'btn btn-primary');
-        
+
         // Add size modifier classes for Bootstrap using match expression
         // 'md' is the default size and doesn't need a class
         $sizeClass = match ($this->size) {
-            'sm' => ' btn-sm',
-            'lg' => ' btn-lg',
+            'sm'    => ' btn-sm',
+            'lg'    => ' btn-lg',
             default => '',
         };
-        
-        return $classes . $sizeClass;
+
+        return $classes.$sizeClass;
     }
 
     /**

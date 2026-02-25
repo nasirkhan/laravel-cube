@@ -12,14 +12,14 @@ class CubeServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'cube');
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'cube');
 
         $this->publishes([
-            __DIR__ . '/../resources/views' => resource_path('views/vendor/cube'),
+            __DIR__.'/../resources/views' => resource_path('views/vendor/cube'),
         ], 'cube-views');
 
         $this->publishes([
-            __DIR__ . '/../config/cube.php' => config_path('cube.php'),
+            __DIR__.'/../config/cube.php' => config_path('cube.php'),
         ], 'cube-config');
 
         // Register Blade components with flat namespace
@@ -32,18 +32,18 @@ class CubeServiceProvider extends ServiceProvider
         Blade::component('cube::modal', \Nasirkhan\LaravelCube\View\Components\Ui\Modal::class);
         Blade::component('cube::footer-credit', \Nasirkhan\LaravelCube\View\Components\Ui\FooterCredit::class);
         Blade::component('cube::footer-license', \Nasirkhan\LaravelCube\View\Components\Ui\FooterLicense::class);
-        
+
         // Utility Components
         Blade::component('cube::google-analytics', \Nasirkhan\LaravelCube\View\Components\GoogleAnalytics::class);
         Blade::component('cube::application-logo', \Nasirkhan\LaravelCube\View\Components\ApplicationLogo::class);
-        
+
         // Frontend Components
         Blade::component('cube::header-block', \Nasirkhan\LaravelCube\View\Components\Frontend\HeaderBlock::class);
         Blade::component('cube::auth-header', \Nasirkhan\LaravelCube\View\Components\Frontend\AuthHeader::class);
         Blade::component('cube::auth-session-status', \Nasirkhan\LaravelCube\View\Components\Frontend\AuthSessionStatus::class);
         Blade::component('cube::flash-message', \Nasirkhan\LaravelCube\View\Components\Frontend\FlashMessage::class);
         Blade::component('cube::validation-errors', \Nasirkhan\LaravelCube\View\Components\Frontend\ValidationErrors::class);
-        
+
         // Form Components
         Blade::component('cube::input', \Nasirkhan\LaravelCube\View\Components\Forms\Input::class);
         Blade::component('cube::label', \Nasirkhan\LaravelCube\View\Components\Forms\Label::class);
@@ -53,12 +53,12 @@ class CubeServiceProvider extends ServiceProvider
         Blade::component('cube::select', \Nasirkhan\LaravelCube\View\Components\Forms\Select::class);
         Blade::component('cube::textarea', \Nasirkhan\LaravelCube\View\Components\Forms\Textarea::class);
         Blade::component('cube::toggle', \Nasirkhan\LaravelCube\View\Components\Forms\Toggle::class);
-        
+
         Blade::component('cube::nav-link', \Nasirkhan\LaravelCube\View\Components\Navigation\NavLink::class);
         Blade::component('cube::responsive-nav-link', \Nasirkhan\LaravelCube\View\Components\Navigation\ResponsiveNavLink::class);
         Blade::component('cube::dropdown', \Nasirkhan\LaravelCube\View\Components\Navigation\Dropdown::class);
         Blade::component('cube::dropdown-link', \Nasirkhan\LaravelCube\View\Components\Navigation\DropdownLink::class);
-        
+
         // Register Backend components (Bootstrap-based) - Anonymous components
         // Each component is registered with multiple aliases:
         //   hyphen:    <x-backend-breadcrumbs />
@@ -76,7 +76,7 @@ class CubeServiceProvider extends ServiceProvider
             'cube::components.backend.sidebar-nav-item'      => ['backend-sidebar-nav-item',     'backend.sidebar-nav-item'],
             'cube::components.backend.dynamic-menu'          => ['backend-dynamic-menu',         'backend.dynamic-menu'],
             'cube::components.backend.dynamic-menu-item'     => ['backend-dynamic-menu-item',    'backend.dynamic-menu-item'],
-            'cube::components.backend.fallback-sidebar-menu' => ['backend-fallback-sidebar-menu','backend.fallback-sidebar-menu'],
+            'cube::components.backend.fallback-sidebar-menu' => ['backend-fallback-sidebar-menu', 'backend.fallback-sidebar-menu'],
             // Backend Buttons
             'cube::components.backend.buttons.create'      => ['backend-button-create',      'backend.buttons.create'],
             'cube::components.backend.buttons.return-back' => ['backend-button-return-back',  'backend.buttons.return-back'],
@@ -93,7 +93,7 @@ class CubeServiceProvider extends ServiceProvider
             'cube::components.backend.includes.sidebar'        => ['backend-include-sidebar',       'backend.includes.sidebar'],
             'cube::components.backend.includes.menu-user'      => ['backend-include-menu-user',     'backend.includes.menu-user'],
             'cube::components.backend.includes.menu-language'  => ['backend-include-menu-language', 'backend.includes.menu-language'],
-            'cube::components.backend.includes.dashboard-demo' => ['backend-include-dashboard-demo','backend.includes.dashboard-demo'],
+            'cube::components.backend.includes.dashboard-demo' => ['backend-include-dashboard-demo', 'backend.includes.dashboard-demo'],
             // Backend Layouts
             'cube::components.backend.layouts.create' => ['backend-layout-create', 'backend.layouts.create'],
             'cube::components.backend.layouts.edit'   => ['backend-layout-edit',   'backend.layouts.edit'],
@@ -106,7 +106,7 @@ class CubeServiceProvider extends ServiceProvider
             // Register with hyphen notation: <x-backend-breadcrumbs />
             Blade::component($view, $hyphenAlias);
             // Register with cube:: prefix (hyphen): <x-cube::backend-breadcrumbs />
-            Blade::component($view, 'cube::' . $hyphenAlias);
+            Blade::component($view, 'cube::'.$hyphenAlias);
             // Register all additional dot-notation aliases
             foreach (array_slice($aliases, 1) as $dotAlias) {
                 Blade::component($view, $dotAlias);
@@ -120,7 +120,7 @@ class CubeServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->mergeConfigFrom(
-            __DIR__ . '/../config/cube.php',
+            __DIR__.'/../config/cube.php',
             'cube'
         );
     }

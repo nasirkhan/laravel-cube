@@ -12,7 +12,7 @@ class NavLinkComponentTest extends TestCase
     public function it_accepts_href(): void
     {
         $component = new NavLink(href: 'https://example.com');
-        
+
         $this->assertEquals('https://example.com', $component->href);
     }
 
@@ -30,7 +30,7 @@ class NavLinkComponentTest extends TestCase
     public function it_defaults_to_tailwind_framework(): void
     {
         $component = new NavLink();
-        
+
         $this->assertTrue($component->isTailwind());
         $this->assertFalse($component->isBootstrap());
     }
@@ -39,7 +39,7 @@ class NavLinkComponentTest extends TestCase
     public function it_accepts_bootstrap_framework(): void
     {
         $component = new NavLink(framework: 'bootstrap');
-        
+
         $this->assertTrue($component->isBootstrap());
         $this->assertFalse($component->isTailwind());
     }

@@ -9,7 +9,8 @@ use Nasirkhan\LaravelCube\View\Components\HasFramework;
 
 class Toggle extends Component
 {
-    use CastsBooleans, HasFramework;
+    use CastsBooleans;
+    use HasFramework;
 
     public bool $disabled;
     public bool $checked;
@@ -18,8 +19,8 @@ class Toggle extends Component
     /**
      * Create a new component instance.
      *
-     * @param bool|string $disabled Whether the toggle is disabled
-     * @param bool|string $checked Whether the toggle is checked by default
+     * @param bool|string $disabled  Whether the toggle is disabled
+     * @param bool|string $checked   Whether the toggle is checked by default
      * @param bool|string $autofocus Whether the toggle should be focused on page load
      * @param string|null $framework The CSS framework to use (tailwind|bootstrap)
      */
@@ -30,7 +31,7 @@ class Toggle extends Component
         ?string $framework = null
     ) {
         $this->initializeFramework($framework);
-        
+
         // Convert string/bool to strict boolean using filter_var
         // Handles 'true'/'false' strings, '1'/'0', and actual boolean values
         $this->disabled = $this->castBool($disabled);
