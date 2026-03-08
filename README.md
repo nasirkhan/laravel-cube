@@ -75,6 +75,20 @@ Set your default framework in `.env`:
 CUBE_FRAMEWORK=tailwind  # or 'bootstrap'
 ```
 
+### Tailwind CSS Setup
+
+If you are using **Tailwind CSS v4**, you must import the package's CSS file so Tailwind can detect the utility classes used inside Cube components. Without this step, classes like `bg-gray-800` (used by the primary button) will be purged from your compiled CSS, causing components to render incorrectly (e.g. invisible button text in light mode).
+
+Add a single `@import` to your application's CSS file (e.g. `resources/css/app.css`):
+
+```css
+@import "../../vendor/nasirkhan/laravel-cube/resources/css/tailwind.css";
+```
+
+> **Why is this needed?** Tailwind v4 auto-detects classes from your source files, but it excludes `vendor/` (which is typically in `.gitignore`). The imported file declares `@source` directives pointing at the Cube package's views and config, so all Cube utility classes are always included in your build.
+
+This step is **not required** when using Bootstrap.
+
 ### Publish Assets (Optional)
 
 Publish the configuration file:
