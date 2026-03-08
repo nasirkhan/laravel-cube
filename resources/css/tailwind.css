@@ -1,0 +1,11 @@
+/**
+ * Laravel Cube - Tailwind v4 Source Detection
+ *
+ * Import this file in your app CSS to ensure Tailwind scans
+ * the Cube package views and config for utility class detection.
+ *
+ * Usage: @import "../../vendor/nasirkhan/laravel-cube/resources/css/tailwind.css";
+ */
+
+@source "../views/**/*.blade.php";
+@source "../../config/cube.php";
