@@ -12,6 +12,7 @@ class ComponentRegistrationTest extends TestCase
     {
         $this->assertTrue(class_exists(\Nasirkhan\LaravelCube\View\Components\Ui\Button::class));
         $this->assertTrue(class_exists(\Nasirkhan\LaravelCube\View\Components\Ui\Modal::class));
+        $this->assertTrue(class_exists(\Nasirkhan\LaravelCube\View\Components\Ui\Icon::class));
     }
 
     #[Test]

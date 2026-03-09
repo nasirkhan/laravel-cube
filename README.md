@@ -24,11 +24,12 @@ The cube represents versatility and multidimensionality - just like this package
 
 ## Components Included
 
-### UI Components (6)
+### UI Components (7)
 - **Button** - `<x-cube::button>` - Versatile button with variants, sizes, loading states
 - **Modal** - `<x-cube::modal>` - Modal dialog with focus management
 - **Card** - `<x-cube::card>` - Card component with image, title, and content
 - **Badge** - `<x-cube::badge>` - Badge for labels and tags
+- **Icon** - `<x-cube::icon>` - Dynamic Flowbite icon component (`name` + merged classes)
 - **Footer Credit** - `<x-cube::footer-credit>` - Display copyright text
 - **Footer License** - `<x-cube::footer-license>` - Display licensing information (supports Creative Commons)
 
@@ -64,6 +65,8 @@ Install the package via composer:
 ```bash
 composer require nasirkhan/laravel-cube
 ```
+
+Flowbite Blade Icons is installed automatically as a dependency of Laravel Cube.
 
 The package will automatically register its service provider.
 
@@ -135,6 +138,15 @@ CUBE_FRAMEWORK=tailwind
 <x-cube::button variant="secondary" size="sm">Cancel</x-cube::button>
 <x-cube::button variant="primary" :loading="true">Processing...</x-cube::button>
 ```
+
+#### Icons (Flowbite)
+
+```blade
+<x-cube::icon name="adjustments-horizontal" />
+<x-cube::icon name="adjustments-horizontal" variant="solid" class="size-5 text-sky-500" />
+```
+
+See full icon docs (params and preview table): `docs/icons.md`
 
 **Bootstrap:**
 ```blade

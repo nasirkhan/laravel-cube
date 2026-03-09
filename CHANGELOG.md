@@ -5,6 +5,7 @@ All notable changes to `laravel-cube` will be documented in this file.
 ## [Unreleased]
 
 ### Added
+- Flowbite icon component: `icon` with dynamic `name` support and merged classes
 - Google Analytics component: `google-analytics` for easy Google Analytics integration
 - Footer components: `footer-credit` and `footer-license` for displaying copyright and licensing information
 - Initial release of Laravel Cube package
