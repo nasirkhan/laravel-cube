@@ -66,11 +66,7 @@ Install the package via composer:
 composer require nasirkhan/laravel-cube
 ```
 
-For Flowbite icons support, install Flowbite Blade Icons:
-
-```bash
-composer require themesberg/flowbite-blade-icons
-```
+Flowbite Blade Icons is installed automatically as a dependency of Laravel Cube.
 
 The package will automatically register its service provider.
 

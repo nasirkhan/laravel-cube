@@ -4,11 +4,7 @@ This page documents the `x-cube::icon` component and provides a preview table fo
 
 ## Requirements
 
-Install the icon pack used by this component:
-
-```bash
-composer require themesberg/flowbite-blade-icons
-```
+The icon pack used by this component (`themesberg/flowbite-blade-icons`) is included automatically as a dependency of Laravel Cube.
 
 ## Component API
 
