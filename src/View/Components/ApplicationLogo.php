@@ -4,7 +4,6 @@ namespace Nasirkhan\LaravelCube\View\Components;
 
 use Illuminate\View\Component;
 use Illuminate\View\View;
-use Nasirkhan\LaravelCube\View\Components\RendersWithFallback;
 
 class ApplicationLogo extends Component
 {
