@@ -50,6 +50,6 @@ class Checkbox extends Component
      */
     public function render(): View
     {
-        return view($this->getFrameworkView('forms.checkbox'));
+        return $this->renderSafely($this->getFrameworkView('forms.checkbox'));
     }
 }

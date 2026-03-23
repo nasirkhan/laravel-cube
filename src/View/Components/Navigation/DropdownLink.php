@@ -27,6 +27,6 @@ class DropdownLink extends Component
      */
     public function render(): View
     {
-        return view($this->getFrameworkView('navigation.dropdown-link'));
+        return $this->renderSafely($this->getFrameworkView('navigation.dropdown-link'));
     }
 }

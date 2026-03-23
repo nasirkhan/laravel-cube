@@ -4,9 +4,12 @@ namespace Nasirkhan\LaravelCube\View\Components\Frontend;
 
 use Illuminate\View\Component;
 use Illuminate\View\View;
+use Nasirkhan\LaravelCube\View\Components\RendersWithFallback;
 
 class HeaderBlock extends Component
 {
+    use RendersWithFallback;
+
     public string $title;
 
     /**
@@ -25,6 +28,6 @@ class HeaderBlock extends Component
      */
     public function render(): View
     {
-        return view('cube::components.frontend.header-block');
+        return $this->renderSafely('cube::components.frontend.header-block');
     }
 }

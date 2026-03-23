@@ -58,6 +58,6 @@ class Card extends Component
      */
     public function render(): View
     {
-        return view($this->getFrameworkView('ui.card'));
+        return $this->renderSafely($this->getFrameworkView('ui.card'));
     }
 }

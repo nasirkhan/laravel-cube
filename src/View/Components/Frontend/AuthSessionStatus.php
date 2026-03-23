@@ -4,9 +4,12 @@ namespace Nasirkhan\LaravelCube\View\Components\Frontend;
 
 use Illuminate\View\Component;
 use Illuminate\View\View;
+use Nasirkhan\LaravelCube\View\Components\RendersWithFallback;
 
 class AuthSessionStatus extends Component
 {
+    use RendersWithFallback;
+
     /**
      * Create a new component instance.
      */
@@ -19,6 +22,6 @@ class AuthSessionStatus extends Component
      */
     public function render(): View
     {
-        return view('cube::components.frontend.auth-session-status');
+        return $this->renderSafely('cube::components.frontend.auth-session-status');
     }
 }

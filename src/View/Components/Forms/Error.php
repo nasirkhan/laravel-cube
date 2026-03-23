@@ -37,6 +37,6 @@ class Error extends Component
      */
     public function render(): View
     {
-        return view($this->getFrameworkView('forms.error'));
+        return $this->renderSafely($this->getFrameworkView('forms.error'));
     }
 }

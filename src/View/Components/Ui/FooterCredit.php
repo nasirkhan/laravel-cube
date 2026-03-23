@@ -23,6 +23,6 @@ class FooterCredit extends Component
      */
     public function render(): View
     {
-        return view($this->getFrameworkView('ui.footer-credit'));
+        return $this->renderSafely($this->getFrameworkView('ui.footer-credit'));
     }
 }

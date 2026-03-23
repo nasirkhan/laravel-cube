@@ -66,6 +66,6 @@ class Input extends Component
      */
     public function render(): View
     {
-        return view($this->getFrameworkView('forms.input'));
+        return $this->renderSafely($this->getFrameworkView('forms.input'));
     }
 }

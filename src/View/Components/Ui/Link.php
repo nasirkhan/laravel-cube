@@ -30,6 +30,6 @@ class Link extends Component
      */
     public function render(): View
     {
-        return view($this->getFrameworkView('ui.link'));
+        return $this->renderSafely($this->getFrameworkView('ui.link'));
     }
 }

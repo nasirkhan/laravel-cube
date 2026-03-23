@@ -87,6 +87,6 @@ class NavLink extends Component
      */
     public function render(): View
     {
-        return view($this->getFrameworkView('navigation.nav-link'));
+        return $this->renderSafely($this->getFrameworkView('navigation.nav-link'));
     }
 }

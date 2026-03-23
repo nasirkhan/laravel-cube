@@ -46,6 +46,6 @@ class Select extends Component
      */
     public function render(): View
     {
-        return view($this->getFrameworkView('forms.select'));
+        return $this->renderSafely($this->getFrameworkView('forms.select'));
     }
 }

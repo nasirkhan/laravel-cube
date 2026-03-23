@@ -32,6 +32,6 @@ class ButtonLink extends Component
      */
     public function render(): View
     {
-        return view($this->getFrameworkView('ui.button-link'));
+        return $this->renderSafely($this->getFrameworkView('ui.button-link'));
     }
 }

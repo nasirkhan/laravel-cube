@@ -83,6 +83,6 @@ class ResponsiveNavLink extends Component
      */
     public function render(): View
     {
-        return view($this->getFrameworkView('navigation.responsive-nav-link'));
+        return $this->renderSafely($this->getFrameworkView('navigation.responsive-nav-link'));
     }
 }

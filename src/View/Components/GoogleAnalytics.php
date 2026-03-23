@@ -4,9 +4,12 @@ namespace Nasirkhan\LaravelCube\View\Components;
 
 use Illuminate\View\Component;
 use Illuminate\View\View;
+use Nasirkhan\LaravelCube\View\Components\RendersWithFallback;
 
 class GoogleAnalytics extends Component
 {
+    use RendersWithFallback;
+
     public ?string $trackingId;
 
     /**
@@ -22,6 +25,6 @@ class GoogleAnalytics extends Component
      */
     public function render(): View
     {
-        return view('cube::components.google-analytics');
+        return $this->renderSafely('cube::components.google-analytics');
     }
 }
