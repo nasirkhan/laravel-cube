@@ -46,6 +46,6 @@ class Toggle extends Component
      */
     public function render(): View
     {
-        return view($this->getFrameworkView('forms.toggle'));
+        return $this->renderSafely($this->getFrameworkView('forms.toggle'));
     }
 }

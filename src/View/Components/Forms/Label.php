@@ -32,6 +32,6 @@ class Label extends Component
      */
     public function render(): View
     {
-        return view($this->getFrameworkView('forms.label'));
+        return $this->renderSafely($this->getFrameworkView('forms.label'));
     }
 }

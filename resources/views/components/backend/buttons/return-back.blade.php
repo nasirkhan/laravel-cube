@@ -4,7 +4,8 @@
     class="btn btn-warning {{ $small == "true" ? "btn-sm" : "" }} m-1"
     data-toggle="tooltip"
     title="{{ __("Return Back") }}"
+    aria-label="{{ __('Return Back') }}"
 >
-    <i class="fas fa-reply fa-fw"></i>
+    <i class="fas fa-reply fa-fw" aria-hidden="true"></i>
     {!! $slot != "" ? "&nbsp;" . $slot : "" !!}
 </button>

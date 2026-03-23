@@ -52,6 +52,6 @@ class Badge extends Component
      */
     public function render(): View
     {
-        return view($this->getFrameworkView('ui.badge'));
+        return $this->renderSafely($this->getFrameworkView('ui.badge'));
     }
 }

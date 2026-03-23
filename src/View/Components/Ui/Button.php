@@ -95,6 +95,6 @@ class Button extends Component
      */
     public function render(): View
     {
-        return view($this->getFrameworkView('ui.button'));
+        return $this->renderSafely($this->getFrameworkView('ui.button'));
     }
 }

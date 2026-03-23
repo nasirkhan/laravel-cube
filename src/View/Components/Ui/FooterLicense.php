@@ -27,6 +27,6 @@ class FooterLicense extends Component
      */
     public function render(): View
     {
-        return view($this->getFrameworkView('ui.footer-license'));
+        return $this->renderSafely($this->getFrameworkView('ui.footer-license'));
     }
 }

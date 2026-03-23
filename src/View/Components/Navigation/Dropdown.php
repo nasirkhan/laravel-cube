@@ -94,6 +94,6 @@ class Dropdown extends Component
      */
     public function render(): View
     {
-        return view($this->getFrameworkView('navigation.dropdown'));
+        return $this->renderSafely($this->getFrameworkView('navigation.dropdown'));
     }
 }

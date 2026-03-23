@@ -7,6 +7,8 @@ use Illuminate\View\View;
 
 class GoogleAnalytics extends Component
 {
+    use RendersWithFallback;
+
     public ?string $trackingId;
 
     /**
@@ -22,6 +24,6 @@ class GoogleAnalytics extends Component
      */
     public function render(): View
     {
-        return view('cube::components.google-analytics');
+        return $this->renderSafely('cube::components.google-analytics');
     }
 }

@@ -4,6 +4,8 @@ namespace Nasirkhan\LaravelCube\View\Components;
 
 trait HasFramework
 {
+    use RendersWithFallback;
+
     public string $framework;
 
     /**

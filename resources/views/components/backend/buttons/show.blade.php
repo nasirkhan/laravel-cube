@@ -12,8 +12,9 @@
         data-toggle="tooltip"
         href="{{ $route }}"
         title="{{ $title }}"
+        aria-label="{{ $title }}"
     >
-        <i class="{{ $icon }} fa-fw"></i>
+        <i class="{{ $icon }} fa-fw" aria-hidden="true"></i>
         {!! $slot != "" ? "&nbsp;" . $slot : "" !!}
     </a>
 @else
@@ -22,8 +23,9 @@
         data-toggle="tooltip"
         type="submit"
         title="{{ $title }}"
+        aria-label="{{ $title }}"
     >
-        <i class="{{ $icon }} fa-fw"></i>
+        <i class="{{ $icon }} fa-fw" aria-hidden="true"></i>
         {!! $slot != "" ? "&nbsp;" . $slot : "" !!}
     </button>
 @endif

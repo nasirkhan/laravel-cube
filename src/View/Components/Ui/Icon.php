@@ -4,9 +4,12 @@ namespace Nasirkhan\LaravelCube\View\Components\Ui;
 
 use Illuminate\View\Component;
 use Illuminate\View\View;
+use Nasirkhan\LaravelCube\View\Components\RendersWithFallback;
 
 class Icon extends Component
 {
+    use RendersWithFallback;
+
     public string $name;
 
     public string $variant;
@@ -46,7 +49,7 @@ class Icon extends Component
      */
     public function render(): View
     {
-        return view('cube::components.ui.icon');
+        return $this->renderSafely('cube::components.ui.icon');
     }
 
     protected function sanitizeName(string $name): string

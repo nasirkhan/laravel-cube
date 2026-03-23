@@ -50,6 +50,6 @@ class Textarea extends Component
      */
     public function render(): View
     {
-        return view($this->getFrameworkView('forms.textarea'));
+        return $this->renderSafely($this->getFrameworkView('forms.textarea'));
     }
 }

@@ -68,6 +68,6 @@ class Modal extends Component
      */
     public function render(): View
     {
-        return view($this->getFrameworkView('ui.modal'));
+        return $this->renderSafely($this->getFrameworkView('ui.modal'));
     }
 }

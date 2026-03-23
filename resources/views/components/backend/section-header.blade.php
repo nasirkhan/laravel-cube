@@ -46,7 +46,7 @@
                     />
                 @endif
 
-                @if (auth()->user()->can("restore_" . $module_name) && Route::has("backend." . $module_name . ".create"))
+                @if (auth()->user()->can("restore_" . $module_name) && Route::has("backend." . $module_name . ".trashed"))
                     <div class="btn-group">
                         <button
                             class="btn btn-secondary btn-sm dropdown-toggle"

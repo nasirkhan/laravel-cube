@@ -2,12 +2,17 @@
 
 @php
     use Nasirkhan\ModuleManager\Modules\Menu\Models\Menu;
-    
-    $user = auth()->user();
-    $currentLocale = app()->getLocale();
-    
-    // Get cached menu data - this includes all processing and hierarchy building
-    $processedMenus = Menu::getCachedMenuData($location, $user, $currentLocale);
+
+    try {
+        $user = auth()->user();
+        $currentLocale = app()->getLocale();
+
+        // Get cached menu data - this includes all processing and hierarchy building
+        $processedMenus = Menu::getCachedMenuData($location, $user, $currentLocale);
+    } catch (\Throwable $e) {
+        \Illuminate\Support\Facades\Log::error('dynamic-menu failed to load menu data: '.$e->getMessage());
+        $processedMenus = collect();
+    }
 @endphp
 
 @if($processedMenus->isNotEmpty())

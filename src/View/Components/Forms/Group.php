@@ -47,6 +47,6 @@ class Group extends Component
      */
     public function render(): View
     {
-        return view($this->getFrameworkView('forms.group'));
+        return $this->renderSafely($this->getFrameworkView('forms.group'));
     }
 }

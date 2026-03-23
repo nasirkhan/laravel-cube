@@ -3,7 +3,7 @@
 @can($permission)
     <li class="nav-item">
         <a class="nav-link" href="{{ $url }}">
-            <i class="nav-icon {{ $icon }}"></i>
+            <i class="nav-icon {{ $icon }}" aria-hidden="true"></i>
             &nbsp;{{ $text }}
         </a>
     </li>
