@@ -33,13 +33,11 @@
             role="alert"
         >
             {!! $message["message"] !!}
-
-            {{ $message["level"] }}
         </div>
     @endif
 @endforeach
 
-{{ session()->forget("flash_notification") }}
+@php session()->forget("flash_notification") @endphp
 
 @if (session("status"))
     <p class="alert alert-success">{{ session("status") }}</p>

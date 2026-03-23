@@ -7,7 +7,7 @@
 </p>
 <table class="table-responsive-sm table-hover table-bordered table">
     <?php
-    $all_columns = $data->getTableColumns();
+    $all_columns = method_exists($data, 'getTableColumns') ? $data->getTableColumns() : [];
     ?>
 
     <thead>
@@ -41,4 +41,6 @@
 </table>
 
 {{-- Lightbox2 Library --}}
-<x-library.lightbox />
+@if(\Illuminate\Support\Facades\View::exists('components.library.lightbox'))
+    <x-library.lightbox />
+@endif

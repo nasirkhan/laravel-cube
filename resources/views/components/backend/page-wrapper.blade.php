@@ -4,8 +4,8 @@
     <div class="page-header d-print-none">
         <div class="container-xl">
             <!-- Errors block -->
-            @include("flash::message")
-            @include("backend.includes.errors")
+            @includeIf("flash::message")
+            @includeIf("backend.includes.errors")
             <!-- / Errors block -->
 
             <div class="row align-items-center mw-100">
