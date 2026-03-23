@@ -4,6 +4,8 @@
 <button
     type="{{ $type }}"
     {{ $disabled ? 'disabled' : '' }}
+    @if($disabled) aria-disabled="true" @endif
+    @if($loading) aria-busy="true" @endif
     {{ $attributes->merge(['class' => $getClasses()]) }}
 >
     @if($loading)

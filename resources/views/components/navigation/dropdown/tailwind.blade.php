@@ -1,7 +1,7 @@
 {{-- Cube Component: Dropdown (Tailwind) --}}
 
 <div class="relative" x-data="{ open: false }" @click.outside="open = false" @close.stop="open = false">
-    <div @click="open = ! open">
+    <div @click="open = ! open" :aria-expanded="open.toString()">
         {{ $trigger }}
     </div>
 
@@ -14,6 +14,8 @@
         x-transition:leave-start="scale-100 opacity-100"
         x-transition:leave-end="scale-95 opacity-0"
         class="{{ $getWidthClasses() }} {{ $getAlignmentClasses() }} absolute z-50 mt-2 rounded-md shadow-lg"
+        role="menu"
+        x-bind:aria-hidden="(!open).toString()"
         style="display: none"
         @click="open = false"
     >

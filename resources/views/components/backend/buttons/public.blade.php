@@ -12,9 +12,11 @@
         data-toggle="tooltip"
         href="{{ $route }}"
         title="{{ $title }}"
+        aria-label="{{ $title }}"
         target="_blank"
+        rel="noopener noreferrer"
     >
-        <i class="{{ $icon }} fa-fw"></i>
+        <i class="{{ $icon }} fa-fw" aria-hidden="true"></i>
         {!! $slot != "" ? "&nbsp;" . $slot : "" !!}
     </a>
 @endif
