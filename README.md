@@ -6,6 +6,7 @@ This package is used in [Laravel Starter](https://github.com/nasirkhan/laravel-s
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/nasirkhan/laravel-cube.svg?style=flat-square)](https://packagist.org/packages/nasirkhan/laravel-cube)
 [![Total Downloads](https://img.shields.io/packagist/dt/nasirkhan/laravel-cube.svg?style=flat-square)](https://packagist.org/packages/nasirkhan/laravel-cube)
+[![StyleCI](https://github.styleci.io/repos/1154776052/shield?branch=main&style=flat-square)](https://github.styleci.io/repos/1154776052)
 
 ## Features
 
