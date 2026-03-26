@@ -53,7 +53,7 @@ The cube represents versatility and multidimensionality - just like this package
 - `<x-cube::nav-link>` - Navigation link with active state
 - `<x-cube::responsive-nav-link>` - Mobile navigation link
 
-## Requirements
+- PHP ^8.3
 
 - PHP ^8.2
 - Laravel ^11.0 || ^12.0 || ^13.0
