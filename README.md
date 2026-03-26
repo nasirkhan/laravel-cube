@@ -2,6 +2,8 @@
 
 A versatile collection of reusable UI components for Laravel applications with **dual framework support** - use Tailwind CSS or Bootstrap 5 seamlessly.
 
+This package is used in [Laravel Starter](https://github.com/nasirkhan/laravel-starter) though it is framework-agnostic and can be dropped into any Laravel app.
+
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/nasirkhan/laravel-cube.svg?style=flat-square)](https://packagist.org/packages/nasirkhan/laravel-cube)
 [![Total Downloads](https://img.shields.io/packagist/dt/nasirkhan/laravel-cube.svg?style=flat-square)](https://packagist.org/packages/nasirkhan/laravel-cube)
 
@@ -53,7 +55,7 @@ The cube represents versatility and multidimensionality - just like this package
 ## Requirements
 
 - PHP ^8.2
-- Laravel ^11.0 || ^12.0
+- Laravel ^11.0 || ^12.0 || ^13.0
 - Livewire ^3.0 || ^4.0
 - Tailwind CSS **OR** Bootstrap 5
 - Alpine.js (included with Livewire, for Tailwind components)
