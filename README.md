@@ -1,5 +1,7 @@
 # Laravel Cube
 
+<p align="center"><img src="https://res.cloudinary.com/dslg1fc8y/image/upload/v1774684916/laravel_cube_package_logo_z8xqaa.jpg" alt="Laravel Cube - A versatile collection of reusable UI components for Laravel applications, supporting Tailwind CSS and Bootstrap 5"></p>
+
 A versatile collection of reusable UI components for Laravel applications with **dual framework support** - use Tailwind CSS or Bootstrap 5 seamlessly.
 
 This package is used in [Laravel Starter](https://github.com/nasirkhan/laravel-starter) though it is framework-agnostic and can be dropped into any Laravel app.
