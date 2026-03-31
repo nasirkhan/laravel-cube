@@ -28,7 +28,11 @@ trait RendersWithFallback
                 'message'   => $e->getMessage(),
             ]);
 
-            return view('cube::components.error-boundary');
+            try {
+                return view('cube::components.error-boundary');
+            } catch (\Throwable) {
+                return view()->file(__DIR__.'/../../../resources/views/components/error-boundary.blade.php');
+            }
         }
     }
 }

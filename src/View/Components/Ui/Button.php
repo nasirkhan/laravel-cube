@@ -85,9 +85,14 @@ class Button extends Component
      */
     protected function getTailwindClasses(): string
     {
-        // Tailwind classes are fully defined in config
-        // Size and variant are combined into a single class string
-        return config("cube.tailwind.buttons.{$this->variant}", config('cube.tailwind.buttons.primary'));
+        $classes = config("cube.tailwind.buttons.{$this->variant}", config('cube.tailwind.buttons.primary'));
+        $sizeClasses = config("cube.tailwind.button_sizes.{$this->size}");
+
+        if ($sizeClasses) {
+            $classes .= ' '.$sizeClasses;
+        }
+
+        return $classes;
     }
 
     /**
