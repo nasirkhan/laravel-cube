@@ -71,10 +71,10 @@ class NavLink extends Component
         // This allows for more granular control over styling
         // Base classes: Common styles for all states
         // State classes: Specific styles for active/inactive states
-        $baseClasses = config('cube.tailwind.navigation.link');
+        $baseClasses = config('cube.tailwind.navigation.link') ?? '';
         $stateClasses = match ($this->active) {
-            true  => config('cube.tailwind.navigation.link_active'),
-            false => config('cube.tailwind.navigation.link_inactive'),
+            true  => config('cube.tailwind.navigation.link_active') ?? '',
+            false => config('cube.tailwind.navigation.link_inactive') ?? '',
         };
 
         return $baseClasses.' '.$stateClasses;
