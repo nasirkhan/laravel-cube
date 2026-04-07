@@ -116,15 +116,15 @@ return [
     */
     'share' => [
         'stack_names' => [
-            'styles' => 'after-styles',
+            'styles'  => 'after-styles',
             'scripts' => 'after-scripts',
         ],
         'popup' => [
-            'width' => 620,
+            'width'  => 620,
             'height' => 700,
         ],
         'use_native_when_available' => true,
-        'networks' => [
+        'networks'                  => [
             'x',
             'facebook',
             'linkedin',
@@ -136,18 +136,17 @@ return [
             'native',
         ],
         'labels' => [
-            'share' => 'Share',
-            'x' => 'X',
+            'share'    => 'Share',
+            'x'        => 'X',
             'facebook' => 'Facebook',
             'linkedin' => 'LinkedIn',
             'whatsapp' => 'WhatsApp',
             'telegram' => 'Telegram',
-            'reddit' => 'Reddit',
-            'email' => 'Email',
-            'copy' => 'Copy link',
-            'native' => 'Share',
-            'copied' => 'Copied',
+            'reddit'   => 'Reddit',
+            'email'    => 'Email',
+            'copy'     => 'Copy link',
+            'native'   => 'Share',
+            'copied'   => 'Copied',
         ],
     ],
 ];
-
