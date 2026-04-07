@@ -36,6 +36,12 @@ class ComponentRegistrationTest extends TestCase
     }
 
     #[Test]
+    public function it_registers_frontend_share_component(): void
+    {
+        $this->assertTrue(class_exists(\Nasirkhan\LaravelCube\View\Components\Frontend\ShareButtons::class));
+    }
+
+    #[Test]
     public function it_has_has_framework_trait(): void
     {
         $this->assertTrue(trait_exists(\Nasirkhan\LaravelCube\View\Components\HasFramework::class));
