@@ -44,6 +44,7 @@ class CubeServiceProvider extends ServiceProvider
         Blade::component('cube::auth-session-status', \Nasirkhan\LaravelCube\View\Components\Frontend\AuthSessionStatus::class);
         Blade::component('cube::flash-message', \Nasirkhan\LaravelCube\View\Components\Frontend\FlashMessage::class);
         Blade::component('cube::validation-errors', \Nasirkhan\LaravelCube\View\Components\Frontend\ValidationErrors::class);
+        Blade::component('cube::share-buttons', \Nasirkhan\LaravelCube\View\Components\Frontend\ShareButtons::class);
 
         // Form Components
         Blade::component('cube::input', \Nasirkhan\LaravelCube\View\Components\Forms\Input::class);
@@ -60,14 +61,7 @@ class CubeServiceProvider extends ServiceProvider
         Blade::component('cube::dropdown', \Nasirkhan\LaravelCube\View\Components\Navigation\Dropdown::class);
         Blade::component('cube::dropdown-link', \Nasirkhan\LaravelCube\View\Components\Navigation\DropdownLink::class);
 
-        // Register Backend components (Bootstrap-based) - Anonymous components
-        // Each component is registered with multiple aliases:
-        //   hyphen:    <x-backend-breadcrumbs />
-        //   cube::     <x-cube::backend-breadcrumbs />
-        //   dot:       <x-backend.breadcrumbs /> (used in module views)
-        //   dot nested: <x-backend.buttons.save />, <x-backend.layouts.edit />
         $backendComponents = [
-            // view path => [hyphen-alias, ...additional dot aliases]
             'cube::components.backend.breadcrumbs'           => ['backend-breadcrumbs',          'backend.breadcrumbs'],
             'cube::components.backend.breadcrumb-item'       => ['backend-breadcrumb-item',      'backend.breadcrumb-item'],
             'cube::components.backend.section-header'        => ['backend-section-header',       'backend.section-header'],
@@ -78,7 +72,6 @@ class CubeServiceProvider extends ServiceProvider
             'cube::components.backend.dynamic-menu'          => ['backend-dynamic-menu',         'backend.dynamic-menu'],
             'cube::components.backend.dynamic-menu-item'     => ['backend-dynamic-menu-item',    'backend.dynamic-menu-item'],
             'cube::components.backend.fallback-sidebar-menu' => ['backend-fallback-sidebar-menu', 'backend.fallback-sidebar-menu'],
-            // Backend Buttons
             'cube::components.backend.buttons.create'      => ['backend-button-create',      'backend.buttons.create'],
             'cube::components.backend.buttons.return-back' => ['backend-button-return-back',  'backend.buttons.return-back'],
             'cube::components.backend.buttons.cancel'      => ['backend-button-cancel',       'backend.buttons.cancel'],
@@ -88,14 +81,12 @@ class CubeServiceProvider extends ServiceProvider
             'cube::components.backend.buttons.list'        => ['backend-button-list',         'backend.buttons.list'],
             'cube::components.backend.buttons.public'      => ['backend-button-public',       'backend.buttons.public'],
             'cube::components.backend.buttons.public-view' => ['backend-button-public-view',  'backend.buttons.public-view'],
-            // Backend Includes
             'cube::components.backend.includes.header'         => ['backend-include-header',        'backend.includes.header'],
             'cube::components.backend.includes.footer'         => ['backend-include-footer',        'backend.includes.footer'],
             'cube::components.backend.includes.sidebar'        => ['backend-include-sidebar',       'backend.includes.sidebar'],
             'cube::components.backend.includes.menu-user'      => ['backend-include-menu-user',     'backend.includes.menu-user'],
             'cube::components.backend.includes.menu-language'  => ['backend-include-menu-language', 'backend.includes.menu-language'],
             'cube::components.backend.includes.dashboard-demo' => ['backend-include-dashboard-demo', 'backend.includes.dashboard-demo'],
-            // Backend Layouts
             'cube::components.backend.layouts.create' => ['backend-layout-create', 'backend.layouts.create'],
             'cube::components.backend.layouts.edit'   => ['backend-layout-edit',   'backend.layouts.edit'],
             'cube::components.backend.layouts.show'   => ['backend-layout-show',   'backend.layouts.show'],
@@ -104,11 +95,8 @@ class CubeServiceProvider extends ServiceProvider
 
         foreach ($backendComponents as $view => $aliases) {
             $hyphenAlias = $aliases[0];
-            // Register with hyphen notation: <x-backend-breadcrumbs />
             Blade::component($view, $hyphenAlias);
-            // Register with cube:: prefix (hyphen): <x-cube::backend-breadcrumbs />
             Blade::component($view, 'cube::'.$hyphenAlias);
-            // Register all additional dot-notation aliases
             foreach (array_slice($aliases, 1) as $dotAlias) {
                 Blade::component($view, $dotAlias);
             }
