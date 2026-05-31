@@ -5,7 +5,6 @@ node_modules/
 .phpunit.result.cache
 .php_cs.cache
 .php-cs-fixer.cache
-phpunit.xml
 composer.lock
 .DS_Store
 Thumbs.db
