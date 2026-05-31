@@ -30,11 +30,11 @@
     @if ($url)
         <div class="px-5 pb-5 text-end">
             <a
-                class="inline-flex items-center rounded-sm bg-slate-200 px-3 py-2 text-sm text-slate-700 outline-1 outline-slate-800 hover:bg-slate-700 hover:text-slate-100 focus:outline-hidden dark:bg-slate-700 dark:text-slate-300 dark:hover:bg-slate-600"
+                class="inline-flex items-center rounded-sm bg-slate-200 px-3 py-2 text-sm text-slate-700 outline-1 outline-slate-400 hover:bg-slate-700 hover:text-slate-100 focus:outline-hidden dark:bg-slate-700 dark:text-slate-300 dark:hover:bg-slate-600"
                 href="{{ $url }}"
                 @if($isInternalUrl()) wire:navigate @endif
             >
-                View details
+                @lang('View details')
                 <svg
                     class="-mr-1 ml-2 h-4 w-4"
                     fill="currentColor"
