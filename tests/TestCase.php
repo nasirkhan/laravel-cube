@@ -24,6 +24,7 @@ abstract class TestCase extends Orchestra
     protected function getPackageProviders($app): array
     {
         return [
+            \Laravel\Head\HeadServiceProvider::class,
             \Nasirkhan\LaravelCube\CubeServiceProvider::class,
         ];
     }
