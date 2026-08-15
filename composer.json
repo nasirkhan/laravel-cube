@@ -29,6 +29,7 @@
     "php": "^8.3 || ^8.4",
     "illuminate/support": "^11.0|^12.0|^13.0",
     "illuminate/view": "^11.0|^12.0|^13.0",
+    "laravel/head": "^0.2",
     "themesberg/flowbite-blade-icons": "^1.3"
   },
   "suggest": {

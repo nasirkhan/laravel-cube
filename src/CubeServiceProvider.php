@@ -4,6 +4,10 @@ namespace Nasirkhan\LaravelCube;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Head\Enums\OgType;
+use Laravel\Head\Enums\TwitterCard;
+use Laravel\Head\Facades\Head;
+use Laravel\Head\HeadBuilder;
 
 class CubeServiceProvider extends ServiceProvider
 {
@@ -13,6 +17,7 @@ class CubeServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'cube');
+        $this->bootHeadDefaults();
 
         $this->publishes([
             __DIR__.'/../resources/views' => resource_path('views/vendor/cube'),
@@ -101,6 +106,51 @@ class CubeServiceProvider extends ServiceProvider
                 Blade::component($view, $dotAlias);
             }
         }
+    }
+
+    /**
+     * Register site-wide head defaults from application settings.
+     *
+     * Uses the setting() helper from nasirkhan/module-manager when available,
+     * so the package degrades gracefully without that dependency.
+     */
+    protected function bootHeadDefaults(): void
+    {
+        Head::defaults(function (HeadBuilder $head) {
+            $s = fn (string $key, mixed $default = null): mixed => function_exists('setting')
+                ? (setting($key) ?? $default)
+                : $default;
+
+            $head
+                ->description((string) $s('meta_description', ''))
+                ->og(
+                    siteName: (string) $s('meta_site_name', config('app.name')),
+                    type: OgType::Website,
+                    url: request()->fullUrl(),
+                )
+                ->twitter(
+                    card: TwitterCard::SummaryWithLargeImage,
+                    site: ($twitterSite = $s('meta_twitter_site')) ? (string) $twitterSite : null,
+                    creator: ($twitterCreator = $s('meta_twitter_creator')) ? (string) $twitterCreator : null,
+                )
+                ->canonical()
+                ->searchableByRobots()
+                ->viewport('width=device-width, initial-scale=1, shrink-to-fit=no');
+
+            if ($keyword = $s('meta_keyword')) {
+                $head->meta('keywords', (string) $keyword);
+            }
+
+            if ($image = $s('meta_image')) {
+                $head->ogImage(asset((string) $image), width: 1200, height: 630);
+            }
+
+            if ($fbAppId = $s('meta_fb_app_id')) {
+                $head->meta('fb:app_id', (string) $fbAppId);
+            }
+
+            $head->favicon(asset('img/favicon.png'));
+        });
     }
 
     /**
