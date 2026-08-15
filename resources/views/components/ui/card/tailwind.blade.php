@@ -5,7 +5,7 @@
         <div class="overflow-hidden rounded-t-lg">
             <a href="{{ $url }}" @if($isInternalUrl()) wire:navigate @endif>
                 <img
-                    class="transform rounded-t-lg duration-300 hover:scale-110"
+                    class="h-48 w-full object-cover transform rounded-t-lg duration-300 hover:scale-110"
                     src="{{ $getImage() }}"
                     alt="{{ $name }}"
                 />
