@@ -29,6 +29,7 @@ class CubeServiceProvider extends ServiceProvider
 
         // Register Blade components with flat namespace
         // UI Components
+        Blade::component('cube::alert', \Nasirkhan\LaravelCube\View\Components\Ui\Alert::class);
         Blade::component('cube::button', \Nasirkhan\LaravelCube\View\Components\Ui\Button::class);
         Blade::component('cube::button-link', \Nasirkhan\LaravelCube\View\Components\Ui\ButtonLink::class);
         Blade::component('cube::link', \Nasirkhan\LaravelCube\View\Components\Ui\Link::class);
@@ -60,6 +61,12 @@ class CubeServiceProvider extends ServiceProvider
         Blade::component('cube::select', \Nasirkhan\LaravelCube\View\Components\Forms\Select::class);
         Blade::component('cube::textarea', \Nasirkhan\LaravelCube\View\Components\Forms\Textarea::class);
         Blade::component('cube::toggle', \Nasirkhan\LaravelCube\View\Components\Forms\Toggle::class);
+        Blade::component('cube::tom-select', \Nasirkhan\LaravelCube\View\Components\Forms\TomSelect::class);
+
+        Blade::component('cube::components.lw-table', 'lw-table');
+        Blade::component('cube::components.lw-table', 'cube::lw-table');
+        Blade::component('cube::components.lw-table-th', 'lw-table-th');
+        Blade::component('cube::components.lw-table-th', 'cube::lw-table-th');
 
         Blade::component('cube::nav-link', \Nasirkhan\LaravelCube\View\Components\Navigation\NavLink::class);
         Blade::component('cube::responsive-nav-link', \Nasirkhan\LaravelCube\View\Components\Navigation\ResponsiveNavLink::class);
@@ -118,7 +125,7 @@ class CubeServiceProvider extends ServiceProvider
     {
         Head::defaults(function (HeadBuilder $head) {
             $s = fn (string $key, mixed $default = null): mixed => function_exists('setting')
-                ? (setting($key) ?? $default)
+                ? (\setting($key) ?? $default)
                 : $default;
 
             $head

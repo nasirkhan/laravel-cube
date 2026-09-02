@@ -16,7 +16,7 @@
 @endphp
 
 @if($processedMenus->isNotEmpty())
-    <{{ $containerTag }} class="{{ $cssClass }}" data-coreui="navigation" data-simplebar>
+    <{{ $containerTag }} class="{{ $cssClass }}">
         @foreach($processedMenus as $menu)
             @if($menu->hierarchicalItems && $menu->hierarchicalItems->isNotEmpty())
                 @foreach($menu->hierarchicalItems as $menuItem)

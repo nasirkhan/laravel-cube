@@ -6,10 +6,14 @@
     "class" => "",
 ])
 
+@php
+$sizeClasses = $small == "true" ? "px-3 py-1.5 text-xs" : "px-4 py-2 text-sm";
+$baseClasses = "inline-flex items-center font-medium text-blue-700 border border-blue-700 rounded-lg hover:bg-blue-50 dark:border-blue-400 dark:text-blue-400 m-1 {$sizeClasses} {$class}";
+@endphp
+
 @if ($route)
     <a
-        class="btn btn-outline-primary {{ $small == "true" ? "btn-sm" : "" }} {{ $class }} m-1"
-        data-toggle="tooltip"
+        class="{{ $baseClasses }}"
         href="{{ $route }}"
         title="{{ $title }}"
         aria-label="{{ $title }}"
@@ -19,8 +23,7 @@
     </a>
 @else
     <button
-        class="btn btn-outline-primary {{ $small == "true" ? "btn-sm" : "" }} {{ $class }} m-1"
-        data-toggle="tooltip"
+        class="{{ $baseClasses }}"
         type="submit"
         title="{{ $title }}"
         aria-label="{{ $title }}"

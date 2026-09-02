@@ -1,17 +1,17 @@
 @props(["breadcrumbs" => "", "toolbar" => "", "footer" => ""])
 <div class="page-wrapper">
     {{-- page header --}}
-    <div class="page-header d-print-none">
+    <div class="page-header print:hidden">
         <div class="container-xl">
             <!-- Errors block -->
             @includeIf("flash::message")
             @includeIf("backend.includes.errors")
             <!-- / Errors block -->
 
-            <div class="row align-items-center mw-100">
-                <div class="col">
+            <div class="flex flex-wrap items-center gap-4 max-w-full">
+                <div class="flex-1 min-w-0">
                     <h1 class="page-title">
-                        <span class="text-truncate">
+                        <span class="truncate">
                             {{ $title }}
                         </span>
                     </h1>
@@ -25,24 +25,8 @@
                     @endif
                 </div>
                 @if ($toolbar)
-                    <div class="col-auto">
-                        <div class="btn-list">
-                            {{--
-                                <a class="btn d-none d-md-inline-flex" href="#">
-                                <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
-                                <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" />
-                                <path d="M16 5l3 3" />
-                                </svg>
-                                Edit
-                                </a>
-                                <a class="btn btn-primary" href="#">
-                                Publish
-                                </a>
-                            --}}
+                    <div class="shrink-0">
+                        <div class="flex items-center gap-2">
                             {{ $toolbar }}
                         </div>
                     </div>
@@ -54,12 +38,12 @@
     {{-- page body --}}
     <div class="page-body">
         <div class="container-xl">
-            <div class="card">
-                <div class="card-body">
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow">
+                <div class="p-6">
                     {{ $slot }}
                 </div>
                 @if ($footer)
-                    <div class="card-footer">
+                    <div class="px-6 py-4 border-t border-gray-200 dark:border-gray-700">
                         {{ $footer }}
                     </div>
                 @endif

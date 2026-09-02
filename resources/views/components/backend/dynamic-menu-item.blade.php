@@ -1,16 +1,14 @@
 @props(['item', 'optimized' => false])
 
 @php
-    // If optimized mode, skip permission checks as they're already done in the parent query
     if (!$optimized) {
-        // Original permission check logic for non-optimized calls
         $permissions = [];
         if ($item->permissions && is_array($item->permissions)) {
             $permissions = $item->permissions;
         } elseif ($item->permissions && is_string($item->permissions)) {
             $permissions = [$item->permissions];
         }
-        
+
         $canSee = true;
         if (!empty($permissions)) {
             $canSee = false;
@@ -21,92 +19,96 @@
                 }
             }
         }
-        
+
         if (empty($permissions) && $item->roles && is_array($item->roles) && !empty($item->roles)) {
             $canSee = false;
             if (auth()->check()) {
                 foreach ($item->roles as $role) {
-                    if (auth()->user()->hasRole($role)) {
-                        $canSee = true;
-                        break;
-                    }
+                    if (auth()->user()->hasRole($role)) { $canSee = true; break; }
                 }
             }
         }
-        
-        if ($item->is_public) {
-            $canSee = true;
-        }
-        
-        if (!$canSee) {
-            return;
-        }
+
+        if ($item->is_public) $canSee = true;
+        if (!$canSee) return;
     }
-    
-    // Build URL efficiently
+
     $url = '#';
     if ($item->route_name && \Illuminate\Support\Facades\Route::has($item->route_name)) {
-        try {
-            $url = route($item->route_name, $item->route_parameters ?? []);
-        } catch (\Exception $e) {
-            $url = $item->url ?? '#';
-        }
+        try { $url = route($item->route_name, $item->route_parameters ?? []); }
+        catch (\Exception $e) { $url = $item->url ?? '#'; }
     } elseif ($item->url) {
         $url = $item->url;
     }
-    
-    // Cache commonly used values
-    $icon = $item->icon ?? 'fa-solid fa-link';
-    $text = $item->name;
-    // Use optimized children check that doesn't trigger database queries
+
+    $icon     = $item->icon ?? 'fa-solid fa-link';
+    $text     = $item->name;
     $hasChildren = isset($item->children) && $item->children instanceof \Illuminate\Support\Collection && $item->children->isNotEmpty();
     $isActive = $item->route_name && request()->routeIs($item->route_name);
+
+    $linkBase    = 'flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors';
+    $linkActive  = 'bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400';
+    $linkDefault = 'text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700';
 @endphp
 
-@if($hasChildren)
-    {{-- Menu item with children (dropdown) --}}
-    <li class="nav-group" @if($isActive) data-coreui-show="true" @endif>
-        <a class="nav-link nav-group-toggle" href="#">
-            <i class="nav-icon {{ $icon }}"></i>
-            &nbsp;{{ $text }}
-        </a>
-        <ul class="nav-group-items compact">
-            @foreach(($item->children ?? collect()) as $child)
+@if ($item->type === 'divider')
+    <li class="my-2 border-t border-gray-200 dark:border-gray-700"></li>
+@elseif ($item->type === 'heading')
+    <li class="px-3 pt-3 pb-1 text-xs font-semibold uppercase tracking-wider text-gray-400 dark:text-gray-500">
+        {{ $text }}
+    </li>
+@elseif ($hasChildren)
+    <li x-data="{ open: {{ $isActive ? 'true' : 'false' }} }">
+        <button
+            type="button"
+            @click="open = !open"
+            class="{{ $linkBase }} {{ $isActive ? $linkActive : $linkDefault }} w-full justify-between"
+        >
+            <span class="flex items-center">
+                <i class="{{ $icon }} fa-fw mr-3" aria-hidden="true"></i>
+                {{ $text }}
+            </span>
+            <svg
+                class="w-4 h-4 transition-transform"
+                :class="open ? 'rotate-180' : ''"
+                fill="none" viewBox="0 0 24 24" stroke="currentColor"
+            >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+        </button>
+        <ul x-show="open" class="mt-1 pl-4 space-y-1">
+            @foreach (($item->children ?? collect()) as $child)
                 @include('cube::components.backend.dynamic-menu-item', ['item' => $child, 'optimized' => $optimized])
             @endforeach
         </ul>
     </li>
-@elseif($item->type === 'divider')
-    {{-- Divider --}}
-    <li class="nav-divider"></li>
-@elseif($item->type === 'heading')
-    {{-- Section heading --}}
-    <li class="nav-title">{{ $text }}</li>
 @else
-    {{-- Regular menu item --}}
-    <li class="nav-item">
-        <a class="nav-link @if($isActive) active @endif" 
-           href="{{ $url }}" 
-           @if($item->target ?? $item->opens_new_tab) target="_blank" @endif
-           @if($item->description) title="{{ $item->description }}" @endif>
-            <i class="nav-icon {{ $icon }}"></i>
-            &nbsp;{{ $text }}
-            
-            {{-- Special handling for notifications badge --}}
-            @if($item->route_name === 'backend.notifications.index')
+    <li>
+        <a
+            href="{{ $url }}"
+            class="{{ $linkBase }} {{ $isActive ? $linkActive : $linkDefault }}"
+            @if ($item->target ?? $item->opens_new_tab) target="_blank" @endif
+            @if ($item->description) title="{{ $item->description }}" @endif
+        >
+            <i class="{{ $icon }} fa-fw mr-3 shrink-0" aria-hidden="true"></i>
+            <span class="flex-1">{{ $text }}</span>
+
+            @if ($item->route_name === 'backend.notifications.index')
                 @php
-                    // Use cached user notification count if available
                     static $cachedNotificationCount = null;
                     if ($cachedNotificationCount === null) {
-                        $notifications = optional(auth()->user())->unreadNotifications;
-                        $cachedNotificationCount = optional($notifications)->count() ?: 0;
+                        $cachedNotificationCount = optional(optional(auth()->user())->unreadNotifications)->count() ?: 0;
                     }
                 @endphp
-                @if($cachedNotificationCount > 0)
-                    &nbsp;<span class="badge badge-sm bg-info ms-auto">{{ $cachedNotificationCount }}</span>
+                @if ($cachedNotificationCount > 0)
+                    <span class="ml-auto inline-flex items-center justify-center w-5 h-5 text-xs font-semibold text-white bg-blue-600 rounded-full">
+                        {{ $cachedNotificationCount }}
+                    </span>
                 @endif
-            @elseif($item->badge_text)
-                &nbsp;<span class="badge badge-sm bg-{{ $item->badge_color ?? 'info' }} ms-auto">{{ $item->badge_text }}</span>
+            @elseif ($item->badge_text)
+                <span class="ml-auto inline-flex items-center justify-center px-2 py-0.5 text-xs font-medium text-white bg-{{ $item->badge_color ?? 'blue' }}-600 rounded-full">
+                    {{ $item->badge_text }}
+                </span>
             @endif
         </a>
     </li>

@@ -6,13 +6,13 @@
     "module_icon" => "",
     "module_action" => "",
 ])
-<div class="card">
+<div class="bg-white dark:bg-gray-800 rounded-lg shadow">
     @if ($slot != "")
-        <div class="card-body">
+        <div class="p-6">
             {{ $slot }}
         </div>
     @else
-        <div class="card-body">
+        <div class="p-6">
             <x-cube::backend-section-header
                 :module_name="$module_name"
                 :module_title="$module_title"
@@ -20,41 +20,37 @@
                 :module_action="$module_action"
             />
 
-            <div class="row mt-4">
-                <div class="col">
-                    {{ html()->form("POST", route("backend.$module_name.store"))->acceptsFiles()->open() }}
+            <div class="mt-4">
+                {{ html()->form("POST", route("backend.$module_name.store"))->acceptsFiles()->open() }}
 
-                    @include("$module_path.$module_name.form")
+                @include("$module_path.$module_name.form")
 
-                    <div class="row">
-                        <div class="col-6">
-                            <x-cube::backend-button-create>Create</x-cube::backend-button-create>
-                        </div>
+                <div class="flex">
+                    <div class="w-1/2">
+                        <x-cube::backend-button-create>Create</x-cube::backend-button-create>
                     </div>
+                </div>
 
-                    {{ html()->form()->close() }}
-                    
-                    <!-- Cancel button outside the form to prevent accidental form submission -->
-                    <div class="row">
-                        <div class="col-12 mt-3">
-                            <div class="float-end">
-                                <x-cube::backend-button-cancel />
-                            </div>
-                        </div>
+                {{ html()->form()->close() }}
+
+                <!-- Cancel button outside the form to prevent accidental form submission -->
+                <div class="mt-3">
+                    <div class="text-right">
+                        <x-cube::backend-button-cancel />
                     </div>
                 </div>
             </div>
         </div>
     @endif
 
-    <div class="card-footer">
-        <div class="row">
-            <div class="col">
+    <div class="px-6 py-4 border-t border-gray-200 dark:border-gray-700">
+        <div class="flex">
+            <div class="flex-1">
                 @if ($data != "")
-                    <small class="text-muted float-end text-end">
+                    <small class="text-sm text-gray-500 dark:text-gray-400 float-right text-right">
                         @lang("Updated at")
                         : {{ $data->updated_at->diffForHumans() }},
-                        <br class="d-block d-sm-none" />
+                        <br class="block sm:hidden" />
                         @lang("Created at")
                         : {{ $data->created_at->isoFormat("LLLL") }}
                     </small>
