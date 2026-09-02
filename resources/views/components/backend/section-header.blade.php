@@ -60,7 +60,7 @@
                         <div id="section-header-dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
                             <ul class="py-2 text-sm text-gray-700 dark:text-gray-200">
                                 <li>
-                                    <a class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" href="{{ route("backend.$module_name.trashed") }}">
+                                    <a class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" href="{{ route("backend.$module_name.trashed") }}" wire:navigate>
                                         <i class="fas fa-eye-slash"></i>
                                         @lang("View trash")
                                     </a>
@@ -73,6 +73,7 @@
                 <a
                     class="inline-flex items-center px-3 py-1.5 text-xs font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 dark:text-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:hover:bg-gray-700 ml-1"
                     href="{{ route("backend.$module_name.index") }}"
+                    wire:navigate
                     title="{{ __($module_title) }} List"
                 >
                     <i class="fas fa-list-ul"></i>
@@ -107,6 +108,7 @@
                 <a
                     class="inline-flex items-center px-3 py-1.5 text-xs font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 dark:text-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:hover:bg-gray-700"
                     href="{{ route("backend.$module_name.index") }}"
+                    wire:navigate
                     title="{{ ucwords($module_name) }} List"
                 >
                     <i class="fas fa-list"></i>

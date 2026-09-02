@@ -1,8 +1,9 @@
+@if (setting("show_language_dropdown"))
 <div class="relative mr-2">
     <button
         id="language-menu-button"
         data-dropdown-toggle="language-menu-dropdown"
-        class="flex items-center leading-none text-gray-700 dark:text-gray-300 focus:outline-none"
+        class="flex items-center gap-1 p-2 text-gray-500 rounded-lg cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-700 focus:outline-none"
         aria-label="Open language menu"
         type="button"
     >
@@ -25,7 +26,7 @@
             <path d="M12 20l4 -9l4 9" />
             <path d="M19.1 18h-6.2" />
         </svg>
-        &nbsp;<span class="text-sm font-medium">{{ strtoupper(App::getLocale()) }}</span>
+        <span class="text-sm font-medium">{{ strtoupper(App::getLocale()) }}</span>
     </button>
 
     <div
@@ -41,3 +42,4 @@
         </ul>
     </div>
 </div>
+@endif

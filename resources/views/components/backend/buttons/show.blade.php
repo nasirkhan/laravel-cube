@@ -15,6 +15,7 @@ $baseClasses = "inline-flex items-center font-medium text-white bg-cyan-600 roun
     <a
         class="{{ $baseClasses }}"
         href="{{ $route }}"
+        wire:navigate
         title="{{ $title }}"
         aria-label="{{ $title }}"
     >

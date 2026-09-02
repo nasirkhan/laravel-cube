@@ -9,6 +9,7 @@ $baseClasses = "inline-flex items-center font-medium text-white bg-green-600 rou
     <a
         class="{{ $baseClasses }}"
         href="{{ $route }}"
+        wire:navigate
         title="{{ __($title) }}"
         aria-label="{{ __($title) }}"
     >

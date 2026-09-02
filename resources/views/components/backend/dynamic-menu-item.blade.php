@@ -87,7 +87,7 @@
         <a
             href="{{ $url }}"
             class="{{ $linkBase }} {{ $isActive ? $linkActive : $linkDefault }}"
-            @if ($item->target ?? $item->opens_new_tab) target="_blank" @endif
+            @if ($item->target ?? $item->opens_new_tab) target="_blank" @else wire:navigate @endif
             @if ($item->description) title="{{ $item->description }}" @endif
         >
             <i class="{{ $icon }} fa-fw mr-3 shrink-0" aria-hidden="true"></i>
