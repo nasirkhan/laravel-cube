@@ -7,7 +7,7 @@
 @endphp
 
 <label {{ $attributes->merge(['class' => $classes]) }} @if($for) for="{{ $for }}" id="{{ $for }}-label" @endif>
-    {{ $value ?? $slot }}
+    {{ $value ?: $slot }}
     @if($required)
         <span class="text-red-500">*</span>
     @endif

@@ -22,7 +22,9 @@
             />
 
             <div class="mt-4">
-                {{ html()->modelForm($data, "PATCH", route("backend.$module_name.update", $data))->acceptsFiles()->open() }}
+                <form method="POST" action="{{ route('backend.'.$module_name.'.update', $data) }}" enctype="multipart/form-data">
+                @csrf
+                @method('PATCH')
 
                 @include("$module_path.$module_name.form")
 
@@ -49,7 +51,7 @@
                     </div>
                 </div>
 
-                {{ html()->closeModelForm() }}
+                </form>
 
                 {{-- Cancel button outside the form to prevent accidental form submission --}}
                 <div class="mt-4">

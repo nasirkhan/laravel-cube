@@ -8,4 +8,5 @@
  */
 
 @source "../views/**/*.blade.php";
+@source "../../src/**/*.php";
 @source "../../config/cube.php";

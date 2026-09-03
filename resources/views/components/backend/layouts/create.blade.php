@@ -21,7 +21,8 @@
             />
 
             <div class="mt-4">
-                {{ html()->form("POST", route("backend.$module_name.store"))->acceptsFiles()->open() }}
+                <form method="POST" action="{{ route('backend.'.$module_name.'.store') }}" enctype="multipart/form-data">
+                @csrf
 
                 @include("$module_path.$module_name.form")
 
@@ -31,7 +32,7 @@
                     </div>
                 </div>
 
-                {{ html()->form()->close() }}
+                </form>
 
                 <!-- Cancel button outside the form to prevent accidental form submission -->
                 <div class="mt-3">
