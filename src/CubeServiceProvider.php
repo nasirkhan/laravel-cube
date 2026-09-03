@@ -62,6 +62,7 @@ class CubeServiceProvider extends ServiceProvider
         Blade::component('cube::textarea', \Nasirkhan\LaravelCube\View\Components\Forms\Textarea::class);
         Blade::component('cube::toggle', \Nasirkhan\LaravelCube\View\Components\Forms\Toggle::class);
         Blade::component('cube::tom-select', \Nasirkhan\LaravelCube\View\Components\Forms\TomSelect::class);
+        Blade::component('cube::file-input', \Nasirkhan\LaravelCube\View\Components\Forms\FileInput::class);
 
         Blade::component('cube::components.lw-table', 'lw-table');
         Blade::component('cube::components.lw-table', 'cube::lw-table');

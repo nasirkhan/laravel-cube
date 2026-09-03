@@ -1,8 +1,8 @@
-{{-- Cube Component: Form Label (Tailwind) --}}
+{{-- Cube Component: Form Label (Tailwind/Flowbite) --}}
 
 @php
     $classes = config('cube.tailwind.forms.label',
-        'block font-medium text-sm text-gray-700 dark:text-gray-300'
+        'block mb-2 text-sm font-medium text-gray-900 dark:text-white'
     );
 @endphp
 

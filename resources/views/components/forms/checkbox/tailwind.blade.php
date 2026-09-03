@@ -1,4 +1,4 @@
-{{-- Cube Component: Form Checkbox (Tailwind) --}}
+{{-- Cube Component: Form Checkbox (Tailwind/Flowbite) --}}
 
 @php
     $elementId = $attributes->get('id') ?: ($attributes->has('name') ? $attributes->get('name') : null);
@@ -11,7 +11,7 @@
         {{ $required ? 'required' : '' }}
         {{ $checked ? 'checked' : '' }}
         {{ $autofocus ? 'autofocus' : '' }}
-        {{ $attributes->except('id')->merge(['class' => 'rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:border-gray-700 dark:bg-gray-900 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800']) }}
+        {{ $attributes->except('id')->merge(['class' => 'w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600']) }}
         @if($elementId)
             id="{{ $elementId }}"
             @if($slot->isEmpty())
@@ -22,7 +22,7 @@
         @endif
     >
     @if($slot->isNotEmpty())
-        <label id="{{ $elementId }}-label" {{ $attributes->only(['for'])->class(['ml-2 text-sm text-gray-600 dark:text-gray-400']) }}>
+        <label id="{{ $elementId }}-label" {{ $attributes->only(['for'])->class(['ms-2 text-sm font-medium text-gray-900 dark:text-gray-300']) }}>
             {{ $slot }}
         </label>
     @endif
