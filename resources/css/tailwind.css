@@ -10,3 +10,99 @@
 @source "../views/**/*.blade.php";
 @source "../../src/**/*.php";
 @source "../../config/cube.php";
+
+/* ── TomSelect: match Flowbite input appearance ─────────────────────────── */
+.ts-wrapper .ts-control {
+    background-color: rgb(249 250 251);   /* bg-gray-50 */
+    border: 1px solid rgb(209 213 219);   /* border-gray-300 */
+    border-radius: 0.5rem;                /* rounded-lg */
+    color: rgb(17 24 39);                 /* text-gray-900 */
+    font-size: 0.875rem;                  /* text-sm */
+    padding: 0.375rem 2.25rem 0.375rem 0.625rem;
+    min-height: 2.625rem;
+    box-shadow: none !important;
+    position: relative;
+}
+/* Chevron-down arrow — stroked for a bolder look */
+.ts-wrapper .ts-control::after {
+    content: '';
+    position: absolute;
+    right: 0.625rem;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    width: 1.25rem;
+    height: 1.25rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236B7280' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.dark .ts-wrapper .ts-control::after {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239CA3AF' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+}
+.ts-wrapper.focus .ts-control {
+    border-color: rgb(59 130 246);
+    outline: none;
+}
+.ts-wrapper .ts-control input {
+    color: rgb(17 24 39);
+    font-size: 0.875rem;
+}
+.ts-wrapper .ts-control .item {
+    background-color: rgb(219 234 254);   /* blue-100 */
+    color: rgb(30 64 175);                /* blue-800 */
+    border-radius: 0.25rem;
+    padding: 0.125rem 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    border: none;
+}
+.ts-wrapper .ts-control .item .remove {
+    border-left: 1px solid rgb(147 197 253);
+    color: rgb(30 64 175);
+}
+.ts-dropdown {
+    border: 1px solid rgb(209 213 219);
+    border-radius: 0.5rem;
+    margin-top: 0.25rem;
+    font-size: 0.875rem;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+}
+.ts-dropdown .option {
+    padding: 0.5rem 0.75rem;
+    color: rgb(17 24 39);
+}
+.ts-dropdown .option.active {
+    background-color: rgb(239 246 255);
+    color: rgb(30 64 175);
+}
+/* Dark mode */
+.dark .ts-wrapper .ts-control {
+    background-color: rgb(55 65 81);
+    border-color: rgb(75 85 99);
+    color: rgb(255 255 255);
+}
+.dark .ts-wrapper .ts-control input {
+    color: rgb(255 255 255);
+    background-color: transparent;
+}
+.dark .ts-wrapper .ts-control .item {
+    background-color: rgb(30 58 138);
+    color: rgb(147 197 253);
+}
+.dark .ts-wrapper .ts-control .item .remove {
+    border-left-color: rgb(59 130 246);
+    color: rgb(147 197 253);
+}
+.dark .ts-dropdown {
+    background-color: rgb(31 41 55);
+    border-color: rgb(75 85 99);
+    color: rgb(255 255 255);
+}
+.dark .ts-dropdown .option {
+    color: rgb(255 255 255);
+}
+.dark .ts-dropdown .option.active {
+    background-color: rgb(30 58 138);
+    color: rgb(147 197 253);
+}

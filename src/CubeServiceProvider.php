@@ -27,6 +27,10 @@ class CubeServiceProvider extends ServiceProvider
             __DIR__.'/../config/cube.php' => config_path('cube.php'),
         ], 'cube-config');
 
+        $this->publishes([
+            __DIR__.'/../resources/css/tailwind.css' => resource_path('css/vendor/cube/tailwind.css'),
+        ], 'cube-css');
+
         // Register Blade components with flat namespace
         // UI Components
         Blade::component('cube::alert', \Nasirkhan\LaravelCube\View\Components\Ui\Alert::class);
