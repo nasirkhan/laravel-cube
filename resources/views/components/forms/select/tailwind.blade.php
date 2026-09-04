@@ -7,6 +7,9 @@
 @endphp
 
 <select
+    @if(!$attributes->has('id') && $attributes->has('name'))
+        id="{{ $attributes->get('name') }}"
+    @endif
     {{ $disabled ? 'disabled' : '' }}
     {{ $required ? 'required' : '' }}
     {{ $autofocus ? 'autofocus' : '' }}

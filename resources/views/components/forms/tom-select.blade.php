@@ -13,12 +13,16 @@
        </x-cube::tom-select>
 --}}
 
+@php
+    $tsId = $attributes->get('id') ?: str_replace('[]', '', $attributes->get('name', ''));
+@endphp
 <select
+    @if($tsId) id="{{ $tsId }}" @endif
     data-tom-select
     {{ $multiple ? 'multiple' : '' }}
     {{ $required ? 'required' : '' }}
     {{ $disabled ? 'disabled' : '' }}
-    {{ $attributes->merge(['class' => 'w-full rounded-lg border border-gray-300 bg-gray-50 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500']) }}
+    {{ $attributes->except('id') }}
 >
     {{ $slot }}
 </select>

@@ -7,6 +7,9 @@
 @endphp
 
 <textarea
+    @if(!$attributes->has('id') && $attributes->has('name'))
+        id="{{ $attributes->get('name') }}"
+    @endif
     rows="{{ $rows }}"
     {{ $disabled ? 'disabled' : '' }}
     {{ $required ? 'required' : '' }}
