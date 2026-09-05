@@ -44,7 +44,11 @@
     $icon     = $item->icon ?? 'fa-solid fa-link';
     $text     = $item->name;
     $hasChildren = isset($item->children) && $item->children instanceof \Illuminate\Support\Collection && $item->children->isNotEmpty();
-    $isActive = $item->route_name && request()->routeIs($item->route_name);
+    $routePrefix = \Illuminate\Support\Str::beforeLast($item->route_name ?? '', '.');
+    $isActive = $item->route_name && (
+        request()->routeIs($item->route_name) ||
+        (str_ends_with($item->route_name, '.index') && request()->routeIs($routePrefix . '.*'))
+    );
 
     $linkBase    = 'flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors';
     $linkActive  = 'bg-amber-50 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400';
