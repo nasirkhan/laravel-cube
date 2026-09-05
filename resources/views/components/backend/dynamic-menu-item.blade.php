@@ -47,7 +47,7 @@
     $isActive = $item->route_name && request()->routeIs($item->route_name);
 
     $linkBase    = 'flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors';
-    $linkActive  = 'bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400';
+    $linkActive  = 'bg-amber-50 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400';
     $linkDefault = 'text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700';
 @endphp
 
@@ -101,12 +101,12 @@
                     }
                 @endphp
                 @if ($cachedNotificationCount > 0)
-                    <span class="ml-auto inline-flex items-center justify-center w-5 h-5 text-xs font-semibold text-white bg-blue-600 rounded-full">
+                    <span class="ml-auto inline-flex items-center justify-center w-5 h-5 text-xs font-semibold text-white bg-amber-600 rounded-full">
                         {{ $cachedNotificationCount }}
                     </span>
                 @endif
             @elseif ($item->badge_text)
-                <span class="ml-auto inline-flex items-center justify-center px-2 py-0.5 text-xs font-medium text-white bg-{{ $item->badge_color ?? 'blue' }}-600 rounded-full">
+                <span class="ml-auto inline-flex items-center justify-center px-2 py-0.5 text-xs font-medium text-white bg-{{ $item->badge_color ?? 'amber' }}-600 rounded-full">
                     {{ $item->badge_text }}
                 </span>
             @endif
