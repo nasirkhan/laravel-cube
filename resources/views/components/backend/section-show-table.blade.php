@@ -2,7 +2,7 @@
     "data" => "",
     "module_name",
 ])
-<p>
+<p wire:ignore class="text-sm text-gray-500 dark:text-gray-400 mb-2"    >
     @lang("All values of :module_name (Id: :id)", ["module_name" => ucwords(Str::singular($module_name)), "id" => $data->id])
 </p>
 <div class="overflow-x-auto">
