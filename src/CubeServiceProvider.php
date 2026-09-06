@@ -125,43 +125,57 @@ class CubeServiceProvider extends ServiceProvider
      *
      * Uses the setting() helper from nasirkhan/module-manager when available,
      * so the package degrades gracefully without that dependency.
+     *
+     * Head::defaults() executes its callback synchronously at registration time,
+     * which means any DB calls inside would run during service provider boot —
+     * before migrations exist. We defer the registration to the first view render
+     * so setting() is only called during actual request handling.
      */
     protected function bootHeadDefaults(): void
     {
-        Head::defaults(function (HeadBuilder $head) {
-            $s = fn (string $key, mixed $default = null): mixed => function_exists('setting')
-                ? (\setting($key) ?? $default)
-                : $default;
+        $registered = false;
 
-            $head
-                ->description((string) $s('meta_description', ''))
-                ->og(
-                    siteName: (string) $s('meta_site_name', config('app.name')),
-                    type: OgType::Website,
-                    url: request()->fullUrl(),
-                )
-                ->twitter(
-                    card: TwitterCard::SummaryWithLargeImage,
-                    site: ($twitterSite = $s('meta_twitter_site')) ? (string) $twitterSite : null,
-                    creator: ($twitterCreator = $s('meta_twitter_creator')) ? (string) $twitterCreator : null,
-                )
-                ->canonical()
-                ->searchableByRobots()
-                ->viewport('width=device-width, initial-scale=1, shrink-to-fit=no');
-
-            if ($keyword = $s('meta_keyword')) {
-                $head->meta('keywords', (string) $keyword);
+        view()->composer('*', function () use (&$registered) {
+            if ($registered) {
+                return;
             }
+            $registered = true;
 
-            if ($image = $s('meta_image')) {
-                $head->ogImage(asset((string) $image), width: 1200, height: 630);
-            }
+            Head::defaults(function (HeadBuilder $head) {
+                $s = fn (string $key, mixed $default = null): mixed => function_exists('setting')
+                    ? (\setting($key) ?? $default)
+                    : $default;
 
-            if ($fbAppId = $s('meta_fb_app_id')) {
-                $head->meta('fb:app_id', (string) $fbAppId);
-            }
+                $head
+                    ->description((string) $s('meta_description', ''))
+                    ->og(
+                        siteName: (string) $s('meta_site_name', config('app.name')),
+                        type: OgType::Website,
+                        url: request()->fullUrl(),
+                    )
+                    ->twitter(
+                        card: TwitterCard::SummaryWithLargeImage,
+                        site: ($twitterSite = $s('meta_twitter_site')) ? (string) $twitterSite : null,
+                        creator: ($twitterCreator = $s('meta_twitter_creator')) ? (string) $twitterCreator : null,
+                    )
+                    ->canonical()
+                    ->searchableByRobots()
+                    ->viewport('width=device-width, initial-scale=1, shrink-to-fit=no');
 
-            $head->favicon(asset('img/favicon.png'));
+                if ($keyword = $s('meta_keyword')) {
+                    $head->meta('keywords', (string) $keyword);
+                }
+
+                if ($image = $s('meta_image')) {
+                    $head->ogImage(asset((string) $image), width: 1200, height: 630);
+                }
+
+                if ($fbAppId = $s('meta_fb_app_id')) {
+                    $head->meta('fb:app_id', (string) $fbAppId);
+                }
+
+                $head->favicon(asset('img/favicon.png'));
+            });
         });
     }
 
