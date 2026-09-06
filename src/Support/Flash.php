@@ -85,18 +85,18 @@ class Flash
     {
         $messages = session('flash_notification', collect());
 
-        if (! $messages instanceof \Illuminate\Support\Collection) {
+        if (!$messages instanceof \Illuminate\Support\Collection) {
             $messages = collect($messages);
         }
 
         $existing = $messages->search(fn ($m) => $m['message'] === $this->message);
 
         $entry = [
-            'message' => $this->message,
-            'level' => $this->level,
+            'message'   => $this->message,
+            'level'     => $this->level,
             'important' => $this->important,
-            'overlay' => $this->overlay,
-            'title' => $this->title,
+            'overlay'   => $this->overlay,
+            'title'     => $this->title,
         ];
 
         if ($existing !== false) {
