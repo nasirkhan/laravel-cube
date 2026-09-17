@@ -2,6 +2,7 @@
 {{-- Wrapper component that combines label, input, error, and help text --}}
 
 @php
+    $errors = $errors ?? new \Illuminate\Support\ViewErrorBag();
     $errorId = $name && $errors->has($name) ? $name . '-error' : null;
     $ariaDescribedby = collect([$name ? $name . '-label' : null, $help ? $name . '-help' : null, $errorId])
         ->filter()
