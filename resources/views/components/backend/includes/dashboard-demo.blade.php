@@ -1,71 +1,43 @@
-<div class="row row-deck row-cards">
-    <div class="col-sm-6 col-lg-3">
-        <div class="card">
-            <div class="card-body" style="height: 10rem"></div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow">
+        <div class="p-6" style="height: 10rem"></div>
+    </div>
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow">
+        <div class="p-6" style="height: 10rem"></div>
+    </div>
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow">
+        <div class="p-6" style="height: 10rem"></div>
+    </div>
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow">
+        <div class="p-6" style="height: 10rem"></div>
+    </div>
+    <div class="sm:col-span-2 lg:col-span-3 grid grid-cols-1 gap-4">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow">
+            <div class="p-6" style="height: 10rem"></div>
+        </div>
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow">
+            <div class="p-6" style="height: 10rem"></div>
         </div>
     </div>
-    <div class="col-sm-6 col-lg-3">
-        <div class="card">
-            <div class="card-body" style="height: 10rem"></div>
-        </div>
+    <div class="sm:col-span-2 lg:col-span-1 bg-white dark:bg-gray-800 rounded-lg shadow">
+        <div class="p-6" style="height: 10rem"></div>
     </div>
-    <div class="col-sm-6 col-lg-3">
-        <div class="card">
-            <div class="card-body" style="height: 10rem"></div>
-        </div>
+    <div class="sm:col-span-2 lg:col-span-4 bg-white dark:bg-gray-800 rounded-lg shadow">
+        <div class="p-6" style="height: 10rem"></div>
     </div>
-    <div class="col-sm-6 col-lg-3">
-        <div class="card">
-            <div class="card-body" style="height: 10rem"></div>
-        </div>
+    <div class="sm:col-span-2 lg:col-span-2 bg-white dark:bg-gray-800 rounded-lg shadow">
+        <div class="p-6" style="height: 10rem"></div>
     </div>
-    <div class="col-lg-6">
-        <div class="row row-cards">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-body" style="height: 10rem"></div>
-                </div>
-            </div>
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-body" style="height: 10rem"></div>
-                </div>
-            </div>
-        </div>
+    <div class="sm:col-span-2 lg:col-span-2 bg-white dark:bg-gray-800 rounded-lg shadow">
+        <div class="p-6" style="height: 10rem"></div>
     </div>
-    <div class="col-lg-6">
-        <div class="card">
-            <div class="card-body" style="height: 10rem"></div>
-        </div>
+    <div class="sm:col-span-2 lg:col-span-2 bg-white dark:bg-gray-800 rounded-lg shadow">
+        <div class="p-6" style="height: 10rem"></div>
     </div>
-    <div class="col-12">
-        <div class="card">
-            <div class="card-body" style="height: 10rem"></div>
-        </div>
+    <div class="sm:col-span-2 lg:col-span-2 bg-white dark:bg-gray-800 rounded-lg shadow">
+        <div class="p-6" style="height: 10rem"></div>
     </div>
-    <div class="col-md-12 col-lg-8">
-        <div class="card">
-            <div class="card-body" style="height: 10rem"></div>
-        </div>
-    </div>
-    <div class="col-md-6 col-lg-4">
-        <div class="card">
-            <div class="card-body" style="height: 10rem"></div>
-        </div>
-    </div>
-    <div class="col-md-6 col-lg-4">
-        <div class="card">
-            <div class="card-body" style="height: 10rem"></div>
-        </div>
-    </div>
-    <div class="col-md-12 col-lg-8">
-        <div class="card">
-            <div class="card-body" style="height: 10rem"></div>
-        </div>
-    </div>
-    <div class="col-12">
-        <div class="card">
-            <div class="card-body" style="height: 10rem"></div>
-        </div>
+    <div class="sm:col-span-2 lg:col-span-4 bg-white dark:bg-gray-800 rounded-lg shadow">
+        <div class="p-6" style="height: 10rem"></div>
     </div>
 </div>

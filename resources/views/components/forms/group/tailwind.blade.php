@@ -1,7 +1,8 @@
-{{-- Cube Component: Form Group (Tailwind) --}}
+{{-- Cube Component: Form Group (Tailwind/Flowbite) --}}
 {{-- Wrapper component that combines label, input, error, and help text --}}
 
 @php
+    $errors = $errors ?? new \Illuminate\Support\ViewErrorBag();
     $errorId = $name && $errors->has($name) ? $name . '-error' : null;
     $ariaDescribedby = collect([$name ? $name . '-label' : null, $help ? $name . '-help' : null, $errorId])
         ->filter()
@@ -13,16 +14,14 @@
         <x-cube::label :for="$name" :value="$label" :required="$required" />
     @endif
 
-    <div class="mt-1">
-        {{ $slot->withAttributes(['aria-describedby' => $ariaDescribedby]) }}
-    </div>
+    {{ $slot->withAttributes(['aria-describedby' => $ariaDescribedby]) }}
 
     @if($help)
-        <p id="{{ $name }}-help" class="mt-1 text-sm text-gray-500 dark:text-gray-400">{{ $help }}</p>
+        <p id="{{ $name }}-help" class="mt-2 text-sm text-gray-500 dark:text-gray-400">{{ $help }}</p>
     @endif
 
     @if($name && $errors->has($name))
-        <x-cube::error :messages="$errors->get($name)" :id="$errorId" class="mt-2" />
+        <x-cube::error :messages="$errors->get($name)" :id="$errorId" />
     @endif
 </div>
 

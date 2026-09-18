@@ -1,11 +1,11 @@
 {{-- Cube Component: UI Card (Tailwind) --}}
 
-<div class="flex flex-col rounded-lg border border-slate-200 bg-white shadow-sm dark:border-slate-700 dark:bg-slate-800">
+<div class="group flex flex-col rounded-2xl border border-gray-200/80 bg-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md dark:border-gray-700/60 dark:bg-gray-800">
     @if ($getImage())
-        <div class="overflow-hidden rounded-t-lg">
+        <div class="overflow-hidden rounded-t-2xl">
             <a href="{{ $url }}" @if($isInternalUrl()) wire:navigate @endif>
                 <img
-                    class="h-48 w-full object-cover transform rounded-t-lg duration-300 hover:scale-110"
+                    class="h-48 w-full object-cover transition-transform duration-300 group-hover:scale-105"
                     src="{{ $getImage() }}"
                     alt="{{ $name }}"
                 />
@@ -13,51 +13,32 @@
         </div>
     @endif
 
-    @if ($name)
-        <div class="mt-5 px-5">
-            <a href="{{ $url }}" @if($isInternalUrl()) wire:navigate @endif>
-                <h5 class="mb-2 text-lg font-semibold tracking-tight text-slate-900 dark:text-slate-300 sm:mb-4 sm:text-xl">
+    <div class="flex flex-1 flex-col p-5">
+        @if ($name)
+            <a href="{{ $url }}" @if($isInternalUrl()) wire:navigate @endif class="mb-2 block">
+                <h5 class="text-base font-semibold leading-snug text-gray-900 transition-colors duration-150 group-hover:text-indigo-600 sm:text-lg dark:text-gray-100 dark:group-hover:text-indigo-400">
                     {{ $name }}
                 </h5>
             </a>
+        @endif
+
+        <div class="flex-1 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
+            {!! $slot !!}
         </div>
-    @endif
 
-    <div class="mb-2 flex-1 px-5 text-sm font-normal sm:mb-4 sm:text-base">
-        {!! $slot !!}
-    </div>
-
-    @if ($url)
-        <div class="px-5 pb-5 text-end">
-            <a
-                class="inline-flex items-center rounded-sm bg-slate-200 px-3 py-2 text-sm text-slate-700 outline-1 outline-slate-400 hover:bg-slate-700 hover:text-slate-100 focus:outline-hidden dark:bg-slate-700 dark:text-slate-300 dark:hover:bg-slate-600"
-                href="{{ $url }}"
-                @if($isInternalUrl()) wire:navigate @endif
-            >
-                @lang('View details')
-                <svg
-                    class="-mr-1 ml-2 h-4 w-4"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
+        @if ($url)
+            <div class="mt-4 border-t border-gray-100 pt-4 dark:border-gray-700">
+                <a
+                    class="inline-flex items-center gap-1 text-sm font-medium text-indigo-600 transition-colors duration-150 hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-300"
+                    href="{{ $url }}"
+                    @if($isInternalUrl()) wire:navigate @endif
                 >
-                    <path
-                        fill-rule="evenodd"
-                        d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                        clip-rule="evenodd"
-                    ></path>
-                </svg>
-            </a>
-        </div>
-    @endif
+                    @lang('View details')
+                    <svg class="h-4 w-4 transition-transform duration-150 group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                    </svg>
+                </a>
+            </div>
+        @endif
+    </div>
 </div>
-
-{{-- Usage:
-<x-cube::card 
-    name="Article Title" 
-    url="{{ route('articles.show', $article) }}"
-    image="path/to/image.jpg"
->
-    <p>Article description goes here...</p>
-</x-cube::card>
---}}

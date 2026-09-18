@@ -27,8 +27,13 @@ class CubeServiceProvider extends ServiceProvider
             __DIR__.'/../config/cube.php' => config_path('cube.php'),
         ], 'cube-config');
 
+        $this->publishes([
+            __DIR__.'/../resources/css/tailwind.css' => resource_path('css/vendor/cube/tailwind.css'),
+        ], 'cube-css');
+
         // Register Blade components with flat namespace
         // UI Components
+        Blade::component('cube::alert', \Nasirkhan\LaravelCube\View\Components\Ui\Alert::class);
         Blade::component('cube::button', \Nasirkhan\LaravelCube\View\Components\Ui\Button::class);
         Blade::component('cube::button-link', \Nasirkhan\LaravelCube\View\Components\Ui\ButtonLink::class);
         Blade::component('cube::link', \Nasirkhan\LaravelCube\View\Components\Ui\Link::class);
@@ -60,6 +65,13 @@ class CubeServiceProvider extends ServiceProvider
         Blade::component('cube::select', \Nasirkhan\LaravelCube\View\Components\Forms\Select::class);
         Blade::component('cube::textarea', \Nasirkhan\LaravelCube\View\Components\Forms\Textarea::class);
         Blade::component('cube::toggle', \Nasirkhan\LaravelCube\View\Components\Forms\Toggle::class);
+        Blade::component('cube::tom-select', \Nasirkhan\LaravelCube\View\Components\Forms\TomSelect::class);
+        Blade::component('cube::file-input', \Nasirkhan\LaravelCube\View\Components\Forms\FileInput::class);
+
+        Blade::component('cube::components.lw-table', 'lw-table');
+        Blade::component('cube::components.lw-table', 'cube::lw-table');
+        Blade::component('cube::components.lw-table-th', 'lw-table-th');
+        Blade::component('cube::components.lw-table-th', 'cube::lw-table-th');
 
         Blade::component('cube::nav-link', \Nasirkhan\LaravelCube\View\Components\Navigation\NavLink::class);
         Blade::component('cube::responsive-nav-link', \Nasirkhan\LaravelCube\View\Components\Navigation\ResponsiveNavLink::class);
@@ -113,43 +125,57 @@ class CubeServiceProvider extends ServiceProvider
      *
      * Uses the setting() helper from nasirkhan/module-manager when available,
      * so the package degrades gracefully without that dependency.
+     *
+     * Head::defaults() executes its callback synchronously at registration time,
+     * which means any DB calls inside would run during service provider boot —
+     * before migrations exist. We defer the registration to the first view render
+     * so setting() is only called during actual request handling.
      */
     protected function bootHeadDefaults(): void
     {
-        Head::defaults(function (HeadBuilder $head) {
-            $s = fn (string $key, mixed $default = null): mixed => function_exists('setting')
-                ? (setting($key) ?? $default)
-                : $default;
+        $registered = false;
 
-            $head
-                ->description((string) $s('meta_description', ''))
-                ->og(
-                    siteName: (string) $s('meta_site_name', config('app.name')),
-                    type: OgType::Website,
-                    url: request()->fullUrl(),
-                )
-                ->twitter(
-                    card: TwitterCard::SummaryWithLargeImage,
-                    site: ($twitterSite = $s('meta_twitter_site')) ? (string) $twitterSite : null,
-                    creator: ($twitterCreator = $s('meta_twitter_creator')) ? (string) $twitterCreator : null,
-                )
-                ->canonical()
-                ->searchableByRobots()
-                ->viewport('width=device-width, initial-scale=1, shrink-to-fit=no');
-
-            if ($keyword = $s('meta_keyword')) {
-                $head->meta('keywords', (string) $keyword);
+        view()->composer('*', function () use (&$registered) {
+            if ($registered) {
+                return;
             }
+            $registered = true;
 
-            if ($image = $s('meta_image')) {
-                $head->ogImage(asset((string) $image), width: 1200, height: 630);
-            }
+            Head::defaults(function (HeadBuilder $head) {
+                $s = fn (string $key, mixed $default = null): mixed => function_exists('setting')
+                    ? (\setting($key) ?? $default)
+                    : $default;
 
-            if ($fbAppId = $s('meta_fb_app_id')) {
-                $head->meta('fb:app_id', (string) $fbAppId);
-            }
+                $head
+                    ->description((string) $s('meta_description', ''))
+                    ->og(
+                        siteName: (string) $s('meta_site_name', config('app.name')),
+                        type: OgType::Website,
+                        url: request()->fullUrl(),
+                    )
+                    ->twitter(
+                        card: TwitterCard::SummaryWithLargeImage,
+                        site: ($twitterSite = $s('meta_twitter_site')) ? (string) $twitterSite : null,
+                        creator: ($twitterCreator = $s('meta_twitter_creator')) ? (string) $twitterCreator : null,
+                    )
+                    ->canonical()
+                    ->searchableByRobots()
+                    ->viewport('width=device-width, initial-scale=1, shrink-to-fit=no');
 
-            $head->favicon(asset('img/favicon.png'));
+                if ($keyword = $s('meta_keyword')) {
+                    $head->meta('keywords', (string) $keyword);
+                }
+
+                if ($image = $s('meta_image')) {
+                    $head->ogImage(asset((string) $image), width: 1200, height: 630);
+                }
+
+                if ($fbAppId = $s('meta_fb_app_id')) {
+                    $head->meta('fb:app_id', (string) $fbAppId);
+                }
+
+                $head->favicon(asset('img/favicon.png'));
+            });
         });
     }
 
