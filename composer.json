@@ -14,7 +14,6 @@
     "navigation",
     "cube"
   ],
-  "version": "1.1.0",
   "license": "GPL-3.0-or-later",
   "type": "library",
   "authors": [
