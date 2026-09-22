@@ -5,6 +5,7 @@ namespace Nasirkhan\LaravelCube\View\Components\Frontend;
 use Illuminate\Support\Str;
 use Illuminate\View\Component;
 use Illuminate\View\View;
+
 class ShareButtons extends Component
 {
     public array $resolvedMetadata;
