@@ -51,6 +51,5 @@ abstract class TestCase extends Orchestra
             __DIR__.'/../resources/views',
             resource_path('views'),
         ]);
-
     }
 }
