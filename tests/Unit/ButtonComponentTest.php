@@ -3,126 +3,83 @@
 namespace Nasirkhan\LaravelCube\Tests\Unit;
 
 use Nasirkhan\LaravelCube\Tests\TestCase;
-use Nasirkhan\LaravelCube\View\Components\Ui\Button;
 use PHPUnit\Framework\Attributes\Test;
 
 class ButtonComponentTest extends TestCase
 {
     #[Test]
-    public function it_has_default_type_button(): void
+    public function it_renders_with_default_type_button(): void
     {
-        $component = new Button();
+        $view = $this->blade('<x-cube::button>Click me</x-cube::button>');
 
-        $this->assertEquals('button', $component->type);
+        $view->assertSee('type="button"', false);
+        $view->assertSee('Click me');
     }
 
     #[Test]
-    public function it_accepts_valid_button_types(): void
+    public function it_renders_with_submit_type(): void
     {
-        $component = new Button(type: 'button');
-        $this->assertEquals('button', $component->type);
+        $view = $this->blade('<x-cube::button type="submit">Submit</x-cube::button>');
 
-        $component = new Button(type: 'submit');
-        $this->assertEquals('submit', $component->type);
-
-        $component = new Button(type: 'reset');
-        $this->assertEquals('reset', $component->type);
+        $view->assertSee('type="submit"', false);
     }
 
     #[Test]
-    public function it_defaults_to_button_for_invalid_types(): void
+    public function it_falls_back_to_button_for_invalid_types(): void
     {
-        $component = new Button(type: 'invalid');
+        $view = $this->blade('<x-cube::button type="invalid">Click</x-cube::button>');
 
-        $this->assertEquals('button', $component->type);
+        $view->assertSee('type="button"', false);
     }
 
     #[Test]
-    public function it_accepts_valid_variants(): void
+    public function it_renders_disabled_attribute_when_disabled(): void
     {
-        $variants = ['primary', 'secondary', 'danger', 'success', 'warning', 'info', 'light', 'dark', 'link'];
+        $view = $this->blade('<x-cube::button disabled>Click</x-cube::button>');
 
-        foreach ($variants as $variant) {
-            $component = new Button(variant: $variant);
-            $this->assertEquals($variant, $component->variant);
-        }
+        $view->assertSee('disabled', false);
+        $view->assertSee('aria-disabled="true"', false);
     }
 
     #[Test]
-    public function it_defaults_to_primary_for_invalid_variants(): void
+    public function it_renders_loading_spinner_when_loading(): void
     {
-        $component = new Button(variant: 'invalid');
+        $view = $this->blade('<x-cube::button :loading="true">Save</x-cube::button>');
 
-        $this->assertEquals('primary', $component->variant);
+        $view->assertSee('animate-spin', false);
+        $view->assertSee('aria-busy="true"', false);
+        $view->assertSee('disabled', false);
     }
 
     #[Test]
-    public function it_accepts_valid_sizes(): void
+    public function it_does_not_render_spinner_by_default(): void
     {
-        $component = new Button(size: 'sm');
-        $this->assertEquals('sm', $component->size);
+        $view = $this->blade('<x-cube::button>Click</x-cube::button>');
 
-        $component = new Button(size: 'md');
-        $this->assertEquals('md', $component->size);
-
-        $component = new Button(size: 'lg');
-        $this->assertEquals('lg', $component->size);
+        $view->assertDontSee('animate-spin', false);
     }
 
     #[Test]
-    public function it_defaults_to_md_for_invalid_sizes(): void
+    public function it_applies_danger_variant_classes(): void
     {
-        $component = new Button(size: 'invalid');
+        $view = $this->blade('<x-cube::button variant="danger">Delete</x-cube::button>');
 
-        $this->assertEquals('md', $component->size);
+        $view->assertSee('bg-red-600', false);
     }
 
     #[Test]
-    public function it_handles_loading_state(): void
+    public function it_applies_success_variant_classes(): void
     {
-        $component = new Button(loading: true);
-        $this->assertTrue($component->loading);
+        $view = $this->blade('<x-cube::button variant="success">Save</x-cube::button>');
 
-        $component = new Button(loading: false);
-        $this->assertFalse($component->loading);
+        $view->assertSee('bg-green-600', false);
     }
 
     #[Test]
-    public function it_defaults_to_tailwind_framework(): void
+    public function it_merges_extra_attributes(): void
     {
-        $component = new Button();
+        $view = $this->blade('<x-cube::button id="my-btn">Click</x-cube::button>');
 
-        $this->assertTrue($component->isTailwind());
-        $this->assertFalse($component->isBootstrap());
-    }
-
-    #[Test]
-    public function it_accepts_bootstrap_framework(): void
-    {
-        $component = new Button(framework: 'bootstrap');
-
-        $this->assertTrue($component->isBootstrap());
-        $this->assertFalse($component->isTailwind());
-    }
-
-    #[Test]
-    public function it_returns_correct_framework_view_path(): void
-    {
-        $tailwindComponent = new Button();
-        $this->assertEquals('cube::components.ui.button.tailwind', $tailwindComponent->getFrameworkView('ui.button'));
-
-        $bootstrapComponent = new Button(framework: 'bootstrap');
-        $this->assertEquals('cube::components.ui.button.bootstrap', $bootstrapComponent->getFrameworkView('ui.button'));
-    }
-
-    #[Test]
-    public function it_gets_classes_from_config(): void
-    {
-        $component = new Button(variant: 'primary');
-
-        $classes = $component->getClasses();
-
-        $this->assertIsString($classes);
-        $this->assertNotEmpty($classes);
+        $view->assertSee('id="my-btn"', false);
     }
 }

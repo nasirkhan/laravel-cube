@@ -3,20 +3,6 @@
 return [
     /*
     |--------------------------------------------------------------------------
-    | Default UI Framework
-    |--------------------------------------------------------------------------
-    |
-    | This value determines the default UI framework for components.
-    | Options: 'tailwind' (default), 'bootstrap'
-    |
-    | Tailwind uses Flowbite components and Alpine.js
-    | Bootstrap uses Bootstrap 5 classes
-    |
-    */
-    'default_framework' => env('CUBE_FRAMEWORK', 'tailwind'),
-
-    /*
-    |--------------------------------------------------------------------------
     | Component Prefix
     |--------------------------------------------------------------------------
     |
@@ -28,90 +14,17 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Tailwind Button Classes
-    |--------------------------------------------------------------------------
-    |
-    | Default Tailwind CSS classes for buttons (Flowbite style)
-    |
-    */
-    'tailwind' => [
-        'buttons' => [
-            'primary'   => 'inline-flex items-center justify-center px-4 py-2 cursor-pointer bg-gray-800 dark:bg-gray-200 border border-transparent rounded-md font-semibold text-xs text-white dark:text-gray-800 uppercase tracking-widest hover:bg-gray-700 dark:hover:bg-white focus:bg-gray-700 dark:focus:bg-white active:bg-gray-900 dark:active:bg-gray-300 focus:outline-hidden focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 disabled:opacity-50 disabled:cursor-not-allowed transition ease-in-out duration-150',
-            'secondary' => 'inline-flex items-center justify-center px-4 py-2 cursor-pointer bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-500 rounded-md font-semibold text-xs text-gray-700 dark:text-gray-300 uppercase tracking-widest shadow-sm hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-hidden focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 disabled:opacity-50 disabled:cursor-not-allowed transition ease-in-out duration-150',
-            'danger'    => 'inline-flex items-center justify-center px-4 py-2 cursor-pointer bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 active:bg-red-700 focus:outline-hidden focus:ring-2 focus:ring-red-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 disabled:opacity-50 disabled:cursor-not-allowed transition ease-in-out duration-150',
-            'success'   => 'inline-flex items-center justify-center px-4 py-2 cursor-pointer bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-500 active:bg-green-700 focus:outline-hidden focus:ring-2 focus:ring-green-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 disabled:opacity-50 disabled:cursor-not-allowed transition ease-in-out duration-150',
-            'warning'   => 'inline-flex items-center justify-center px-4 py-2 cursor-pointer bg-yellow-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-yellow-400 active:bg-yellow-600 focus:outline-hidden focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2 dark:focus:ring-offset-gray-800 disabled:opacity-50 disabled:cursor-not-allowed transition ease-in-out duration-150',
-            'info'      => 'inline-flex items-center justify-center px-4 py-2 cursor-pointer bg-blue-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-400 active:bg-blue-600 focus:outline-hidden focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 dark:focus:ring-offset-gray-800 disabled:opacity-50 disabled:cursor-not-allowed transition ease-in-out duration-150',
-            'light'     => 'inline-flex items-center justify-center px-4 py-2 cursor-pointer bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-md font-semibold text-xs text-gray-800 dark:text-gray-200 uppercase tracking-widest hover:bg-gray-200 dark:hover:bg-gray-600 focus:outline-hidden focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 dark:focus:ring-offset-gray-800 disabled:opacity-50 disabled:cursor-not-allowed transition ease-in-out duration-150',
-            'dark'      => 'inline-flex items-center justify-center px-4 py-2 cursor-pointer bg-gray-900 dark:bg-gray-100 border border-transparent rounded-md font-semibold text-xs text-white dark:text-gray-900 uppercase tracking-widest hover:bg-gray-700 dark:hover:bg-gray-200 focus:outline-hidden focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 disabled:opacity-50 disabled:cursor-not-allowed transition ease-in-out duration-150',
-            'link'      => 'inline-flex items-center justify-center px-4 py-2 cursor-pointer bg-transparent border border-transparent rounded-md font-semibold text-xs text-gray-700 dark:text-gray-300 uppercase tracking-widest hover:text-gray-900 dark:hover:text-gray-100 hover:underline focus:outline-hidden focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 disabled:opacity-50 disabled:cursor-not-allowed transition ease-in-out duration-150',
-        ],
-        'button_sizes' => [
-            'sm' => 'px-3 py-1.5 text-xs',
-            'lg' => 'px-6 py-3 text-base',
-        ],
-        'forms' => [
-            'input'      => 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 disabled:opacity-50 disabled:cursor-not-allowed',
-            'select'     => 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 disabled:opacity-50 disabled:cursor-not-allowed',
-            'label'      => 'block mb-2 text-sm font-medium text-gray-900 dark:text-white',
-            'error'      => 'mt-2 text-sm text-red-600 dark:text-red-500',
-            'textarea'   => 'block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 disabled:opacity-50 disabled:cursor-not-allowed',
-            'file-input' => 'block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 disabled:opacity-50 disabled:cursor-not-allowed',
-        ],
-        'navigation' => [
-            'link'          => 'inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium leading-5 transition duration-150 ease-in-out',
-            'link_active'   => 'border-indigo-400 dark:border-indigo-600 text-gray-900 dark:text-gray-100 focus:outline-hidden focus:border-indigo-700',
-            'link_inactive' => 'border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:border-gray-300 dark:hover:border-gray-700 focus:outline-hidden focus:text-gray-700 dark:focus:text-gray-300 focus:border-gray-300 dark:focus:border-gray-700',
-        ],
-    ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Bootstrap Button Classes
-    |--------------------------------------------------------------------------
-    |
-    | Default Bootstrap 5 classes for buttons
-    |
-    */
-    'bootstrap' => [
-        'buttons' => [
-            'primary'   => 'btn btn-primary',
-            'secondary' => 'btn btn-secondary',
-            'danger'    => 'btn btn-danger',
-            'success'   => 'btn btn-success',
-            'warning'   => 'btn btn-warning',
-            'info'      => 'btn btn-info',
-            'light'     => 'btn btn-light',
-            'dark'      => 'btn btn-dark',
-            'link'      => 'btn btn-link',
-        ],
-        'forms' => [
-            'input'      => 'form-control',
-            'label'      => 'form-label',
-            'error'      => 'invalid-feedback',
-            'textarea'   => 'form-control',
-            'select'     => 'form-select',
-            'check'      => 'form-check-input',
-            'file-input' => 'form-control',
-        ],
-        'navigation' => [
-            'link'        => 'nav-link',
-            'link_active' => 'active',
-        ],
-    ],
-
-    /*
-    |--------------------------------------------------------------------------
     | Modal Configuration
     |--------------------------------------------------------------------------
     |
-    | Configuration options for modals (Tailwind only)
+    | Configuration options for modals
     |
     */
     'modal' => [
-        'max_width'         => '2xl', // sm, md, lg, xl, 2xl
+        'max_width'         => '2xl',
         'show_close_button' => true,
     ],
+
     /*
     |--------------------------------------------------------------------------
     | Share Buttons Configuration

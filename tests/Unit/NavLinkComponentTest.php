@@ -3,54 +3,40 @@
 namespace Nasirkhan\LaravelCube\Tests\Unit;
 
 use Nasirkhan\LaravelCube\Tests\TestCase;
-use Nasirkhan\LaravelCube\View\Components\Navigation\NavLink;
 use PHPUnit\Framework\Attributes\Test;
 
 class NavLinkComponentTest extends TestCase
 {
     #[Test]
-    public function it_accepts_href(): void
+    public function it_renders_as_anchor_tag(): void
     {
-        $component = new NavLink(href: 'https://example.com');
+        $view = $this->blade('<x-cube::nav-link href="/dashboard">Dashboard</x-cube::nav-link>');
 
-        $this->assertEquals('https://example.com', $component->href);
+        $view->assertSee('<a', false);
+        $view->assertSee('Dashboard');
     }
 
     #[Test]
-    public function it_handles_active_state(): void
+    public function it_applies_active_classes_when_active(): void
     {
-        $component = new NavLink(active: true);
-        $this->assertTrue($component->active);
+        $view = $this->blade('<x-cube::nav-link :active="true">Home</x-cube::nav-link>');
 
-        $component = new NavLink(active: false);
-        $this->assertFalse($component->active);
+        $view->assertSee('border-indigo-400', false);
     }
 
     #[Test]
-    public function it_defaults_to_tailwind_framework(): void
+    public function it_applies_inactive_classes_by_default(): void
     {
-        $component = new NavLink();
+        $view = $this->blade('<x-cube::nav-link>Home</x-cube::nav-link>');
 
-        $this->assertTrue($component->isTailwind());
-        $this->assertFalse($component->isBootstrap());
+        $view->assertSee('border-transparent', false);
     }
 
     #[Test]
-    public function it_accepts_bootstrap_framework(): void
+    public function it_passes_href_attribute(): void
     {
-        $component = new NavLink(framework: 'bootstrap');
+        $view = $this->blade('<x-cube::nav-link href="/profile">Profile</x-cube::nav-link>');
 
-        $this->assertTrue($component->isBootstrap());
-        $this->assertFalse($component->isTailwind());
-    }
-
-    #[Test]
-    public function it_returns_correct_framework_view_path(): void
-    {
-        $tailwindComponent = new NavLink();
-        $this->assertEquals('cube::components.navigation.nav-link.tailwind', $tailwindComponent->getFrameworkView('navigation.nav-link'));
-
-        $bootstrapComponent = new NavLink(framework: 'bootstrap');
-        $this->assertEquals('cube::components.navigation.nav-link.bootstrap', $bootstrapComponent->getFrameworkView('navigation.nav-link'));
+        $view->assertSee('href="/profile"', false);
     }
 }
