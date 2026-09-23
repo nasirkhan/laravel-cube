@@ -4,6 +4,7 @@ namespace Nasirkhan\LaravelCube\View\Components\Ui;
 
 use Illuminate\View\Component;
 use Illuminate\View\View;
+
 class Icon extends Component
 {
     public string $name;
