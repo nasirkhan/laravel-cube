@@ -1,8 +1,8 @@
 # Laravel Cube
 
-<p align="center"><img src="https://res.cloudinary.com/dslg1fc8y/image/upload/v1774684916/laravel_cube_package_logo_z8xqaa.jpg" alt="Laravel Cube - A versatile collection of reusable UI components for Laravel applications, supporting Tailwind CSS and Bootstrap 5"></p>
+<p align="center"><img src="https://res.cloudinary.com/dslg1fc8y/image/upload/v1774684916/laravel_cube_package_logo_z8xqaa.jpg" alt="Laravel Cube - Anonymous Blade component library for Laravel applications with Tailwind CSS and Flowbite"></p>
 
-A versatile collection of reusable UI components for Laravel applications with **dual framework support** - use Tailwind CSS or Bootstrap 5 seamlessly.
+An anonymous Blade component library for Laravel applications — Tailwind CSS (Flowbite) UI, forms, navigation, and backend scaffolding.
 
 This package is used in [Laravel Starter](https://github.com/nasirkhan/laravel-starter) though it is framework-agnostic and can be dropped into any Laravel app.
 
@@ -12,19 +12,19 @@ This package is used in [Laravel Starter](https://github.com/nasirkhan/laravel-s
 
 ## Features
 
-- **Dual Framework Support** - Use Tailwind CSS (Flowbite) or Bootstrap 5
-- **Framework Switching** - Change frameworks per component or globally
+- **Anonymous Blade Components** - No PHP backing classes; lightweight and easy to publish and override
+- **Tailwind CSS (Flowbite)** - Components styled with Tailwind v4 and Flowbite, with full dark mode support
 - **Reusable Components** - UI, forms, navigation, backend, and social components
-- **Flash Notifications** - Built-in `flash()` helper and Flash class for session messages
+- **Flash Notifications** - Built-in `flash()` helper for session-based messages
 - **SEO Head Defaults** - Automatic `laravel/head` integration for meta tags and Open Graph
-- **Dark Mode** - Built-in dark mode support for Tailwind-based components
+- **Dark Mode** - Built-in dark mode support across all components
 - **Livewire Compatible** - Works well with Livewire 3/4, including a base `LwTable` component
 - **Customizable** - Override styles, extend functionality, publish views
 - **Companion Friendly** - Designed to work well with companion packages such as `nasirkhan/laravel-sharekit`
 
 ## Why "Cube"?
 
-The cube represents versatility and multidimensionality - just like this package that adapts to your framework choice while keeping a unified Blade component API.
+The cube represents structure and composability — just like this package that gives you a set of solid, self-contained Blade components you can snap together to build any UI.
 
 ## Companion Packages
 
@@ -38,6 +38,11 @@ That keeps Cube focused on core UI primitives while optional frontend behavior c
 
 ## Components Included
 
+### Utility Components
+- **Error Boundary** - `<x-cube::error-boundary>`
+- **Google Analytics** - `<x-cube::google-analytics>`
+- **Application Logo** - `<x-cube::application-logo>`
+
 ### UI Components
 - **Alert** - `<x-cube::alert>`
 - **Button** - `<x-cube::button>`
@@ -49,10 +54,6 @@ That keeps Cube focused on core UI primitives while optional frontend behavior c
 - **Icon** - `<x-cube::icon>`
 - **Footer Credit** - `<x-cube::footer-credit>`
 - **Footer License** - `<x-cube::footer-license>`
-
-### Utility Components
-- **Google Analytics** - `<x-cube::google-analytics>`
-- **Application Logo** - `<x-cube::application-logo>`
 
 ### Frontend Components
 - `<x-cube::header-block>`
@@ -139,8 +140,8 @@ These components are designed for admin panel use and support multiple alias for
 - PHP ^8.3 || ^8.4
 - Laravel ^11.0 || ^12.0 || ^13.0
 - `laravel/head` ^0.2
-- Tailwind CSS or Bootstrap 5
-- Livewire ^3.0 || ^4.0 for Livewire-powered applications
+- Tailwind CSS v4
+- Livewire ^3.0 || ^4.0 (optional, for Livewire-powered components)
 
 ## Installation
 
@@ -151,20 +152,6 @@ composer require nasirkhan/laravel-cube
 Flowbite Blade Icons is installed automatically as a dependency of Laravel Cube.
 
 The package will automatically register its service provider.
-
-### Configuration
-
-Set your default framework in `.env`:
-
-```env
-CUBE_FRAMEWORK=tailwind
-```
-
-or
-
-```env
-CUBE_FRAMEWORK=bootstrap
-```
 
 ### Tailwind CSS Setup
 
@@ -188,8 +175,6 @@ Then import:
 @import "./vendor/cube/tailwind.css";
 ```
 
-This step is not required for Bootstrap projects.
-
 ### Optional Publishing
 
 Publish the configuration file:
@@ -211,24 +196,6 @@ php artisan vendor:publish --tag=cube-css
 ```
 
 ## Usage
-
-### Global Framework Selection
-
-```env
-CUBE_FRAMEWORK=tailwind
-```
-
-### Per Component Framework Override
-
-```blade
-<x-cube::button framework="bootstrap" variant="primary">
-    Bootstrap Button
-</x-cube::button>
-
-<x-cube::button framework="tailwind" variant="primary">
-    Tailwind Button
-</x-cube::button>
-```
 
 ### Basic Examples
 
@@ -420,7 +387,6 @@ Then use it where needed:
     :title="$post->name"
     :description="$post->intro"
     :image="$post->featured_image_url"
-    theme="tailwind"
     :networks="['x', 'facebook', 'linkedin', 'copy', 'native']"
 />
 ```
