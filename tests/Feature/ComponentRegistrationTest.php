@@ -8,42 +8,90 @@ use PHPUnit\Framework\Attributes\Test;
 class ComponentRegistrationTest extends TestCase
 {
     #[Test]
-    public function it_registers_ui_components(): void
+    public function it_registers_ui_button_component(): void
     {
-        $this->assertTrue(class_exists(\Nasirkhan\LaravelCube\View\Components\Ui\Button::class));
-        $this->assertTrue(class_exists(\Nasirkhan\LaravelCube\View\Components\Ui\Modal::class));
+        $view = $this->blade('<x-cube::button>OK</x-cube::button>');
+
+        $view->assertSee('OK');
+    }
+
+    #[Test]
+    public function it_registers_ui_badge_component(): void
+    {
+        $view = $this->blade('<x-cube::badge text="New" />');
+
+        $view->assertSee('New');
+    }
+
+    #[Test]
+    public function it_registers_ui_card_component(): void
+    {
+        $view = $this->blade('<x-cube::card>Content</x-cube::card>');
+
+        $view->assertSee('Content');
+    }
+
+    #[Test]
+    public function it_registers_form_input_component(): void
+    {
+        $view = $this->blade('<x-cube::input name="email" />');
+
+        $view->assertSee('name="email"', false);
+    }
+
+    #[Test]
+    public function it_registers_form_label_component(): void
+    {
+        $view = $this->blade('<x-cube::label for="email">Email</x-cube::label>');
+
+        $view->assertSee('Email');
+    }
+
+    #[Test]
+    public function it_registers_form_select_component(): void
+    {
+        $view = $this->blade('<x-cube::select name="country"></x-cube::select>');
+
+        $view->assertSee('name="country"', false);
+    }
+
+    #[Test]
+    public function it_registers_form_textarea_component(): void
+    {
+        $view = $this->blade('<x-cube::textarea name="message"></x-cube::textarea>');
+
+        $view->assertSee('name="message"', false);
+    }
+
+    #[Test]
+    public function it_registers_nav_link_component(): void
+    {
+        $view = $this->blade('<x-cube::nav-link href="/home">Home</x-cube::nav-link>');
+
+        $view->assertSee('Home');
+    }
+
+    #[Test]
+    public function it_registers_class_based_icon_component(): void
+    {
         $this->assertTrue(class_exists(\Nasirkhan\LaravelCube\View\Components\Ui\Icon::class));
     }
 
     #[Test]
-    public function it_registers_form_components(): void
-    {
-        $this->assertTrue(class_exists(\Nasirkhan\LaravelCube\View\Components\Forms\Input::class));
-        $this->assertTrue(class_exists(\Nasirkhan\LaravelCube\View\Components\Forms\Label::class));
-        $this->assertTrue(class_exists(\Nasirkhan\LaravelCube\View\Components\Forms\Error::class));
-        $this->assertTrue(class_exists(\Nasirkhan\LaravelCube\View\Components\Forms\Group::class));
-        $this->assertTrue(class_exists(\Nasirkhan\LaravelCube\View\Components\Forms\Checkbox::class));
-        $this->assertTrue(class_exists(\Nasirkhan\LaravelCube\View\Components\Forms\Select::class));
-        $this->assertTrue(class_exists(\Nasirkhan\LaravelCube\View\Components\Forms\Textarea::class));
-        $this->assertTrue(class_exists(\Nasirkhan\LaravelCube\View\Components\Forms\Toggle::class));
-    }
-
-    #[Test]
-    public function it_registers_navigation_components(): void
-    {
-        $this->assertTrue(class_exists(\Nasirkhan\LaravelCube\View\Components\Navigation\NavLink::class));
-        $this->assertTrue(class_exists(\Nasirkhan\LaravelCube\View\Components\Navigation\ResponsiveNavLink::class));
-    }
-
-    #[Test]
-    public function it_registers_frontend_share_component(): void
+    public function it_registers_class_based_share_buttons_component(): void
     {
         $this->assertTrue(class_exists(\Nasirkhan\LaravelCube\View\Components\Frontend\ShareButtons::class));
     }
 
     #[Test]
-    public function it_has_has_framework_trait(): void
+    public function it_registers_class_based_application_logo_component(): void
     {
-        $this->assertTrue(trait_exists(\Nasirkhan\LaravelCube\View\Components\HasFramework::class));
+        $this->assertTrue(class_exists(\Nasirkhan\LaravelCube\View\Components\ApplicationLogo::class));
+    }
+
+    #[Test]
+    public function it_registers_class_based_google_analytics_component(): void
+    {
+        $this->assertTrue(class_exists(\Nasirkhan\LaravelCube\View\Components\GoogleAnalytics::class));
     }
 }

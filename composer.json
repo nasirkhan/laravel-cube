@@ -1,12 +1,11 @@
 {
   "name": "nasirkhan/laravel-cube",
-  "description": "A unified component library for Laravel applications supporting both Tailwind CSS (with Flowbite) and Bootstrap frameworks",
+  "description": "Anonymous Blade component library for Laravel applications — Tailwind CSS (Flowbite) UI, forms, navigation, and backend scaffolding.",
   "keywords": [
     "laravel",
     "components",
     "blade-components",
     "tailwind",
-    "bootstrap",
     "flowbite",
     "alpine",
     "ui-components",

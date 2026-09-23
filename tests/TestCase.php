@@ -51,8 +51,5 @@ abstract class TestCase extends Orchestra
             __DIR__.'/../resources/views',
             resource_path('views'),
         ]);
-
-        // Setup default framework
-        $app['config']->set('cube.default_framework', 'tailwind');
     }
 }

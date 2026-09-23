@@ -5,12 +5,9 @@ namespace Nasirkhan\LaravelCube\View\Components\Frontend;
 use Illuminate\Support\Str;
 use Illuminate\View\Component;
 use Illuminate\View\View;
-use Nasirkhan\LaravelCube\View\Components\HasFramework;
 
 class ShareButtons extends Component
 {
-    use HasFramework;
-
     public array $resolvedMetadata;
 
     public array $resolvedNetworks;
@@ -34,10 +31,7 @@ class ShareButtons extends Component
         public bool|string $native = true,
         public string $size = 'md',
         public ?string $labelText = null,
-        ?string $framework = null,
     ) {
-        $this->initializeFramework($framework);
-
         $this->showLabels = filter_var($showLabels, FILTER_VALIDATE_BOOLEAN);
         $this->showHeading = filter_var($showHeading, FILTER_VALIDATE_BOOLEAN);
         $this->popup = filter_var($popup, FILTER_VALIDATE_BOOLEAN);
@@ -70,7 +64,7 @@ class ShareButtons extends Component
 
     public function render(): View
     {
-        return $this->renderSafely($this->getFrameworkView('frontend.share-buttons'));
+        return view('cube::components.frontend.share-buttons.tailwind');
     }
 
     public function networkLabel(string $network): string

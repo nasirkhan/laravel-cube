@@ -31,52 +31,56 @@ class CubeServiceProvider extends ServiceProvider
             __DIR__.'/../resources/css/tailwind.css' => resource_path('css/vendor/cube/tailwind.css'),
         ], 'cube-css');
 
-        // Register Blade components with flat namespace
-        // UI Components
-        Blade::component('cube::alert', \Nasirkhan\LaravelCube\View\Components\Ui\Alert::class);
-        Blade::component('cube::button', \Nasirkhan\LaravelCube\View\Components\Ui\Button::class);
-        Blade::component('cube::button-link', \Nasirkhan\LaravelCube\View\Components\Ui\ButtonLink::class);
-        Blade::component('cube::link', \Nasirkhan\LaravelCube\View\Components\Ui\Link::class);
-        Blade::component('cube::card', \Nasirkhan\LaravelCube\View\Components\Ui\Card::class);
-        Blade::component('cube::badge', \Nasirkhan\LaravelCube\View\Components\Ui\Badge::class);
-        Blade::component('cube::modal', \Nasirkhan\LaravelCube\View\Components\Ui\Modal::class);
-        Blade::component('cube::icon', \Nasirkhan\LaravelCube\View\Components\Ui\Icon::class);
-        Blade::component('cube::footer-credit', \Nasirkhan\LaravelCube\View\Components\Ui\FooterCredit::class);
-        Blade::component('cube::footer-license', \Nasirkhan\LaravelCube\View\Components\Ui\FooterLicense::class);
+        // UI Components (anonymous)
+        Blade::component('cube::components.ui.alert', 'cube::alert');
+        Blade::component('cube::components.ui.button', 'cube::button');
+        Blade::component('cube::components.ui.button-link', 'cube::button-link');
+        Blade::component('cube::components.ui.link', 'cube::link');
+        Blade::component('cube::components.ui.card', 'cube::card');
+        Blade::component('cube::components.ui.badge', 'cube::badge');
+        Blade::component('cube::components.ui.modal', 'cube::modal');
+        Blade::component('cube::components.ui.footer-credit', 'cube::footer-credit');
+        Blade::component('cube::components.ui.footer-license', 'cube::footer-license');
 
-        // Utility Components
+        // UI Components (class-based — contain dynamic per-request logic)
+        Blade::component('cube::icon', \Nasirkhan\LaravelCube\View\Components\Ui\Icon::class);
+
+        // Utility Components (class-based)
         Blade::component('cube::google-analytics', \Nasirkhan\LaravelCube\View\Components\GoogleAnalytics::class);
         Blade::component('cube::application-logo', \Nasirkhan\LaravelCube\View\Components\ApplicationLogo::class);
 
         // Frontend Components
-        Blade::component('cube::header-block', \Nasirkhan\LaravelCube\View\Components\Frontend\HeaderBlock::class);
-        Blade::component('cube::auth-header', \Nasirkhan\LaravelCube\View\Components\Frontend\AuthHeader::class);
-        Blade::component('cube::auth-session-status', \Nasirkhan\LaravelCube\View\Components\Frontend\AuthSessionStatus::class);
-        Blade::component('cube::flash-message', \Nasirkhan\LaravelCube\View\Components\Frontend\FlashMessage::class);
-        Blade::component('cube::validation-errors', \Nasirkhan\LaravelCube\View\Components\Frontend\ValidationErrors::class);
+        Blade::component('cube::components.frontend.auth-header', 'cube::auth-header');
+        Blade::component('cube::components.frontend.auth-session-status', 'cube::auth-session-status');
+        Blade::component('cube::components.frontend.flash-message', 'cube::flash-message');
+        Blade::component('cube::components.frontend.validation-errors', 'cube::validation-errors');
+        Blade::component('cube::components.frontend.header-block', 'cube::header-block');
         Blade::component('cube::share-buttons', \Nasirkhan\LaravelCube\View\Components\Frontend\ShareButtons::class);
 
-        // Form Components
-        Blade::component('cube::input', \Nasirkhan\LaravelCube\View\Components\Forms\Input::class);
-        Blade::component('cube::label', \Nasirkhan\LaravelCube\View\Components\Forms\Label::class);
-        Blade::component('cube::error', \Nasirkhan\LaravelCube\View\Components\Forms\Error::class);
-        Blade::component('cube::group', \Nasirkhan\LaravelCube\View\Components\Forms\Group::class);
-        Blade::component('cube::checkbox', \Nasirkhan\LaravelCube\View\Components\Forms\Checkbox::class);
-        Blade::component('cube::select', \Nasirkhan\LaravelCube\View\Components\Forms\Select::class);
-        Blade::component('cube::textarea', \Nasirkhan\LaravelCube\View\Components\Forms\Textarea::class);
-        Blade::component('cube::toggle', \Nasirkhan\LaravelCube\View\Components\Forms\Toggle::class);
+        // Form Components (anonymous)
+        Blade::component('cube::components.forms.input', 'cube::input');
+        Blade::component('cube::components.forms.label', 'cube::label');
+        Blade::component('cube::components.forms.error', 'cube::error');
+        Blade::component('cube::components.forms.group', 'cube::group');
+        Blade::component('cube::components.forms.checkbox', 'cube::checkbox');
+        Blade::component('cube::components.forms.select', 'cube::select');
+        Blade::component('cube::components.forms.textarea', 'cube::textarea');
+        Blade::component('cube::components.forms.toggle', 'cube::toggle');
+        Blade::component('cube::components.forms.file-input', 'cube::file-input');
+
+        // Form Components (class-based — contain dynamic logic)
         Blade::component('cube::tom-select', \Nasirkhan\LaravelCube\View\Components\Forms\TomSelect::class);
-        Blade::component('cube::file-input', \Nasirkhan\LaravelCube\View\Components\Forms\FileInput::class);
 
         Blade::component('cube::components.lw-table', 'lw-table');
         Blade::component('cube::components.lw-table', 'cube::lw-table');
         Blade::component('cube::components.lw-table-th', 'lw-table-th');
         Blade::component('cube::components.lw-table-th', 'cube::lw-table-th');
 
-        Blade::component('cube::nav-link', \Nasirkhan\LaravelCube\View\Components\Navigation\NavLink::class);
-        Blade::component('cube::responsive-nav-link', \Nasirkhan\LaravelCube\View\Components\Navigation\ResponsiveNavLink::class);
-        Blade::component('cube::dropdown', \Nasirkhan\LaravelCube\View\Components\Navigation\Dropdown::class);
-        Blade::component('cube::dropdown-link', \Nasirkhan\LaravelCube\View\Components\Navigation\DropdownLink::class);
+        // Navigation Components (anonymous)
+        Blade::component('cube::components.navigation.nav-link', 'cube::nav-link');
+        Blade::component('cube::components.navigation.responsive-nav-link', 'cube::responsive-nav-link');
+        Blade::component('cube::components.navigation.dropdown', 'cube::dropdown');
+        Blade::component('cube::components.navigation.dropdown-link', 'cube::dropdown-link');
 
         $backendComponents = [
             'cube::components.backend.breadcrumbs'             => ['backend-breadcrumbs',          'backend.breadcrumbs'],

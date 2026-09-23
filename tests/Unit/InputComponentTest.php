@@ -3,99 +3,79 @@
 namespace Nasirkhan\LaravelCube\Tests\Unit;
 
 use Nasirkhan\LaravelCube\Tests\TestCase;
-use Nasirkhan\LaravelCube\View\Components\Forms\Input;
 use PHPUnit\Framework\Attributes\Test;
 
 class InputComponentTest extends TestCase
 {
     #[Test]
-    public function it_has_default_type_text(): void
+    public function it_renders_with_default_type_text(): void
     {
-        $component = new Input();
+        $view = $this->blade('<x-cube::input />');
 
-        $this->assertEquals('text', $component->type);
+        $view->assertSee('type="text"', false);
     }
 
     #[Test]
-    public function it_accepts_valid_input_types(): void
+    public function it_renders_with_valid_email_type(): void
     {
-        $validTypes = ['text', 'email', 'password', 'number', 'url', 'tel', 'date', 'time', 'datetime-local', 'color'];
+        $view = $this->blade('<x-cube::input type="email" />');
 
-        foreach ($validTypes as $type) {
-            $component = new Input(type: $type);
-            $this->assertEquals($type, $component->type);
-        }
+        $view->assertSee('type="email"', false);
     }
 
     #[Test]
-    public function it_defaults_to_text_for_invalid_types(): void
+    public function it_falls_back_to_text_for_invalid_types(): void
     {
-        $component = new Input(type: 'invalid');
+        $view = $this->blade('<x-cube::input type="invalid" />');
 
-        $this->assertEquals('text', $component->type);
+        $view->assertSee('type="text"', false);
     }
 
     #[Test]
-    public function it_handles_disabled_state(): void
+    public function it_renders_disabled_attribute_when_disabled(): void
     {
-        $component = new Input(disabled: true);
-        $this->assertTrue($component->disabled);
+        $view = $this->blade('<x-cube::input disabled />');
 
-        $component = new Input(disabled: false);
-        $this->assertFalse($component->disabled);
+        $view->assertSee('disabled', false);
     }
 
     #[Test]
-    public function it_handles_required_state(): void
+    public function it_renders_required_attribute_when_required(): void
     {
-        $component = new Input(required: true);
-        $this->assertTrue($component->required);
+        $view = $this->blade('<x-cube::input required />');
 
-        $component = new Input(required: false);
-        $this->assertFalse($component->required);
+        $view->assertSee('required', false);
     }
 
     #[Test]
-    public function it_accepts_placeholder(): void
+    public function it_renders_placeholder_when_provided(): void
     {
-        $component = new Input(placeholder: 'Enter your email');
+        $view = $this->blade('<x-cube::input placeholder="Enter your email" />');
 
-        $this->assertEquals('Enter your email', $component->placeholder);
+        $view->assertSee('placeholder="Enter your email"', false);
     }
 
     #[Test]
-    public function it_defaults_to_tailwind_framework(): void
+    public function it_renders_autofocus_when_set(): void
     {
-        $component = new Input();
+        $view = $this->blade('<x-cube::input autofocus />');
 
-        $this->assertTrue($component->isTailwind());
-        $this->assertFalse($component->isBootstrap());
+        $view->assertSee('autofocus', false);
     }
 
     #[Test]
-    public function it_accepts_bootstrap_framework(): void
+    public function it_auto_sets_id_from_name_attribute(): void
     {
-        $component = new Input(framework: 'bootstrap');
+        $view = $this->blade('<x-cube::input name="email" />');
 
-        $this->assertTrue($component->isBootstrap());
-        $this->assertFalse($component->isTailwind());
+        $view->assertSee('id="email"', false);
     }
 
     #[Test]
-    public function it_handles_autofocus_state(): void
+    public function it_does_not_override_explicit_id(): void
     {
-        $component = new Input(autofocus: true);
-        $this->assertTrue($component->autofocus);
+        $view = $this->blade('<x-cube::input name="email" id="custom-id" />');
 
-        $component = new Input(autofocus: false);
-        $this->assertFalse($component->autofocus);
-    }
-
-    #[Test]
-    public function it_defaults_to_false_for_autofocus(): void
-    {
-        $component = new Input();
-
-        $this->assertFalse($component->autofocus);
+        $view->assertSee('id="custom-id"', false);
     }
 }

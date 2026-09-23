@@ -9,8 +9,8 @@
     "module_action" => "",
 ])
 
-<div class="flex justify-between">
-    <div class="self-center">
+<div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+    <div class="min-w-0">
         @if ($slot != "")
             <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-0">
                 {{ $slot }}
@@ -30,11 +30,11 @@
         @endif
     </div>
     @if ($toolbar)
-        <div class="flex items-center gap-1" role="toolbar" aria-label="Toolbar with buttons">
+        <div class="flex items-center gap-1 flex-wrap shrink-0" role="toolbar" aria-label="Toolbar with buttons">
             {{ $toolbar }}
         </div>
     @else
-        <div class="flex items-center gap-1" role="toolbar" aria-label="Toolbar with buttons">
+        <div class="flex items-center gap-1 flex-wrap shrink-0" role="toolbar" aria-label="Toolbar with buttons">
             @if (Str::endsWith(Route::currentRouteName(), "index"))
                 <x-cube::backend-button-return-back />
 
