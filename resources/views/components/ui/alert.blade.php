@@ -37,7 +37,7 @@ $closeColorClasses = match ($type) {
         <button
             type="button"
             x-on:click="show = false"
-            class="ms-auto -mx-1.5 -my-1.5 rounded-lg focus:ring-2 p-1.5 inline-flex items-center justify-center h-8 w-8 {{ $closeColorClasses }}"
+            class="ms-auto -mx-1.5 -my-1.5 rounded-lg p-1.5 inline-flex items-center justify-center h-8 w-8 {{ $closeColorClasses }}"
             aria-label="{{ __('Close') }}"
         >
             <span class="sr-only">{{ __('Close') }}</span>

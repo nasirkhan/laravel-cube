@@ -38,7 +38,7 @@
                             @can("delete_" . $module_name)
                                 <a
                                     href="{{ route("backend.$module_name.destroy", $data) }}"
-                                    class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 focus:ring-4 focus:ring-red-300"
+                                    class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700"
                                     data-method="DELETE"
                                     data-token="{{ csrf_token() }}"
                                     data-toggle="tooltip"
