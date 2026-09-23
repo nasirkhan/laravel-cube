@@ -8,7 +8,7 @@ $variantClasses = match ($variant) {
     'info'      => 'bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white',
     default     => 'bg-gray-800 hover:bg-gray-700 active:bg-gray-900 text-white',
 };
-$baseClasses = 'inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md font-semibold text-xs leading-none uppercase tracking-widest focus:outline-hidden focus:ring-3 ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 cursor-pointer';
+$baseClasses = 'inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md font-semibold text-xs leading-none uppercase tracking-widest disabled:opacity-25 transition ease-in-out duration-150 cursor-pointer';
 @endphp
 
 <a

@@ -65,7 +65,7 @@
                                             </td>
                                             <td class="px-4 py-3 text-right">
                                                 <a
-                                                    class="inline-flex items-center px-3 py-1.5 text-xs font-medium text-white bg-yellow-400 rounded-lg hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 dark:focus:ring-yellow-900"
+                                                    class="inline-flex items-center px-3 py-1.5 text-xs font-medium text-white bg-yellow-400 rounded-lg hover:bg-yellow-500"
                                                     data-method="PATCH"
                                                     data-token="{{ csrf_token() }}"
                                                     data-toggle="tooltip"
@@ -83,7 +83,7 @@
                         </div>
                     @else
                         <div class="text-center">
-                            <p>
+                            <p class="text-gray-500 dark:text-gray-400">
                                 @lang("No record found in trash!")
                             </p>
                         </div>
@@ -98,7 +98,7 @@
             <div class="flex flex-wrap gap-4">
                 <div class="w-full sm:flex-1">
                     <div class="float-left">
-                        <small class="text-sm">
+                        <small class="text-sm text-gray-500 dark:text-gray-400">
                             @lang("Total")
                             {{ $data->total() }} {{ ucwords($module_name) }}
                         </small>
