@@ -41,8 +41,3 @@
         </tbody>
     </table>
 </div>
-
-{{-- Lightbox2 Library --}}
-@if(\Illuminate\Support\Facades\View::exists('components.library.lightbox'))
-    <x-library.lightbox />
-@endif
