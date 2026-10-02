@@ -120,7 +120,7 @@ These components are designed for admin panel use and support multiple alias for
 - `<x-cube::backend.breadcrumb-item>`
 - `<x-cube::backend.section-header>`
 - `<x-cube::backend.section-footer>`
-- `<x-cube::backend.section-show-table>`
+- `<x-cube::backend.section-show-table>` — see [Image columns & PhotoSwipe](#image-columns--photoswipe)
 - `<x-cube::backend.page-wrapper>`
 - `<x-cube::backend.dynamic-menu>`
 - `<x-cube::backend.dynamic-menu-item>`
@@ -134,6 +134,23 @@ These components are designed for admin panel use and support multiple alias for
 - `<x-cube::backend.includes.menu-user>`
 - `<x-cube::backend.includes.menu-language>`
 - `<x-cube::backend.includes.dashboard-demo>`
+
+## Image columns & PhotoSwipe
+
+The `<x-cube::backend.section-show-table>` component renders a two-column table of all model attributes using the `show_column_value()` helper (defined in the host application). When a column value is detected as an image path (file extension `.jpg`, `.jpeg`, `.png`, `.gif`, or `.svg`), the helper outputs PhotoSwipe-compatible markup:
+
+```html
+<div class="pswp-gallery">
+    <figure>
+        <a href="/storage/photo.jpg" data-pswp-src="/storage/photo.jpg">
+            <img src="/storage/photo.jpg" style="max-width:200px;" class="rounded img-thumbnail" alt="">
+        </a>
+        <figcaption class="text-xs text-gray-500 mt-1">Path: storage/photo.jpg</figcaption>
+    </figure>
+</div>
+```
+
+Clicking the thumbnail opens the full image in a PhotoSwipe overlay. This component renders the markup only — PhotoSwipe itself must be initialised in the host application's backend JavaScript bundle. [Laravel Starter](https://github.com/nasirkhan/laravel-starter) handles this automatically via `resources/js/photoswipe.js`.
 
 ## Requirements
 
