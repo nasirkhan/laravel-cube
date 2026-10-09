@@ -72,6 +72,7 @@ class CubeServiceProvider extends ServiceProvider
         Blade::component('cube::components.forms.textarea', 'cube::textarea');
         Blade::component('cube::components.forms.toggle', 'cube::toggle');
         Blade::component('cube::components.forms.file-input', 'cube::file-input');
+        Blade::component('cube::components.forms.image-upload', 'cube::image-upload');
 
         // Form Components (class-based — contain dynamic logic)
         Blade::component('cube::tom-select', TomSelect::class);
