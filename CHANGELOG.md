@@ -2,6 +2,12 @@
 
 All notable changes to `laravel-cube` will be documented in this file.
 
+## [v4.3.1] - 2026-10-25
+
+### Fixed
+- `x-cube::modal`: dialog box painted beneath its own backdrop in Tailwind v4 because the bare `transform` class compiled to `transform: none`, collapsing the stacking context. Fixed by adding `relative z-10` to the `role="dialog"` element and removing the no-op `transform` class from both the backdrop and dialog divs. Transition animations (`translate-y-4`, `sm:scale-95`, etc.) are unaffected — those utilities set their own CSS properties in Tailwind v4 and do not require a bare `transform` class.
+- `x-cube::modal`: `aria-labelledby` no longer references a non-existent element. The attribute is now omitted when no `title` prop is given; when a `title` prop is supplied, a screen-reader-only `<span>` with the matching `id` is rendered inside the dialog.
+
 ## [Unreleased]
 
 ### Added
