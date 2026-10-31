@@ -51,7 +51,8 @@
                         <button
                             id="section-header-dropdown-btn"
                             data-dropdown-toggle="section-header-dropdown"
-                            class="inline-flex items-center px-3 py-1.5 text-xs font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 dark:text-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:hover:bg-gray-700 ml-1"
+                            data-dropdown-placement="bottom-end"
+                            class="inline-flex items-center justify-center cursor-pointer size-9 p-2 text-xs font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 dark:text-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:hover:bg-gray-700 m-1"
                             type="button"
                             aria-expanded="false"
                         >
@@ -70,18 +71,13 @@
                     </div>
                 @endif
             @elseif (Str::endsWith(Route::currentRouteName(), "create"))
-                <a
-                    class="inline-flex items-center px-3 py-1.5 text-xs font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 dark:text-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:hover:bg-gray-700 ml-1"
-                    href="{{ route("backend.$module_name.index") }}"
-                    wire:navigate
+                <x-cube::backend-button-list
+                    route='{{ route("backend.$module_name.index") }}'
                     title="{{ __($module_title) }} List"
-                >
-                    <i class="fas fa-list-ul"></i>
-                    &nbsp;List
-                </a>
+                    small="true"
+                />
             @elseif (Str::endsWith(Route::currentRouteName(), "edit"))
                 <x-backend-button-show
-                    class="ml-1"
                     title="{{ __('Show') }} {{ ucwords(Str::singular($module_name)) }}"
                     route='{!! route("backend.$module_name.show", $data) !!}'
                     small="true"
@@ -89,7 +85,6 @@
             @elseif (Str::endsWith(Route::currentRouteName(), "show"))
                 @if (Route::has("frontend.$module_name.show"))
                     <x-cube::backend-button-public
-                        class=""
                         title="{{ __('Public') }}"
                         route='{!! route("frontend.$module_name.show", encode_id($data->id)) !!}'
                         small="true"
@@ -98,22 +93,17 @@
 
                 @if (auth()->user()->can("edit_" . $module_name) && Route::has("backend." . $module_name . ".edit"))
                     <x-backend-button-edit
-                        class="m-1"
                         title="{{ __('Edit') }} {{ ucwords(Str::singular($module_name)) }}"
                         route='{!! route("backend.$module_name.edit", $data) !!}'
                         small="true"
                     />
                 @endif
 
-                <a
-                    class="inline-flex items-center px-3 py-1.5 text-xs font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 dark:text-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:hover:bg-gray-700"
-                    href="{{ route("backend.$module_name.index") }}"
-                    wire:navigate
+                <x-cube::backend-button-list
+                    route='{{ route("backend.$module_name.index") }}'
                     title="{{ ucwords($module_name) }} List"
-                >
-                    <i class="fas fa-list"></i>
-                    &nbsp;{{ __("List") }}
-                </a>
+                    small="true"
+                />
             @endif
         </div>
     @endif

@@ -1,28 +1,25 @@
 @props(['type' => 'button', 'variant' => 'primary', 'disabled' => false, 'loading' => false, 'size' => 'md'])
 @php
 $type = in_array($type, ['submit', 'button', 'reset']) ? $type : 'button';
+$iconOnly = $slot->isEmpty() && !$loading;
 
-$classes = match ($variant) {
-    'secondary' => 'inline-flex items-center justify-center px-4 py-2 cursor-pointer bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-500 rounded-md font-semibold text-xs text-gray-700 dark:text-gray-300 uppercase tracking-widest shadow-sm hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition ease-in-out duration-150',
-    'danger'    => 'inline-flex items-center justify-center px-4 py-2 cursor-pointer bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 active:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed transition ease-in-out duration-150',
-    'success'   => 'inline-flex items-center justify-center px-4 py-2 cursor-pointer bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-500 active:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition ease-in-out duration-150',
-    'warning'   => 'inline-flex items-center justify-center px-4 py-2 cursor-pointer bg-yellow-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-yellow-400 active:bg-yellow-600 disabled:opacity-50 disabled:cursor-not-allowed transition ease-in-out duration-150',
-    'info'      => 'inline-flex items-center justify-center px-4 py-2 cursor-pointer bg-blue-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-400 active:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed transition ease-in-out duration-150',
-    'light'     => 'inline-flex items-center justify-center px-4 py-2 cursor-pointer bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-md font-semibold text-xs text-gray-800 dark:text-gray-200 uppercase tracking-widest hover:bg-gray-200 dark:hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed transition ease-in-out duration-150',
-    'dark'      => 'inline-flex items-center justify-center px-4 py-2 cursor-pointer bg-gray-900 dark:bg-gray-100 border border-transparent rounded-md font-semibold text-xs text-white dark:text-gray-900 uppercase tracking-widest hover:bg-gray-700 dark:hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed transition ease-in-out duration-150',
-    'link'      => 'inline-flex items-center justify-center px-4 py-2 cursor-pointer bg-transparent border border-transparent rounded-md font-semibold text-xs text-gray-700 dark:text-gray-300 uppercase tracking-widest hover:text-gray-900 dark:hover:text-gray-100 hover:underline disabled:opacity-50 disabled:cursor-not-allowed transition ease-in-out duration-150',
-    default     => 'inline-flex items-center justify-center px-4 py-2 cursor-pointer bg-gray-800 dark:bg-gray-200 border border-transparent rounded-md font-semibold text-xs text-white dark:text-gray-800 uppercase tracking-widest hover:bg-gray-700 dark:hover:bg-white active:bg-gray-900 dark:active:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed transition ease-in-out duration-150',
+$variantClasses = match ($variant) {
+    'secondary' => 'cursor-pointer bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-500 rounded-md font-semibold text-xs text-gray-700 dark:text-gray-300 uppercase tracking-widest shadow-sm hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition ease-in-out duration-150',
+    'danger'    => 'cursor-pointer bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 active:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed transition ease-in-out duration-150',
+    'success'   => 'cursor-pointer bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-500 active:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition ease-in-out duration-150',
+    'warning'   => 'cursor-pointer bg-yellow-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-yellow-400 active:bg-yellow-600 disabled:opacity-50 disabled:cursor-not-allowed transition ease-in-out duration-150',
+    'info'      => 'cursor-pointer bg-blue-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-400 active:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed transition ease-in-out duration-150',
+    'light'     => 'cursor-pointer bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-md font-semibold text-xs text-gray-800 dark:text-gray-200 uppercase tracking-widest hover:bg-gray-200 dark:hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed transition ease-in-out duration-150',
+    'dark'      => 'cursor-pointer bg-gray-900 dark:bg-gray-100 border border-transparent rounded-md font-semibold text-xs text-white dark:text-gray-900 uppercase tracking-widest hover:bg-gray-700 dark:hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed transition ease-in-out duration-150',
+    'link'      => 'cursor-pointer bg-transparent border border-transparent rounded-md font-semibold text-xs text-gray-700 dark:text-gray-300 uppercase tracking-widest hover:text-gray-900 dark:hover:text-gray-100 hover:underline disabled:opacity-50 disabled:cursor-not-allowed transition ease-in-out duration-150',
+    default     => 'cursor-pointer bg-gray-800 dark:bg-gray-200 border border-transparent rounded-md font-semibold text-xs text-white dark:text-gray-800 uppercase tracking-widest hover:bg-gray-700 dark:hover:bg-white active:bg-gray-900 dark:active:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed transition ease-in-out duration-150',
 };
 
-$sizeClasses = match ($size) {
-    'sm'    => 'px-3 py-1.5 text-xs',
-    'lg'    => 'px-6 py-3 text-base',
-    default => '',
-};
+$sizeClasses = $iconOnly
+    ? 'size-9 p-2'
+    : match ($size) { 'sm' => 'px-3 py-1.5', 'lg' => 'px-6 py-3', default => 'px-4 py-2' };
 
-if ($sizeClasses) {
-    $classes .= ' ' . $sizeClasses;
-}
+$classes = "inline-flex items-center justify-center {$sizeClasses} {$variantClasses}";
 @endphp
 
 <button

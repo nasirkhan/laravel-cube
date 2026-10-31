@@ -6,8 +6,8 @@
 
 <div>
     {{-- Toolbar --}}
-    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-4">
-        <div class="relative w-full sm:w-72">
+    <div class="flex flex-row items-center gap-3 mb-4">
+        <div class="relative flex-1 min-w-0">
             <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                 <i class="fa-solid fa-magnifying-glass text-gray-400 text-sm"></i>
             </div>
@@ -18,14 +18,16 @@
                 class="block w-full pl-9 pr-3 py-2 text-sm rounded-lg border border-gray-300 bg-gray-50 text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
             />
         </div>
-        <select
-            wire:model.live="perPage"
-            class="text-sm rounded-lg border border-gray-300 bg-gray-50 text-gray-900 p-2 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:focus:border-blue-500 dark:focus:ring-blue-500"
-        >
-            @foreach ($perPageOptions as $option)
-                <option value="{{ $option }}">{{ $option }} / @lang('page')</option>
-            @endforeach
-        </select>
+        <div class="flex items-center gap-1.5 shrink-0">
+            <select
+                wire:model.live="perPage"
+                class="text-sm rounded-lg border border-gray-300 bg-gray-50 text-gray-900 py-2 pl-3 pr-6 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:focus:border-blue-500 dark:focus:ring-blue-500"
+            >
+                @foreach ($perPageOptions as $option)
+                    <option value="{{ $option }}">{{ $option }}</option>
+                @endforeach
+            </select>
+        </div>
     </div>
 
     {{-- Table --}}
