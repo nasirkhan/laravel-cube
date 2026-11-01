@@ -90,9 +90,39 @@ That keeps Cube focused on core UI primitives while optional frontend behavior c
 - `<x-cube::social.whatsapp>`
 - `<x-cube::social.website>`
 
-### Livewire Components
-- `<x-cube::lw-table>` / `<lw-table>` - sortable, searchable paginated table wrapper
-- `<x-cube::lw-table-th>` / `<lw-table-th>` - sortable column header
+### Livewire / Blade Components
+
+All anonymous Blade components in this package are Livewire-compatible — they are rendered server-side and work inside Livewire component views without any extra configuration.
+
+The following components are designed specifically for Livewire-powered data tables:
+
+| Component | Alias | Description |
+|---|---|---|
+| `<x-cube::lw-table>` | `<lw-table>` | Sortable, searchable, paginated table wrapper. Renders the toolbar (search input + per-page selector) and pagination links. |
+| `<x-cube::lw-table-th>` | `<lw-table-th>` | Sortable column header. Pass `column`, `:sort-col`, and `:sort-dir` to enable click-to-sort via `wire:click`. |
+
+The following general-purpose Blade components are also fully compatible with Livewire views:
+
+| Component | Description |
+|---|---|
+| `<x-cube::alert>` | Flash/inline alert with dismiss support |
+| `<x-cube::badge>` | Status badge |
+| `<x-cube::button>` | Submit / action button with loading state |
+| `<x-cube::button-link>` | Anchor styled as a button |
+| `<x-cube::modal>` | Modal dialog |
+| `<x-cube::flash-message>` | Session flash notifications |
+| `<x-cube::validation-errors>` | Validation error summary |
+| `<x-cube::input>` | Text / email / password input |
+| `<x-cube::label>` | Form label |
+| `<x-cube::error>` | Inline field error message |
+| `<x-cube::group>` | Form field group (label + input + error) |
+| `<x-cube::checkbox>` | Checkbox input |
+| `<x-cube::select>` | Select dropdown |
+| `<x-cube::textarea>` | Textarea |
+| `<x-cube::toggle>` | Toggle / switch input |
+| `<x-cube::file-input>` | File upload input |
+| `<x-cube::tom-select>` | TomSelect-powered multi-select |
+| `<x-cube::icon>` | Flowbite Blade icon wrapper |
 
 ### Backend Components
 
