@@ -20,14 +20,11 @@
 
                 <x-slot name="toolbar">
                     <x-cube::backend-button-return-back :small="true" />
-                    <a
-                        class="inline-flex items-center px-3 py-1.5 text-xs font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 dark:text-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:hover:bg-gray-700 ml-1"
-                        href="{{ route("backend.$module_name.index") }}"
-                        title="{{ __(ucwords($module_name)) }} @lang("List")"
-                    >
-                        <i class="fas fa-list"></i>
-                        &nbsp;@lang("List")
-                    </a>
+                    <x-cube::backend-button-list
+                        route='{{ route("backend.$module_name.index") }}'
+                        title='{{ __(ucwords($module_name)) }} {{ __("List") }}'
+                        small="true"
+                    />
                 </x-slot>
             </x-cube::backend-section-header>
 
@@ -65,7 +62,7 @@
                                             </td>
                                             <td class="px-4 py-3 text-right">
                                                 <a
-                                                    class="inline-flex items-center px-3 py-1.5 text-xs font-medium text-white bg-yellow-400 rounded-lg hover:bg-yellow-500"
+                                                    class="inline-flex items-center cursor-pointer px-3 py-1.5 text-xs font-medium text-white bg-yellow-400 rounded-lg hover:bg-yellow-500 m-1"
                                                     data-method="PATCH"
                                                     data-token="{{ csrf_token() }}"
                                                     data-toggle="tooltip"

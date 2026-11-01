@@ -7,8 +7,11 @@
 ])
 
 @php
-$sizeClasses = $small == "true" ? "px-3 py-1.5 text-xs" : "px-4 py-2 text-sm";
-$baseClasses = "inline-flex items-center font-medium text-white bg-cyan-600 rounded-lg hover:bg-cyan-700 m-1 {$sizeClasses} {$class}";
+$iconOnly = $slot == "";
+$sizeClasses = $iconOnly
+    ? "size-9 p-2"
+    : ($small == "true" ? "px-3 py-1.5 text-xs" : "px-4 py-2 text-sm");
+$baseClasses = "inline-flex items-center justify-center cursor-pointer font-medium text-white bg-cyan-600 rounded-lg hover:bg-cyan-700 m-1 {$sizeClasses} {$class}";
 @endphp
 
 @if ($route)

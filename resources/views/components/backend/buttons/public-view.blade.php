@@ -1,17 +1,17 @@
-@props(["href" => "", "small" => "true", "text" => "Public View"])
+@props(["href" => "", "small" => "", "text" => "Public View"])
 
 @php
 $sizeClasses = $small == "true" ? "px-3 py-1.5 text-xs" : "px-4 py-2 text-sm";
 @endphp
 
 <a
-    class="inline-flex items-center font-medium text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 {{ $sizeClasses }}"
+    class="inline-flex items-center justify-center cursor-pointer font-medium text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 m-1 {{ $sizeClasses }}"
     href="{{ $href }}"
     target="_blank"
     rel="noopener noreferrer"
     aria-label="{{ __($text) }}"
 >
-    <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+    <i class="fa-solid fa-arrow-up-right-from-square fa-fw" aria-hidden="true"></i>
     {!! $text != "" ? "&nbsp;" . $text : "" !!}
     {!! $slot != "" ? "&nbsp;" . $slot : "" !!}
 </a>
