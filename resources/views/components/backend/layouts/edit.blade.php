@@ -1,15 +1,57 @@
 @props([
     "data" => "",
-    "module_name",
-    "module_path",
+    "module_name" => null,
+    "module_path" => null,
     "module_title" => "",
     "module_icon" => "",
     "module_action" => "",
+    "noForm" => false,
 ])
 <div class="bg-white dark:bg-gray-800 rounded-lg shadow">
     @if ($slot != "")
         <div class="p-6">
-            {{ $slot }}
+            @if ($header != "")
+                {{ $header }}
+            @endif
+
+            <div class="{{ $header != '' ? 'mt-4' : '' }}">
+                @if (!$noForm)
+                    <form method="POST" action="{{ route('backend.'.$module_name.'.update', $data) }}" enctype="multipart/form-data">
+                        @csrf
+                        @method('PATCH')
+
+                        {{ $slot }}
+
+                        <div class="flex items-center justify-between mt-4">
+                            <div class="flex items-center">
+                                <x-cube::backend-button-save />
+                                <x-cube::backend-button-cancel />
+                            </div>
+
+                            <div class="flex items-center gap-2">
+                                @if ($actions != "")
+                                    {{ $actions }}
+                                @else
+                                    @can("delete_" . $module_name)
+                                        <a
+                                            href="{{ route("backend.$module_name.destroy", $data) }}"
+                                            class="inline-flex items-center justify-center cursor-pointer font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 m-1 size-9 p-2"
+                                            data-method="DELETE"
+                                            data-token="{{ csrf_token() }}"
+                                            data-toggle="tooltip"
+                                            title="{{ __("Delete") }}"
+                                        >
+                                            <i class="fas fa-trash-alt"></i>
+                                        </a>
+                                    @endcan
+                                @endif
+                            </div>
+                        </div>
+                    </form>
+                @else
+                    {{ $slot }}
+                @endif
+            </div>
         </div>
     @else
         <div class="p-6">
@@ -28,37 +70,29 @@
 
                 @include("$module_path.$module_name.form")
 
-                <div class="flex mt-4 gap-4">
-                    <div class="w-1/3">
+                <div class="flex items-center justify-between mt-4">
+                    <div class="flex items-center">
                         <x-cube::backend-button-save />
+                        <x-cube::backend-button-cancel />
                     </div>
 
-                    <div class="flex-1">
-                        <div class="text-right">
-                            @can("delete_" . $module_name)
-                                <a
-                                    href="{{ route("backend.$module_name.destroy", $data) }}"
-                                    class="inline-flex items-center justify-center cursor-pointer font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 m-1 size-9 p-2"
-                                    data-method="DELETE"
-                                    data-token="{{ csrf_token() }}"
-                                    data-toggle="tooltip"
-                                    title="{{ __("Delete") }}"
-                                >
-                                    <i class="fas fa-trash-alt"></i>
-                                </a>
-                            @endcan
-                        </div>
+                    <div>
+                        @can("delete_" . $module_name)
+                            <a
+                                href="{{ route("backend.$module_name.destroy", $data) }}"
+                                class="inline-flex items-center justify-center cursor-pointer font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 m-1 size-9 p-2"
+                                data-method="DELETE"
+                                data-token="{{ csrf_token() }}"
+                                data-toggle="tooltip"
+                                title="{{ __("Delete") }}"
+                            >
+                                <i class="fas fa-trash-alt"></i>
+                            </a>
+                        @endcan
                     </div>
                 </div>
 
                 </form>
-
-                {{-- Cancel button outside the form to prevent accidental form submission --}}
-                <div class="mt-4">
-                    <div class="text-right">
-                        <x-cube::backend-button-cancel />
-                    </div>
-                </div>
             </div>
         </div>
     @endif

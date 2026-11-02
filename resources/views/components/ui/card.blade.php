@@ -4,12 +4,12 @@ $imageUrl = $image ? asset($image) : null;
 $isInternalUrl = $url && !preg_match('/^(https?:|mailto:|tel:|#)/', $url);
 @endphp
 
-<div class="group flex flex-col rounded-2xl border border-gray-200/80 bg-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md dark:border-gray-700/60 dark:bg-gray-800">
+<div class="group flex flex-col rounded-md border border-gray-200/80 bg-white shadow-sm transition-shadow duration-200 hover:shadow-lg dark:border-gray-700/60 dark:bg-gray-800">
     @if ($imageUrl)
-        <div class="overflow-hidden rounded-t-2xl">
+        <div class="overflow-hidden rounded-t-md">
             <a href="{{ $url }}" @if($isInternalUrl) wire:navigate @endif>
                 <img
-                    class="h-48 w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    class="h-48 w-full object-cover"
                     src="{{ $imageUrl }}"
                     alt="{{ $name }}"
                 />
