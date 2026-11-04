@@ -10,11 +10,11 @@
 <div class="bg-white dark:bg-gray-800 rounded-lg shadow">
     @if ($slot != "")
         <div class="p-6">
-            @if ($header != "")
+            @if (isset($header) && $header != "")
                 {{ $header }}
             @endif
 
-            <div class="{{ $header != '' ? 'mt-4' : '' }}">
+            <div class="{{ isset($header) && $header != '' ? 'mt-4' : '' }}">
                 @if (!$noForm)
                     <form method="POST" action="{{ route('backend.'.$module_name.'.update', $data) }}" enctype="multipart/form-data">
                         @csrf
@@ -29,7 +29,7 @@
                             </div>
 
                             <div class="flex items-center gap-2">
-                                @if ($actions != "")
+                                @if (isset($actions) && $actions != "")
                                     {{ $actions }}
                                 @else
                                     @can("delete_" . $module_name)
