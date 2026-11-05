@@ -6,6 +6,7 @@
     "module_icon" => "",
     "module_action" => "",
     "noForm" => false,
+    "hideDelete" => false,
 ])
 <div class="bg-white dark:bg-gray-800 rounded-lg shadow">
     @if ($slot != "")
@@ -32,7 +33,7 @@
                             <div class="flex items-center gap-2">
                                 @if (isset($actions) && $actions != "")
                                     {{ $actions }}
-                                @else
+                                @elseif (!$hideDelete)
                                     @can("delete_" . $module_name)
                                         <a
                                             href="{{ route("backend.$module_name.destroy", $data) }}"
@@ -78,6 +79,7 @@
                         <x-cube::backend-button-cancel />
                     </div>
 
+                    @if (!$hideDelete)
                     <div>
                         @can("delete_" . $module_name)
                             <a
@@ -92,6 +94,7 @@
                             </a>
                         @endcan
                     </div>
+                    @endif
                 </div>
 
                 </form>
