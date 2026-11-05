@@ -22,6 +22,7 @@
 
                         {{ $slot }}
 
+                        {{-- Cancel button outside the form to prevent accidental form submission --}}
                         <div class="flex items-center justify-between mt-4">
                             <div class="flex items-center">
                                 <x-cube::backend-button-save />
@@ -70,6 +71,7 @@
 
                 @include("$module_path.$module_name.form")
 
+                {{-- Cancel button outside the form to prevent accidental form submission --}}
                 <div class="flex items-center justify-between mt-4">
                     <div class="flex items-center">
                         <x-cube::backend-button-save />
