@@ -11,6 +11,8 @@
 @source "../../src/**/*.php";
 @source "../../config/cube.php";
 
+@import "tom-select/dist/css/tom-select.css";
+
 /* ── TomSelect: match Flowbite input appearance ─────────────────────────── */
 .ts-wrapper .ts-control {
     background-color: rgb(249 250 251);   /* bg-gray-50 */
@@ -21,6 +23,7 @@
     padding: 0.375rem 2.25rem 0.375rem 0.625rem;
     min-height: 2.625rem;
     box-shadow: none !important;
+    align-items: center;
     position: relative;
 }
 /* Chevron-down arrow — stroked for a bolder look */
@@ -49,17 +52,17 @@
     font-size: 0.875rem;
 }
 .ts-wrapper .ts-control .item {
-    background-color: rgb(219 234 254);   /* blue-100 */
-    color: rgb(30 64 175);                /* blue-800 */
+    background-color: rgb(243 244 246);   /* gray-100 */
+    color: rgb(55 65 81);                 /* gray-700 */
     border-radius: 0.25rem;
     padding: 0.125rem 0.5rem;
     font-size: 0.75rem;
     font-weight: 500;
-    border: none;
+    border: 1px solid rgb(209 213 219);   /* gray-300 */
 }
 .ts-wrapper .ts-control .item .remove {
-    border-left: 1px solid rgb(147 197 253);
-    color: rgb(30 64 175);
+    border-left: 1px solid rgb(209 213 219);   /* gray-300 */
+    color: rgb(107 114 128);                   /* gray-500 */
 }
 .ts-dropdown {
     border: 1px solid rgb(209 213 219);
@@ -86,13 +89,17 @@
     color: rgb(255 255 255);
     background-color: transparent;
 }
+.dark .ts-wrapper.focus .ts-control {
+    background-color: rgb(55 65 81);
+}
 .dark .ts-wrapper .ts-control .item {
-    background-color: rgb(30 58 138);
-    color: rgb(147 197 253);
+    background-color: rgb(55 65 81);     /* gray-700 */
+    color: rgb(209 213 219);             /* gray-300 */
+    border-color: rgb(107 114 128);      /* gray-500 */
 }
 .dark .ts-wrapper .ts-control .item .remove {
-    border-left-color: rgb(59 130 246);
-    color: rgb(147 197 253);
+    border-left-color: rgb(107 114 128);
+    color: rgb(156 163 175);             /* gray-400 */
 }
 .dark .ts-dropdown {
     background-color: rgb(31 41 55);

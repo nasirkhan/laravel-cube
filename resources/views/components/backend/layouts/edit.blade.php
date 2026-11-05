@@ -6,6 +6,7 @@
     "module_icon" => "",
     "module_action" => "",
     "noForm" => false,
+    "hideDelete" => false,
 ])
 <div class="bg-white dark:bg-gray-800 rounded-lg shadow">
     @if ($slot != "")
@@ -22,6 +23,7 @@
 
                         {{ $slot }}
 
+                        {{-- Cancel button outside the form to prevent accidental form submission --}}
                         <div class="flex items-center justify-between mt-4">
                             <div class="flex items-center">
                                 <x-cube::backend-button-save />
@@ -31,7 +33,7 @@
                             <div class="flex items-center gap-2">
                                 @if (isset($actions) && $actions != "")
                                     {{ $actions }}
-                                @else
+                                @elseif (!$hideDelete)
                                     @can("delete_" . $module_name)
                                         <a
                                             href="{{ route("backend.$module_name.destroy", $data) }}"
@@ -70,12 +72,14 @@
 
                 @include("$module_path.$module_name.form")
 
+                {{-- Cancel button outside the form to prevent accidental form submission --}}
                 <div class="flex items-center justify-between mt-4">
                     <div class="flex items-center">
                         <x-cube::backend-button-save />
                         <x-cube::backend-button-cancel />
                     </div>
 
+                    @if (!$hideDelete)
                     <div>
                         @can("delete_" . $module_name)
                             <a
@@ -90,6 +94,7 @@
                             </a>
                         @endcan
                     </div>
+                    @endif
                 </div>
 
                 </form>
